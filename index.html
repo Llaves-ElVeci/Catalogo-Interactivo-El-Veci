@@ -230,9 +230,10 @@
 <p style="text-align:center; font-size:1rem;">
   Antes de continuar con este catálogo interactivo, por favor seleccione el tipo de compra que desea realizar si va a adquirir llaves de la <strong>Línea de Hogar</strong>:
   <br/><br/>
-  • Al por menor (desde 1 llave – $0.23 c/u)<br/>
-  • Promoción EL VECI (desde 1.000 llaves – $0.20 c/u)<br/>
-  • Al por mayor (desde 10.000 llaves – $0.186 c/u)<br/><br/>
+  • Al por menor (desde 1 llave – $0.21 c/u)<br/>
+  • Promoción EL VECI (desde 1.000 llaves – $0.19 c/u)<br/>
+  • Al por mayor (desde 5.000 llaves – $0.186 c/u)<br/>
+  • Al por mayor (desde 10.000 llaves – $0.176 c/u)<br/><br/>
   Esta selección le permitirá visualizar los valores correspondientes por cada llave y generar su compra de forma correcta.
   <br/><br/>
 <strong>Importante:</strong><br/>
@@ -241,9 +242,10 @@
 </p>
 <select id="tipoCompra" onchange="actualizarResumen()" style="width:100%; padding:12px; font-size:1rem; border-radius:8px;">
 <option value="">-- Seleccione el tipo de compra --</option>
-<option value="0.23">Al por menor (1 a 999 llaves) - $0.23 c/u</option>
-<option value="0.20">Promoción EL VECI (1000 a 9999 llaves) - $0.20 c/u</option>
-<option value="0.186">Al por mayor (desde 10,000 llaves) - $0.186 c/u</option>
+<option value="0.21">Al por menor (1 a 999 llaves) - $0.21 c/u</option>
+<option value="0.19">Promoción EL VECI (1000 a 4999 llaves) - $0.19 c/u</option>
+<option value="0.186">Al por mayor (desde 5,000 llaves) - $0.186 c/u</option>
+<option value="0.176">Al por mayor (desde 10,000 llaves) - $0.176 c/u</option>
 </select>
 </div>
 <div class="producto" style="margin: 0 auto; text-align: center; max-width: 600px;">
@@ -2487,7 +2489,7 @@
 <a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
-<p><strong>Código:</strong> FTI2P</p>
+<p><strong>Código:</strong> FT2P</p>
 <p><strong>Stock:</strong> Disponible</p>
 <p><strong>Precio unitario:</strong> $0.65</p>
 </div>
@@ -2965,12 +2967,12 @@ function verificarCondicionesAntesDeEnviar() {
         }
     });
 
-    if (tipoCompra === "0.20" && totalHogar < 1000) {
-        alert("Para acceder a la Promoción EL VECI ($0.20), debe seleccionar al menos 1000 llaves de la Línea Hogar.");
+    if (tipoCompra === "0.19" && totalHogar < 1000) {
+        alert("Para acceder a la Promoción EL VECI ($0.19), debe seleccionar al menos 1000 llaves de la Línea Hogar.");
         return;
     }
-    if (tipoCompra === "0.186" && totalHogar < 10000) {
-        alert("Para acceder al precio por mayor ($0.186), debe seleccionar al menos 10,000 llaves de la Línea Hogar.");
+    if (tipoCompra === "0.176" && totalHogar < 10000) {
+        alert("Para acceder al precio por mayor ($0.176), debe seleccionar al menos 10,000 llaves de la Línea Hogar.");
         return;
     }
 
@@ -3390,9 +3392,10 @@ function agregarPedido(nombreProducto, inputId) {
   if (!tipoCompra) {
     alert(
       "⚠️ Para continuar, seleccione el tipo de compra (solo aplica a llaves de la Línea de Hogar)(Sección al inico del catálogo):\n" +
-      "• Al por menor (desde 1 llave $0.23 ctvs)\n" +
-      "• Promoción “El Veci” (mínimo 1000 llaves $0.20 ctvs)\n" +
-      "• Al por mayor (mínimo 10.000 llaves $0.186 ctvs)"
+      "• Al por menor (desde 1 llave $0.21 ctvs)\n" +
+      "• Promoción “El Veci” (mínimo 1000 llaves $0.19 ctvs)\n" +
+      "• Al por mayor (mínimo 5.000 llaves $0.186 ctvs)"\n" +
+      "• Al por mayor (mínimo 10.000 llaves $0.176 ctvs)"
     );
     return;
   }
@@ -3512,9 +3515,10 @@ if (esAutomotriz || esOtros) {
   if (!tipoCompra) {
     alert(
       "⚠️ Para continuar, seleccione el tipo de compra (solo aplica a llaves de la Línea de Hogar)(Sección al inicio del catálogo):\n" +
-      "• Al por menor (desde 1 llave $0.23 ctvs)\n" +
-      "• Promoción “El Veci” (mínimo 1000 llaves $0.20 ctvs)\n" +
-      "• Al por mayor (mínimo 10.000 llaves $0.186 ctvs)"
+      "• Al por menor (desde 1 llave $0.21 ctvs)\n" +
+      "• Promoción “El Veci” (mínimo 1000 llaves $0.19 ctvs)\n" +
+      "• Al por mayor (mínimo 5.000 llaves $0.186 ctvs)\n" +
+      "• Al por mayor (mínimo 10.000 llaves $0.176 ctvs)"
     );
     return;
   }
@@ -3581,9 +3585,10 @@ function mostrarGuia() {
     </div>
     <strong>Guía de uso del catálogo</strong><br>
     🟢 <strong>Paso 1:</strong> Seleccione el tipo de compra:<br>
-    • Al por menor (desde 1 llave $0.23 ctvs.)<br>
-    • Promoción “El Veci” (mínimo 1000 llaves $0.20ctvs.)<br>
-    • Al por mayor (mínimo 10.000 llaves $0.186ctvs.)<br><br>
+    • Al por menor (desde 1 llave $0.21 ctvs.)<br>
+    • Promoción “El Veci” (mínimo 1000 llaves $0.19ctvs.)<br>
+    • Al por mayor (mínimo 5.000 llaves $0.186ctvs.)<br>
+    • Al por mayor (mínimo 10.000 llaves $0.176ctvs.)<br><br>
     ⚠️ Estos precios aplican solo para llaves de la Línea de Hogar.<br><br>
     🚗 Las llaves de la Línea Automotriz y otros productos tienen un precio único por unidad.<br><br>
     ✏️ <strong>Paso 2:</strong> Busque el código o revise la llave deseada.<br>
@@ -3735,7 +3740,7 @@ const codigosCatalogo = [
   "MAPA PULSAR MOTO",
   "CITROEN",
   "SOBO",
-  "FTI2P",
+  "FT2P",
   "CONTROL NAVAJA CHEVY CLÁSICO"
   "CONTROL CHEVY CLÁSICO"
   "CARCASA CHEVY",
@@ -3928,7 +3933,7 @@ document.addEventListener('DOMContentLoaded', function() {
   "MAPA PULSAR MOTO",
   "CITROEN",
   "SOBO",
-  "FTI2P",
+  "FT2P",
   "CONTROL NAVAJA CHEVY CLÁSICO"
   "CONTROL CHEVY CLÁSICO"
   "CARCASA CHEVY",
