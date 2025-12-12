@@ -1402,9 +1402,14 @@
 <p><strong>Uso:</strong> PHILLIPS LARGA 9 PINES</p>
 <p><strong>Stock:</strong> Disponible</p>
 </div>
-<label for="PH55-52L">Cantidad que desea comprar:</label>
+<label for="cantidadPH55-52L">Cantidad que desea comprar:</label>
 <input id="cantidadPH55-52L" placeholder="Ej: 10" type="number"/>
-<button class="boton-agregar" id="btn_cantidadPH55-52L" onclick="agregarPedido('PH55-52L/ PHILLIPS LARGA 9 PINES', 'cantidadPH55-52L)">Agregar al pedido</button>
+
+<button class="boton-agregar" id="btn_cantidadPH55-52L"
+  onclick="agregarPedido('PH55-52L / PHILLIPS LARGA 9 PINES', 'cantidadPH55-52L')">
+  Agregar al pedido
+</button>
+
 </div>
 
 
@@ -3703,9 +3708,15 @@ window.open(url, "_blank");
 }
 </script>
 <script>
+// Precios especiales por código (excepciones)
+const preciosEspeciales = {
+  "PH55-52L": 0.25
+};
+
 function agregarPedido(nombreProducto, inputId) {
   const input = document.getElementById(inputId);
   const cantidad = parseInt(input.value);
+
   if (isNaN(cantidad) || cantidad <= 0) {
     alert("Por favor, ingrese una cantidad válida.");
     return;
@@ -3716,27 +3727,46 @@ function agregarPedido(nombreProducto, inputId) {
   const esOtros = productoElemento.classList.contains("otros");
   let precioUnitario = 0;
 
-if (esAutomotriz || esOtros) {
-  const precioData = productoElemento.getAttribute("data-precio");
-  if (!precioData) {
-    alert("Este producto no tiene precio asignado.");
-    return;
-  }
-  precioUnitario = parseFloat(precioData);
-} else {
-  const tipoCompra = document.getElementById("tipoCompra").value;
-  if (!tipoCompra) {
-    alert(
-      "⚠️ Para continuar, seleccione el tipo de compra (solo aplica a llaves de la Línea de Hogar)(Sección al inicio del catálogo):\n" +
-      "• Al por menor (desde 1 llave $0.21 ctvs)\n" +
-      "• Promoción “El Veci” (mínimo 1000 llaves $0.19 ctvs)\n" +
-      "• Al por mayor (mínimo 5.000 llaves $0.186 ctvs)\n" +
-      "• Al por mayor (mínimo 10.000 llaves $0.176 ctvs)"
+  // ✅ Obtener el código real desde el bloque del producto (p: "Código: XXX")
+  let codigoReal = "";
+  const detalle = productoElemento.querySelector(".detalles");
+  if (detalle) {
+    const pCodigo = Array.from(detalle.querySelectorAll("p")).find(p =>
+      p.innerText.toLowerCase().startsWith("código:")
     );
-    return;
+    if (pCodigo) codigoReal = pCodigo.innerText.replace(/código:/i, "").trim();
   }
-  precioUnitario = parseFloat(tipoCompra);
-}
+  // Respaldo por si no encuentra el <p> (toma el primer token del nombre)
+  if (!codigoReal) codigoReal = (nombreProducto || "").trim().split(/[\/\s]+/)[0];
+
+  // ✅ 1) Precio especial por código (NO afecta la línea)
+  if (preciosEspeciales[codigoReal] != null) {
+    precioUnitario = preciosEspeciales[codigoReal];
+
+  // ✅ 2) Automotriz u Otros: precio fijo por data-precio
+  } else if (esAutomotriz || esOtros) {
+    const precioData = productoElemento.getAttribute("data-precio");
+    if (!precioData) {
+      alert("Este producto no tiene precio asignado.");
+      return;
+    }
+    precioUnitario = parseFloat(precioData);
+
+  // ✅ 3) Hogar normal: depende del tipoCompra
+  } else {
+    const tipoCompra = document.getElementById("tipoCompra").value;
+    if (!tipoCompra) {
+      alert(
+        "⚠️ Para continuar, seleccione el tipo de compra (solo aplica a llaves de la Línea de Hogar)(Sección al inicio del catálogo):\n" +
+        "• Al por menor (desde 1 llave $0.21 ctvs)\n" +
+        "• Promoción “El Veci” (mínimo 1000 llaves $0.19 ctvs)\n" +
+        "• Al por mayor (mínimo 5.000 llaves $0.186 ctvs)\n" +
+        "• Al por mayor (mínimo 10.000 llaves $0.176 ctvs)"
+      );
+      return;
+    }
+    precioUnitario = parseFloat(tipoCompra);
+  }
 
   carrito.push({ codigo: nombreProducto, cantidad: cantidad, precio: precioUnitario });
   actualizarListaCarrito();
@@ -3749,6 +3779,7 @@ if (esAutomotriz || esOtros) {
     boton.disabled = true;
   }
 }
+
 </script>
 <style>
 #navegacion-flotante {
