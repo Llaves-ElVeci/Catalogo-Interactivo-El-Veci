@@ -1959,6 +1959,76 @@
 <input id="cantidadMG1P" placeholder="Ej: 5" type="number"/>
 <button class="boton-agregar" id="btn_cantidadMG1P" onclick="agregarPedido('MG1P / MULT-LOCK', 'cantidadMG1P')">Agregar al pedido</button>
 </div>
+<div class="producto linea-automotriz" data-precio="0.75" style="margin: 0 auto; text-align: center; max-width: 600px;">
+<h2>MG1 / MULT-LOCK</h2>
+<div class="imagen">
+<a href="imagenes/MG1.jpeg" target="_blank">
+<img alt="Llave MG1" src="imagenes/MG1.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
+</a>
+</div>
+<p><strong>¿Quieres ver la llave más grande?</strong><br/>
+<a href="imagenes/MG1.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
+</p>
+<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<div class="detalles">
+<p class="linea" style="display:none;">Línea: Automotriz</p>
+<p><strong>Código:</strong> MG1</p>
+<p><strong>Stock:</strong> Disponible</p>
+<p><strong>Precio unitario:</strong> $0.75</p>
+</div>
+<label for="cantidadMG1">Cantidad que desea comprar:</label>
+<input id="cantidadMG1" placeholder="Ej: 5" type="number"/>
+<button class="boton-agregar" id="btn_cantidadMG1" onclick="agregarPedido('MG1 / MULT-LOCK', 'cantidadMG1')">Agregar al pedido</button>
+
+</div>
+<div class="producto linea-automotriz" data-precio="0.75" style="margin: 0 auto; text-align: center; max-width: 600px;">
+<h2>MG5 / MULT-LOCK</h2>
+<div class="imagen">
+<a href="imagenes/MG5.jpeg" target="_blank">
+<img alt="Llave MG5" src="imagenes/MG5.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
+</a>
+</div>
+<p><strong>¿Quieres ver la llave más grande?</strong><br/>
+<a href="imagenes/MG5.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
+</p>
+<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<div class="detalles">
+<p class="linea" style="display:none;">Línea: Automotriz</p>
+<p><strong>Código:</strong> MG5</p>
+<p><strong>Stock:</strong> Disponible</p>
+<p><strong>Precio unitario:</strong> $0.75</p>
+</div>
+<label for="cantidadMG5">Cantidad que desea comprar:</label>
+<input id="cantidadMG5" placeholder="Ej: 5" type="number"/>
+<button class="boton-agregar" id="btn_cantidadMG5" onclick="agregarPedido('MG5 / MULT-LOCK', 'cantidadMG5')">Agregar al pedido</button>
+
+</div>
+<div class="producto linea-automotriz" data-precio="0.75" style="margin: 0 auto; text-align: center; max-width: 600px;">
+<h2>MG7 / MULT-LOCK</h2>
+<div class="imagen">
+<a href="imagenes/MG7.jpeg" target="_blank">
+<img alt="Llave MG7" src="imagenes/MG7.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
+</a>
+</div>
+<p><strong>¿Quieres ver la llave más grande?</strong><br/>
+<a href="imagenes/MG7.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
+</p>
+<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<div class="detalles">
+<p class="linea" style="display:none;">Línea: Automotriz</p>
+<p><strong>Código:</strong> MG7</p>
+<p><strong>Stock:</strong> Disponible</p>
+<p><strong>Precio unitario:</strong> $0.75</p>
+</div>
+<label for="cantidadMG7">Cantidad que desea comprar:</label>
+<input id="cantidadMG7" placeholder="Ej: 5" type="number"/>
+<button class="boton-agregar" id="btn_cantidadMG7" onclick="agregarPedido('MG7 / MULT-LOCK', 'cantidadMG7')">Agregar al pedido</button>
+
+
+
+
+
+</div>
 <div class="producto linea-automotriz" data-precio="0.65" style="margin: 0 auto; text-align: center; max-width: 600px;">
 <h2>FO4P / FORD</h2>
 <div class="imagen">
@@ -3062,6 +3132,21 @@
 <label for="cantidadTO2">Cantidad que desea comprar:</label>
 <input id="cantidadTO2" placeholder="Ej: 5" type="number"/>
 <button class="boton-agregar" id="btn_cantidadTO2" onclick="agregarPedido('TO2', 'cantidadTO2')">Agregar al pedido</button>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </div>
 <div class="producto otros" data-precio="0.75" style="margin: 0 auto; text-align: center; max-width: 600px;">
@@ -4217,6 +4302,9 @@ const codigosCatalogo = [
   "HONDA DERECHA",
   "HO12P",
   "MG1P",
+  "MG1",
+  "MG5",
+  "MG7",
   "FO4P",
   "VW-TP DIFERENTE",
   "TP-DN9",
@@ -4423,6 +4511,9 @@ document.addEventListener('DOMContentLoaded', function() {
   "HONDA DERECHA",
   "HO12P",
   "MG1P",
+  "MG1",
+  "MG5",
+  "MG7",
   "FO4P",
   "VW-TP DIFERENTE",
   "TP-DN9",
