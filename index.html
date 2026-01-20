@@ -3153,7 +3153,7 @@
 
 
 </div>
-<div class="producto linea-automotriz" data-precio="0.80" style="margin: 0 auto; text-align: center; max-width: 600px;">
+<div class="producto espadas" data-precio="0.80" style="margin: 0 auto; text-align: center; max-width: 600px;">
 <h2> ESPADA 78 / CHERY FEBGYUN</h2>
 <div class="imagen">
 <a href="imagenes/78.jpeg" target="_blank">
@@ -3172,9 +3172,10 @@
 </div>
 <label for="cantidadESPADA78">Cantidad que desea comprar:</label>
 <input id="cantidadESPADA78" placeholder="Ej: 5" type="number"/>
-<button class="boton-agregar" id="btn_cantidadESPADA78" onclick="agregarPedido('ESPADA78', 'cantidadESPADA78')">Agregar al pedido</button>
+<button class="boton-agregar" id="btn_cantidadESPADA78" onclick="agregarPedido('ESPADA 78 CHERY FEBGYUN', 'cantidadESPADA78')">Agregar al pedido</button>
+
 </div>
-<div class="producto linea-automotriz" data-precio="0.80" style="margin: 0 auto; text-align: center; max-width: 600px;">
+<div class="producto espadas" data-precio="0.80" style="margin: 0 auto; text-align: center; max-width: 600px;">
 <h2> Espada 84 / Chery A21</h2>
 <div class="imagen">
 <a href="imagenes/84.jpeg" target="_blank">
@@ -3193,7 +3194,7 @@
 </div>
 <label for="cantidadESPADA84">Cantidad que desea comprar:</label>
 <input id="cantidadESPADA84" placeholder="Ej: 5" type="number"/>
-<button class="boton-agregar" id="btn_cantidadESPADA84" onclick="agregarPedido('ESPADA84', 'cantidadESPADA84')">Agregar al pedido</button>
+<button class="boton-agregar" id="btn_cantidadESPADA84" onclick="agregarPedido('Espada 84 / Chery A21', 'cantidadESPADA84')">Agregar al pedido</button>
 
 
 
@@ -4130,7 +4131,7 @@ function agregarPedido(nombreProducto, inputId) {
 
   const productoElemento = input.closest(".producto");
   const esAutomotriz = productoElemento.classList.contains("linea-automotriz");
-  const esEspada = productoElemento.classList.contains("espadas");
+  const esEspadas = productoElemento.classList.contains("espadas");
   const esOtros = productoElemento.classList.contains("otros");
   let precioUnitario = 0;
 
@@ -4150,7 +4151,7 @@ function agregarPedido(nombreProducto, inputId) {
   if (preciosEspeciales[codigoReal] != null) {
     precioUnitario = preciosEspeciales[codigoReal];
 
-  // ✅ 2) Automotriz u Otros: precio fijo por data-precio
+  // ✅ 2) Automotriz Espadas u Otros: precio fijo por data-precio
   } else if (esAutomotriz || esOtros || esEspadas) {
     const precioData = productoElemento.getAttribute("data-precio");
     if (!precioData) {
@@ -4241,7 +4242,7 @@ function mostrarGuia() {
     • Al por mayor (mínimo 5.000 llaves $0.186ctvs.)<br>
     • Al por mayor (mínimo 10.000 llaves $0.176ctvs.)<br><br>
     ⚠️ Estos precios aplican solo para llaves de la Línea de Hogar.<br><br>
-    🚗 Las llaves de la Línea Automotriz y otros productos tienen un precio único por unidad.<br><br>
+    🚗 Las llaves de la Línea Automotriz, Espadas y otros productos tienen un precio único por unidad.<br><br>
     ✏️ <strong>Paso 2:</strong> Busque el código o revise la llave deseada.<br>
     📦 <strong>Paso 3:</strong> Ingrese la cantidad y presione “Agregar”.<br>
     📝 <strong>Paso 4:</strong> Complete su nombre y ciudad.<br>
