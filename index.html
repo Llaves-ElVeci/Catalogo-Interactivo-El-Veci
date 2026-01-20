@@ -255,6 +255,7 @@
 <div class="producto" style="margin: 0 auto; text-align: center; max-width: 600px;">
 <button onclick="filtrarPorLinea('linea-hogar')" style="margin: 5px; padding: 10px 20px; border-radius: 8px;">🏠 Línea Hogar</button>
 <button onclick="filtrarPorLinea('linea-automotriz')" style="margin: 5px; padding: 10px 20px; border-radius: 8px;">🚗 Línea Automotriz</button>
+<button onclick="filtrarPorLinea('espadas')" style="margin: 5px; padding: 10px 20px; border-radius: 8px;">🔑 Espadas</button>
 <button onclick="filtrarPorLinea('otros')" style="margin: 5px; padding: 10px 20px; border-radius: 8px;">📦 Otros</button>
 </div>
 <div id="inicio"></div>
@@ -1721,7 +1722,7 @@
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> DN4</p>
-<p><strong>Stock:</strong> No Disponible</p>
+<p><strong>Stock:</strong> Disponible</p>
 <p><strong>Precio unitario:</strong> $0.60</p>
 </div>
 <label for="cantidadDN4">Cantidad que desea comprar:</label>
@@ -2045,9 +2046,6 @@
 <label for="cantidadSO1P">Cantidad que desea comprar:</label>
 <input id="cantidadSO1P" placeholder="Ej: 5" type="number"/>
 <button class="boton-agregar" id="btn_cantidadSO1P" onclick="agregarPedido('SO1P / MULT-LOCK', 'cantidadSO1P')">Agregar al pedido</button>
-
-
-
 </div>
 <div class="producto linea-automotriz" data-precio="0.65" style="margin: 0 auto; text-align: center; max-width: 600px;">
 <h2>FO4P / FORD</h2>
@@ -3130,7 +3128,6 @@
 <label for="cantidadTO1">Cantidad que desea comprar:</label>
 <input id="cantidadTO1" placeholder="Ej: 5" type="number"/>
 <button class="boton-agregar" id="btn_cantidadTO1" onclick="agregarPedido('TO1', 'cantidadTO1')">Agregar al pedido</button>
-
 </div>
 <div class="producto linea-automotriz" data-precio="0.60" style="margin: 0 auto; text-align: center; max-width: 600px;">
 <h2> TO2</h2>
@@ -3155,7 +3152,27 @@
 
 
 
-
+</div>
+<div class="producto espadas" data-precio="0.80" style="margin: 0 auto; text-align: center; max-width: 600px;">
+<h2> ESPADA 78 CHERY FEBGYUN</h2>
+<div class="imagen">
+<a href="imagenes/78.jpeg" target="_blank">
+<img alt="Llave 78" src="imagenes/78.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
+</a>
+</div>
+<p><strong>¿Quieres ver la llave más grande?</strong><br/>
+<a href="imagenes/78.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
+</p>
+<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<div class="detalles">
+<p class="linea" style="display:none;">Línea: Automotriz</p>
+<p><strong>Código:</strong> ESPADA 78 CHERY FEBGYUN</p>
+<p><strong>Stock:</strong> Disponible</p>
+<p><strong>Precio unitario:</strong> $0.80</p>
+</div>
+<label for="cantidadESPADA 78 CHERY FEBGYUN">Cantidad que desea comprar:</label>
+<input id="cantidadESPADA 78 CHERY FEBGYUN" placeholder="Ej: 5" type="number"/>
+<button class="boton-agregar" id="btn_cantidadESPADA 78 CHERY FEBGYUN" onclick="agregarPedido('ESPADA 78 CHERY FEBGYUN', 'cantidadESPADA 78 CHERY FEBGYUN')">Agregar al pedido</button>
 
 
 
@@ -4364,6 +4381,7 @@ const codigosCatalogo = [
   "CONTROL CHEVY CLÁSICO",
   "CARCASA CHEVY",
   "CARCASA KIA / HYUNDAI",
+  "ESPADA 78 CHERY FEBGYUN",
   "TAG",
   "REGRABADOR DE TAG 125KHz",
   "DISCO 60 DIENTES",
@@ -4585,6 +4603,7 @@ document.addEventListener('DOMContentLoaded', function() {
   "MAPA CENTRO MOTO",
   "TO1",
   "TO2",
+  "ESPADA 78 CHERY FEBGYUN",
   "TAG",
   "REGRABADOR DE TAG 125KHz",
   "DISCO 60 DIENTES",
