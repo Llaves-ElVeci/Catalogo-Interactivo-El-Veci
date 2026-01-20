@@ -4110,6 +4110,7 @@ function agregarPedido(nombreProducto, inputId) {
 
   const productoElemento = input.closest(".producto");
   const esAutomotriz = productoElemento.classList.contains("linea-automotriz");
+  const esEspada = productoElemento.classList.contains("espadas");
   const esOtros = productoElemento.classList.contains("otros");
   let precioUnitario = 0;
 
@@ -4130,7 +4131,7 @@ function agregarPedido(nombreProducto, inputId) {
     precioUnitario = preciosEspeciales[codigoReal];
 
   // ✅ 2) Automotriz u Otros: precio fijo por data-precio
-  } else if (esAutomotriz || esOtros) {
+  } else if (esAutomotriz || esOtros || esEspadas) {
     const precioData = productoElemento.getAttribute("data-precio");
     if (!precioData) {
       alert("Este producto no tiene precio asignado.");
