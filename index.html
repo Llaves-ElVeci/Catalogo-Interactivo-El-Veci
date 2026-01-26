@@ -5410,4 +5410,16 @@ function buscarCodigoEnPagina(codigoBuscado) {
 
     if (!encontrado && titulo && titulo.innerText.trim().toUpperCase().includes(codigoBuscado)) {
       prod.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      prod.classList
+      prod.classList.add('resaltado');
+      encontrado = true;
+    }
+  });
+
+  if (!encontrado) {
+    alert('Código no encontrado.');
+  }
+}
+</script>
+
+</body>
+</html>
