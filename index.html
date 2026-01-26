@@ -4017,12 +4017,6 @@
 <label for="cantidadADAPTADORUNIVERSAL">Cantidad que desea comprar:</label>
 <input id="cantidadADAPTADORUNIVERSAL" placeholder="Ej: 5" type="number"/>
 <button class="boton-agregar" id="btn_cantidad" onclick="agregarPedido('ADAPTADOR UNIVERSAL PARA MÁQUINA VERTICAL (LLAVES DE PUNTO, MAPA)', 'cantidadADAPTADORUNIVERSAL')">Agregar al pedido</button>
-
-
-
-
-
-
 </div>
 <div class="producto otros" data-precio="40.00" style="margin: 0 auto; text-align: center; max-width: 600px;">
 <h2> CEPILLO </h2>
@@ -5016,6 +5010,7 @@ const codigosCatalogo = [
   "ASTRA TP",
   "CORSA TP",
   "DMAX",
+  "GM30P CONTRARIA DMAX",
   "DN4",
   "GM25P",
   "GM26P",
@@ -5105,6 +5100,9 @@ const codigosCatalogo = [
   "REMOVEDOR DE PASADOR",
   "DISCO 60 DIENTES",
   "DISCO 80 DIENTES",
+  "FRESA 2MM PARA MÁQUINA VERTICAL", 
+  "FRESA 2.5MM PARA MÁQUINA VERTICAL",
+  "ADAPTADOR UNIVERSAL PARA MÁQUINA VERTICAL",
   "ARGOLLAS",
   "LLAVES DE COLORES",
   "COPIADORA"
@@ -5258,6 +5256,7 @@ document.addEventListener('DOMContentLoaded', function() {
   "ASTRA TP",
   "CORSA TP",
   "DMAX",
+  "GM30P CONTRARIA DMAX",
   "DN4",
   "GM25P",
   "GM26P",
@@ -5356,6 +5355,9 @@ document.addEventListener('DOMContentLoaded', function() {
   "IDENTIFICADORES DE LLAVES",
   "CALIBRADOR DE CANALES",
   "REMOVEDOR DE PASADOR",
+  "FRESA 2MM PARA MÁQUINA VERTICAL", 
+  "FRESA 2.5MM PARA MÁQUINA VERTICAL",
+  "ADAPTADOR UNIVERSAL PARA MÁQUINA VERTICAL",
   "DISCO 60 DIENTES",
   "DISCO 80 DIENTES",
   "ARGOLLAS",
@@ -5408,16 +5410,4 @@ function buscarCodigoEnPagina(codigoBuscado) {
 
     if (!encontrado && titulo && titulo.innerText.trim().toUpperCase().includes(codigoBuscado)) {
       prod.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      prod.classList.add('resaltado');
-      encontrado = true;
-    }
-  });
-
-  if (!encontrado) {
-    alert('Código no encontrado.');
-  }
-}
-</script>
-
-</body>
-</html>
+      prod.classList
