@@ -4458,7 +4458,7 @@ productos.forEach(prod => {
 
 🔑 ${nombreLlave}
 Cantidad: ${cantidad}
-Precio: $${precio.toFixed(3)}
+Precio: $${formatearPrecio(precio)}
 Subtotal: $${subtotal.toFixed(2)}`;
     }
 });
@@ -4563,6 +4563,15 @@ function filtrarPorLinea(clase) {
 }
 </script>
 <script>
+function formatearPrecio(precio) {
+  // Si el precio necesita 3 decimales (ej: 0.186 / 0.176), muestre 3
+  const necesita3 = Math.abs(precio * 1000 - Math.round(precio * 1000)) < 1e-9
+                 && Math.abs(precio * 100 - Math.round(precio * 100)) > 1e-9;
+
+  return necesita3 ? precio.toFixed(3) : precio.toFixed(2);
+}
+</script>
+<script>
 let carrito = [];
 
 function agregarPedido(nombreProducto, inputId) {
@@ -4610,7 +4619,7 @@ function actualizarListaCarrito() {
     div.innerHTML = `
       <strong>${item.codigo}</strong><br/>
       Cantidad: <span id="cantidadTexto${index}">${item.cantidad}</span> llaves<br/>
-      Precio unitario: $${item.precio.toFixed(3)}<br/>
+      Precio unitario: $${formatearPrecio(item.precio)}<br/>
       Subtotal: $${(item.precio * item.cantidad).toFixed(2)}<br/>
       <div id="edicion${index}" style="display:none; margin-top:5px;">
         <input type="number" id="editCantidad${index}" value="${item.cantidad}" style="width:60px;" />
@@ -4850,7 +4859,7 @@ function actualizarListaCarrito() {
     div.innerHTML = `
       <strong>${item.codigo}</strong><br/>
       Cantidad: ${item.cantidad}<br/>
-      Precio unitario: $${item.precio.toFixed(3)}<br/>
+      Precio unitario: $${formatearPrecio(item.precio)}<br/>
       Subtotal: $${(item.precio * item.cantidad).toFixed(2)}<br/>
     `;
     contenedor.appendChild(div);
