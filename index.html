@@ -256,7 +256,7 @@
 <button onclick="filtrarPorLinea('linea-hogar')" style="margin: 5px; padding: 10px 20px; border-radius: 8px;">🏠 Línea Hogar</button>
 <button onclick="filtrarPorLinea('linea-automotriz')" style="margin: 5px; padding: 10px 20px; border-radius: 8px;">🚗 Línea Automotriz</button>
 <button onclick="filtrarPorLinea('espadas')" style="margin: 5px; padding: 10px 20px; border-radius: 8px;">🔑 Espadas</button>
-<button onclick="filtrarPorLinea('Máquinas Copiadoras de llaves')" style="margin: 5px; padding: 10px 20px; border-radius: 8px;">🔑⚙️ Máquinas Copiadora de llaves</button>
+<button onclick="filtrarPorLinea('maquina-copiadora')" style="margin: 5px; padding: 10px 20px; border-radius: 8px;">🔑⚙️ Máquinas Copiadora de llaves</button>
 <button onclick="filtrarPorLinea('otros')" style="margin: 5px; padding: 10px 20px; border-radius: 8px;">📦 Otros</button>
 </div>
 <div id="inicio"></div>
@@ -4658,25 +4658,45 @@ let carrito = [];
 
 function agregarPedido(nombreProducto, inputId) {
   const input = document.getElementById(inputId);
-  const cantidad = parseInt(input.value);
+  if (!input) {
+    alert("Error: No se encontró el campo de cantidad de este producto.");
+    return;
+  }
+
+  const cantidad = parseInt(input.value, 10);
   if (isNaN(cantidad) || cantidad <= 0) {
     alert("Por favor, ingrese una cantidad válida.");
     return;
   }
 
   const productoElemento = input.closest(".producto");
-  const esAutomotriz = productoElemento.classList.contains("linea-automotriz");
-  let precioUnitario = 0;
+  if (!productoElemento) {
+    alert("Error: No se encontró el bloque del producto.");
+    return;
+  }
 
-  if (esAutomotriz) {
-    const precioData = productoElemento.getAttribute("data-precio");
-    if (!precioData) {
-      alert("Error: La llave automotriz no tiene precio asignado.");
+  // ✅ Regla general:
+  // - Si existe data-precio => usarlo (máquinas, otros, automotriz, etc.)
+  // - Si NO existe data-precio => usar el selector tipoCompra (solo Línea Hogar)
+  const precioData = productoElemento.getAttribute("data-precio");
+  let precioUnitario;
+
+  if (precioData) {
+    precioUnitario = parseFloat(precioData);
+    if (isNaN(precioUnitario)) {
+      alert("Error: data-precio inválido en este producto.");
       return;
     }
-    precioUnitario = parseFloat(precioData);
-
+  } else {
+    const tipoCompraEl = document.getElementById("tipoCompra");
+    const tipoCompra = tipoCompraEl ? tipoCompraEl.value : "";
+    if (!tipoCompra) {
+      alert("⚠️ Para continuar, seleccione el tipo de compra (solo aplica a llaves de la Línea de Hogar).");
+      return;
+    }
+    precioUnitario = parseFloat(tipoCompra);
   }
+
   carrito.push({ codigo: nombreProducto, cantidad: cantidad, precio: precioUnitario });
   actualizarListaCarrito();
   actualizarResumen();
@@ -4835,253 +4855,8 @@ document.getElementById("enviarPedido").addEventListener("click", function (e) {
   }
 });
 </script>
-<script>
-// Filtrar por línea
-function filtrarPorLinea(linea) {
-  const productos = document.querySelectorAll('.producto');
-  productos.forEach(producto => {
-    if (linea === 'todas' || producto.classList.contains(linea)) {
-      producto.style.display = 'block';
-    } else {
-      producto.style.display = 'none';
-    }
-  });
-}
 
-// Buscar por código
-function detectarEnter(event) {
-  if (event.key === "Enter") {
-    filtrarLlaves();
-  }
-}
 
-function filtrarLlaves() {
-  const input = document.getElementById("buscador").value.toLowerCase().trim();
-  const verTodoBtn = document.getElementById("verTodoBtn");
-  verTodoBtn.style.display = input.length > 0 ? "inline-block" : "none";
-
-  const productos = document.querySelectorAll(".producto");
-  productos.forEach(producto => {
-    const codigoParrafo = Array.from(producto.querySelectorAll("p")).find(p =>
-      p.innerText.toLowerCase().startsWith("código:")
-    );
-    if (codigoParrafo) {
-      const codigo = codigoParrafo.innerText.toLowerCase().replace("código:", "").trim();
-      producto.style.display = codigo === input ? "block" : "none";
-    } else {
-      producto.style.display = "none";
-    }
-  });
-}
-
-function resetearFiltro() {
-  document.querySelectorAll(".producto").forEach(producto => {
-    producto.style.display = "block";
-  });
-  const verTodoBtn = document.getElementById("verTodoBtn");
-  if (verTodoBtn) verTodoBtn.style.display = "none";
-}
-
-// Agregar al carrito
-let carrito = [];
-
-function agregarPedido(nombreProducto, inputId) {
-  const input = document.getElementById(inputId);
-  const cantidad = parseInt(input.value);
-  if (isNaN(cantidad) || cantidad <= 0) {
-    alert("Por favor, ingrese una cantidad válida.");
-    return;
-  }
-
-  const productoElemento = input.closest(".producto");
-  const esAutomotriz = productoElemento.classList.contains("linea-automotriz");
-  let precioUnitario = 0;
-
-  if (esAutomotriz) {
-    const precioData = productoElemento.getAttribute("data-precio");
-    if (!precioData) {
-      alert("Error: La llave automotriz no tiene precio asignado.");
-      return;
-    }
-    precioUnitario = parseFloat(precioData);
- } else {
-  const tipoCompra = document.getElementById("tipoCompra").value;
-  if (!tipoCompra) {
-    alert(
-      "⚠️ Para continuar, seleccione el tipo de compra (solo aplica a llaves de la Línea de Hogar)(Sección al inico del catálogo):\n" +
-      "• Al por menor (desde 1 llave $0.21 ctvs)\n" +
-      "• Promoción “El Veci” (mínimo 1000 llaves $0.19 ctvs)\n" +
-      "• Al por mayor (mínimo 5.000 llaves $0.186 ctvs)"\n" +
-      "• Al por mayor (mínimo 10.000 llaves $0.176 ctvs)"
-    );
-    return;
-  }
-  precioUnitario = parseFloat(tipoCompra);
-}
-  carrito.push({ codigo: nombreProducto, cantidad: cantidad, precio: precioUnitario });
-  actualizarListaCarrito();
-  actualizarResumen();
-
-  const boton = document.getElementById('btn_' + inputId);
-  if (boton) {
-    boton.innerText = 'Agregado';
-    boton.classList.add('boton-agregado');
-    boton.disabled = true;
-  }
-}
-
-function actualizarListaCarrito() {
-  const contenedor = document.getElementById("lista-carrito");
-  if (!contenedor) return;
-
-  contenedor.innerHTML = "";
-  carrito.forEach((item, index) => {
-    const div = document.createElement("div");
-    div.className = "carrito-item";
-    div.innerHTML = `
-      <strong>${item.codigo}</strong><br/>
-      Cantidad: ${item.cantidad}<br/>
-      Precio unitario: $${formatearPrecio(item.precio)}<br/>
-      Subtotal: $${(item.precio * item.cantidad).toFixed(2)}<br/>
-    `;
-    contenedor.appendChild(div);
-  });
-}
-
-function actualizarResumen() {
-  const resumen = document.getElementById("pedido");
-  if (!resumen) return;
-
-  let totalLlaves = 0;
-  let totalDinero = 0;
-  let texto = "";
-
-  carrito.forEach(item => {
-    const subtotal = item.cantidad * item.precio;
-    totalLlaves += item.cantidad;
-    totalDinero += subtotal;
-    texto += `${item.codigo} - ${item.cantidad} llaves = $${subtotal.toFixed(2)}\n`;
-  });
-
-  resumen.innerText = texto + `\nTotal de llaves: ${totalLlaves}\nTotal en USD: $${totalDinero.toFixed(2)}`;
-}
-
-function enviarPedido() {
-  const nombre = document.getElementById('nombre').value.trim();
-  const ciudad = document.getElementById('ciudad').value.trim();
-
-  if (!nombre || !ciudad) {
-    alert("Por favor ingrese su nombre y ciudad antes de enviar el pedido.");
-    return;
-  }
-
-  if (carrito.length === 0) {
-    alert("Debe agregar al menos una llave al carrito.");
-    return;
-  }
-
-  let totalLlaves = 0;
-  let totalDinero = 0;
-  let resumen = "";
-
-  carrito.forEach(item => {
-    const subtotal = item.cantidad * item.precio;
-    totalLlaves += item.cantidad;
-    totalDinero += subtotal;
-    resumen += `${item.codigo} - ${item.cantidad} llaves = $${subtotal.toFixed(2)}\n`;
-  });
-
- const mensaje =
-  "Cotización EL VECI\n\n" +
-  "Está generando una cotización con la marca ‘EL VECI’, su aliado, garantizando llaves que le brindan seguridad y calidad.\n\n" +
-  "🧑 Nombre: " + nombre + "\n" +
-  "📍 Ciudad: " + ciudad + "\n\n" +
-  "🧾 " + resumen + "\n" +
-  "🔑 Total de llaves: " + totalLlaves + "\n" +
-  "💵 Total a pagar: $" + totalDinero.toFixed(2) + "\n\n";
-
-const mensajeCodificado = encodeURIComponent(mensaje);
-const url = "https://wa.me/5930983889592?text=" + mensajeCodificado;
-window.open(url, "_blank");
-
-}
-</script>
-<script>
-// Precios especiales por código (excepciones)
-const preciosEspeciales = {
-  "PH55-52L": 0.25
-};
-
-function agregarPedido(nombreProducto, inputId) {
-  const input = document.getElementById(inputId);
-  const cantidad = parseInt(input.value);
-
-  if (isNaN(cantidad) || cantidad <= 0) {
-    alert("Por favor, ingrese una cantidad válida.");
-    return;
-  }
-
-  const productoElemento = input.closest(".producto");
-  const esAutomotriz = productoElemento.classList.contains("linea-automotriz");
-  const esEspadas = productoElemento.classList.contains("espadas");
-  const esMaquinas Copiadoras de llaves = productoElemento.classList.contains("maquinas copiadoras de llaves");
-  const esOtros = productoElemento.classList.contains("otros");
-  let precioUnitario = 0;
-
-  // ✅ Obtener el código real desde el bloque del producto (p: "Código: XXX")
-  let codigoReal = "";
-  const detalle = productoElemento.querySelector(".detalles");
-  if (detalle) {
-    const pCodigo = Array.from(detalle.querySelectorAll("p")).find(p =>
-      p.innerText.toLowerCase().startsWith("código:")
-    );
-    if (pCodigo) codigoReal = pCodigo.innerText.replace(/código:/i, "").trim();
-  }
-  // Respaldo por si no encuentra el <p> (toma el primer token del nombre)
-  if (!codigoReal) codigoReal = (nombreProducto || "").trim().split(/[\/\s]+/)[0];
-
-  // ✅ 1) Precio especial por código (NO afecta la línea)
-  if (preciosEspeciales[codigoReal] != null) {
-    precioUnitario = preciosEspeciales[codigoReal];
-
-  // ✅ 2) Automotriz Espadas, Otros, Maquinas Copaidoras de llaves: precio fijo por data-precio
-  } else if (esAutomotriz || esOtros || esEspadas ||esMaquinas Copiadoras de llaves) {
-    const precioData = productoElemento.getAttribute("data-precio");
-    if (!precioData) {
-      alert("Este producto no tiene precio asignado.");
-      return;
-    }
-    precioUnitario = parseFloat(precioData);
-
-  // ✅ 3) Hogar normal: depende del tipoCompra
-  } else {
-    const tipoCompra = document.getElementById("tipoCompra").value;
-    if (!tipoCompra) {
-      alert(
-        "⚠️ Para continuar, seleccione el tipo de compra (solo aplica a llaves de la Línea de Hogar)(Sección al inicio del catálogo):\n" +
-        "• Al por menor (desde 1 llave $0.21 ctvs)\n" +
-        "• Promoción “El Veci” (mínimo 1000 llaves $0.19 ctvs)\n" +
-        "• Al por mayor (mínimo 5.000 llaves $0.186 ctvs)\n" +
-        "• Al por mayor (mínimo 10.000 llaves $0.176 ctvs)"
-      );
-      return;
-    }
-    precioUnitario = parseFloat(tipoCompra);
-  }
-
-  carrito.push({ codigo: nombreProducto, cantidad: cantidad, precio: precioUnitario });
-  actualizarListaCarrito();
-  actualizarResumen();
-
-  const boton = document.getElementById('btn_' + inputId);
-  if (boton) {
-    boton.innerText = 'Agregado';
-    boton.classList.add('boton-agregado');
-    boton.disabled = true;
-  }
-}
-
-</script>
 <style>
 #navegacion-flotante {
   position: fixed;
