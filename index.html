@@ -4633,15 +4633,25 @@ function resetearFiltro() {
 
 function filtrarPorLinea(clase) {
   const productos = document.querySelectorAll(".producto");
+  let primerVisible = null;
+
   productos.forEach((producto, index) => {
     if (index === 0 || index === 1) return;
 
     if (clase === "todas") {
       producto.style.display = "block";
+      if (!primerVisible) primerVisible = producto;
     } else {
-      producto.style.display = producto.classList.contains(clase) ? "block" : "none";
+      const visible = producto.classList.contains(clase);
+      producto.style.display = visible ? "block" : "none";
+      if (visible && !primerVisible) primerVisible = producto;
     }
   });
+
+  // ✅ Si filtró una categoría (ej: máquinas), baja automáticamente al primer producto visible
+  if (clase !== "todas" && primerVisible) {
+    primerVisible.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
 }
 </script>
 <script>
@@ -5128,6 +5138,35 @@ const codigosCatalogo = [
   "MÁQUINA COPIADORA DE LLAVES",
 ];
 
+// ✅ Además de códigos, permitir buscar por nombres de productos (ej: MAQUINA, COPIADORA, GOSO, GOZO)
+let catalogoBusqueda = [];
+
+document.addEventListener('DOMContentLoaded', () => {
+  const textosProductos = Array.from(document.querySelectorAll('.producto h2'))
+    .map(h => h.innerText.trim())
+    .filter(Boolean);
+
+  const codigosDetalle = Array.from(document.querySelectorAll('.producto .detalles p'))
+    .map(p => p.innerText.replace(/\s+/g, ' ').trim())
+    .filter(t => t.toUpperCase().startsWith('CÓDIGO:'))
+    .map(t => t.replace(/^CÓDIGO:\s*/i, '').trim())
+    .filter(Boolean);
+
+  // Palabras clave útiles
+  const keywords = [
+    'MAQUINA', 'MÁQUINA', 'COPIADORA', 'MAQUINA COPIADORA', 'MÁQUINA COPIADORA',
+    'MAQUINA COPIADORA DE LLAVES', 'MÁQUINA COPIADORA DE LLAVES', 'GOSO', 'GOZO'
+  ];
+
+  catalogoBusqueda = Array.from(new Set([
+    ...codigosCatalogo,
+    ...textosProductos,
+    ...codigosDetalle,
+    ...keywords
+  ].map(x => x.toString().trim()).filter(Boolean)));
+});
+
+
 function detectarEnter(event) {
   if (event.key === 'Enter') {
     event.preventDefault();
@@ -5144,7 +5183,8 @@ function mostrarSugerencias() {
 
   if (texto.length === 0) return;
 
-  const coincidencias = codigosCatalogo.filter(codigo => codigo.startsWith(texto));
+  const base = (catalogoBusqueda && catalogoBusqueda.length) ? catalogoBusqueda : codigosCatalogo;
+  const coincidencias = base.filter(item => item.toString().toUpperCase().includes(texto)).slice(0, 30);
 
   coincidencias.forEach(codigo => {
     const div = document.createElement('div');
