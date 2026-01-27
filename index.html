@@ -5195,8 +5195,16 @@ function buscarCodigoEnPagina(codigoBuscado) {
 
 
 </script>
-
 <script>
+function normalizarTexto(str) {
+  return (str || "")
+    .toString()
+    .trim()
+    .toUpperCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, ""); // quita tildes
+}
+
 document.addEventListener('DOMContentLoaded', function() {
   const buscador = document.getElementById('buscador');
   const sugerencias = document.getElementById('sugerencias');
@@ -5396,14 +5404,15 @@ document.addEventListener('DOMContentLoaded', function() {
   "MÁQUINA COPIADORA DE LLAVES GOSO"
 ];
 
-
   buscador.addEventListener('input', function() {
-    const texto = buscador.value.trim().toUpperCase();
+    const texto = normalizarTexto(buscador.value);
     sugerencias.innerHTML = '';
 
     if (texto.length === 0) return;
 
-    const coincidencias = codigosCatalogo.filter(codigo => codigo.includes(texto));
+    const coincidencias = codigosCatalogo.filter(codigo =>
+      normalizarTexto(codigo).includes(texto)
+    );
 
     coincidencias.forEach(codigo => {
       const div = document.createElement('div');
@@ -5432,14 +5441,20 @@ function buscarCodigoEnPagina(codigoBuscado) {
       const pCodigo = Array.from(detalle.querySelectorAll('p')).find(p =>
         p.querySelector('strong') && p.querySelector('strong').innerText.trim().toUpperCase() === 'CÓDIGO:'
       );
-      if (pCodigo && pCodigo.innerText.replace('Código:', '').trim().toUpperCase() === codigoBuscado) {
-        prod.scrollIntoView({ behavior: 'smooth', block: 'center' });
-        prod.classList.add('resaltado');
-        encontrado = true;
+
+      if (pCodigo) {
+        const codigoEnPagina = normalizarTexto(pCodigo.innerText.replace('Código:', ''));
+        const buscado = normalizarTexto(codigoBuscado);
+
+        if (codigoEnPagina.includes(buscado)) {
+          prod.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          prod.classList.add('resaltado');
+          encontrado = true;
+        }
       }
     }
 
-    if (!encontrado && titulo && titulo.innerText.trim().toUpperCase().includes(codigoBuscado)) {
+    if (!encontrado && titulo && normalizarTexto(titulo.innerText).includes(normalizarTexto(codigoBuscado))) {
       prod.scrollIntoView({ behavior: 'smooth', block: 'center' });
       prod.classList.add('resaltado');
       encontrado = true;
@@ -5451,6 +5466,7 @@ function buscarCodigoEnPagina(codigoBuscado) {
   }
 }
 </script>
+
 
 </body>
 </html>
