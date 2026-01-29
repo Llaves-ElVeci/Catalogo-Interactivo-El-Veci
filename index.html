@@ -249,7 +249,7 @@ a.regresar-btn:hover{ filter: brightness(0.98); }
 <div class="producto" style="background:#e6f7ff; border: 2px solid #007bff; margin: 0 auto; max-width: 700px; text-align: center;">
 <h2 style="text-align:center;">Estimado cliente</h2>
 <p style="text-align:center; font-size:1rem;">
-  Este catálogo permite agregar productos al carrito y enviar su pedido por WhatsApp para recibir una cotización formal.
+  Este catálogo permite agregar productos al carrito y enviar su pedido por WhatsApp para recibir su cotización de manera directa.
   <br/><br/>
   ✅ Para las <strong>Llaves (Línea Hogar)</strong>, el sistema aplica automáticamente el mejor precio según la cantidad total agregada al carrito.
   <br/>
@@ -268,7 +268,7 @@ a.regresar-btn:hover{ filter: brightness(0.98); }
 </div>
 </div>
 <div class="producto" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>CATÁLOGO INTERACTIVO "EL VECI"<div style="text-align:center;"><p style="font-family: 'Georgia', serif; font-size: 1.15rem; text-align: center; color: #333; margin: 15px 0;">Usted puede seleccionar el código de la llave que necesite, indicar la cantidad requerida y agregarla al carrito. Al finalizar, tendrá la opción de enviar su pedido por WhatsApp para recibir una cotización formal de manera directa.</p><img src="imagenes/logo_el_veci.png" style="max-width:300px;margin:20px 0;"/></div> </h2>
+<h2>CATÁLOGO INTERACTIVO "EL VECI"<div style="text-align:center;"><p style="font-family: 'Georgia', serif; font-size: 1.15rem; text-align: center; color: #333; margin: 15px 0;">Usted puede seleccionar el código de la llave que necesite, indicar la cantidad requerida y agregarla al carrito. Al finalizar, tendrá la opción de enviar su pedido por WhatsApp para recibir su cotización de manera directa.</p><img src="imagenes/logo_el_veci.png" style="max-width:300px;margin:20px 0;"/></div> </h2>
 <p style="font-size: 1.05rem; font-weight: bold; margin-top: 10px; text-align: center;">🔑 Si usted ya conoce el código de la llave que necesita, puede escribirlo a continuación y generar su lista de pedido. En caso de no tener el código, también puede explorar todo nuestro catálogo con tranquilidad.</p><div><div style="position: relative; max-width: 600px; margin: 0 auto;"><div id="buscador-container" style="position: relative; max-width: 600px; margin: 0 auto;"><input id="buscador" onkeypress="detectarEnter(event)" placeholder="Buscar por código..." type="text"/><div id="sugerencias"></div></div>
 <div class="producto" style="margin: 0 auto; text-align: center; max-width: 600px;">
 <button onclick="filtrarPorLinea('linea-hogar')" style="margin: 5px; padding: 10px 20px; border-radius: 8px;">🏠 Línea Hogar</button>
@@ -4734,9 +4734,18 @@ function agregarPedido(nombreProducto, inputId) {
 const precioData = productoElemento.getAttribute("data-precio");
 let precioUnitario;
 
-// Detectar línea del producto
-const esLineaHogar = productoElemento.classList.contains("linea-hogar");
-const lineaProducto = esLineaHogar ? "linea-hogar" : "otra";
+// Detectar línea del producto (para organizar el resumen y el WhatsApp)
+const clases = productoElemento.classList;
+let lineaProducto = "otros";
+let lineaNombre = "Otros";
+
+if (clases.contains("linea-hogar")) { lineaProducto = "linea-hogar"; lineaNombre = "Línea Hogar"; }
+else if (clases.contains("linea-automotriz")) { lineaProducto = "linea-automotriz"; lineaNombre = "Línea Automotriz"; }
+else if (clases.contains("espadas")) { lineaProducto = "espadas"; lineaNombre = "Espadas"; }
+else if (clases.contains("maquina-copiadora")) { lineaProducto = "maquina-copiadora"; lineaNombre = "Máquinas"; }
+else if (clases.contains("otros")) { lineaProducto = "otros"; lineaNombre = "Otros"; }
+
+const esLineaHogar = (lineaProducto === "linea-hogar");
 
 if (precioData) {
   precioUnitario = parseFloat(precioData);
@@ -4757,7 +4766,7 @@ if (precioData) {
   return;
 }
 
-  carrito.push({ codigo: nombreProducto, cantidad: cantidad, precio: precioUnitario, linea: lineaProducto });
+  carrito.push({ codigo: nombreProducto, cantidad: cantidad, precio: precioUnitario, linea: lineaProducto, lineaNombre: lineaNombre });
 
 // Si es Línea Hogar, recalcular precios por escalas (para que todo el carrito quede consistente)
 recalcularPreciosLineaHogarCarrito();
@@ -4834,38 +4843,106 @@ function eliminarDelCarrito(index) {
 }
 
 function actualizarResumen() {
-  const resumen = document.getElementById("pedido");
-  if (!resumen) return;
+  const resumenEl = document.getElementById("pedido");
+  if (!resumenEl) return;
 
-  // ✅ Antes de calcular totales, asegurar que Línea Hogar tenga el precio correcto por escala
+  // ✅ Asegurar que Línea Hogar tenga el precio correcto por escala
   const infoHogar = recalcularPreciosLineaHogarCarrito();
   const totalHogar = infoHogar.totalHogar || 0;
   const precioHogar = infoHogar.precioHogar || 0;
 
-  let totalLlaves = 0;
-  let totalDinero = 0;
-  let texto = "";
-
-  carrito.forEach(item => {
-    const cantidad = parseInt(item.cantidad, 10) || 0;
-    const subtotal = cantidad * (parseFloat(item.precio) || 0);
-    totalLlaves += cantidad;
-    totalDinero += subtotal;
-    texto += `${item.codigo} - ${cantidad} unidades = $${subtotal.toFixed(2)}
-`;
-  });
-
-  if (totalHogar > 0) {
-    texto += `
-✅ Línea Hogar: ${totalHogar} llaves | Precio aplicado: $${precioHogar.toFixed(3)} c/u`;
-    texto += `
-   (El precio se ajusta automáticamente si cambia la cantidad total)
-`;
+  if (!carrito.length) {
+    resumenEl.innerHTML = "<em>No hay productos en el carrito.</em>";
+    return;
   }
 
-  resumen.innerText = texto + `
-Total de unidades: ${totalLlaves}
-Total en USD: $${totalDinero.toFixed(2)}`;
+  // Orden deseado de secciones
+  const orden = ["linea-hogar", "linea-automotriz", "espadas", "maquina-copiadora", "otros", "otra"];
+  const ordenIndex = (k) => {
+    const i = orden.indexOf(k);
+    return i === -1 ? 999 : i;
+  };
+
+  // Agrupar por línea
+  const grupos = {};
+  carrito.forEach(it => {
+    const key = it.linea || "otros";
+    if (!grupos[key]) grupos[key] = [];
+    grupos[key].push(it);
+  });
+
+  let totalUnidades = 0;
+  let totalDinero = 0;
+
+  const escapeHtml = (s) => String(s)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;");
+
+  let html = "";
+  const keysOrdenadas = Object.keys(grupos).sort((a,b) => ordenIndex(a) - ordenIndex(b));
+
+  keysOrdenadas.forEach(key => {
+    const items = grupos[key];
+    if (!items || !items.length) return;
+
+    const nombreLinea = (items[0].lineaNombre) ? items[0].lineaNombre : (
+      key === "linea-hogar" ? "Línea Hogar" :
+      key === "linea-automotriz" ? "Línea Automotriz" :
+      key === "espadas" ? "Espadas" :
+      key === "maquina-copiadora" ? "Máquinas" :
+      "Otros"
+    );
+
+    html += `<div style="margin-top:14px; padding:10px; border-radius:10px; background:#f9f9f9;">
+      <div style="font-weight:bold; margin-bottom:8px;">${escapeHtml(nombreLinea)}</div>
+      <table style="width:100%; border-collapse:collapse; font-size:0.95rem;">
+        <thead>
+          <tr>
+            <th style="text-align:left; padding:6px; border-bottom:1px solid #ddd;">Código</th>
+            <th style="text-align:right; padding:6px; border-bottom:1px solid #ddd;">Cant.</th>
+            <th style="text-align:right; padding:6px; border-bottom:1px solid #ddd;">P. Unit</th>
+            <th style="text-align:right; padding:6px; border-bottom:1px solid #ddd;">Subtotal</th>
+          </tr>
+        </thead>
+        <tbody>`;
+
+    items.forEach(it => {
+      const cantidad = parseInt(it.cantidad, 10) || 0;
+      const precio = parseFloat(it.precio) || 0;
+      const subtotal = cantidad * precio;
+      totalUnidades += cantidad;
+      totalDinero += subtotal;
+
+      html += `<tr>
+        <td style="padding:6px; border-bottom:1px solid #eee;">${escapeHtml(it.codigo)}</td>
+        <td style="padding:6px; border-bottom:1px solid #eee; text-align:right;">${cantidad}</td>
+        <td style="padding:6px; border-bottom:1px solid #eee; text-align:right;">$${formatearPrecio(precio)}</td>
+        <td style="padding:6px; border-bottom:1px solid #eee; text-align:right;">$${subtotal.toFixed(2)}</td>
+      </tr>`;
+    });
+
+    html += `</tbody></table>`;
+
+    // Nota especial para Hogar
+    if (key === "linea-hogar" && totalHogar > 0) {
+      html += `<div style="margin-top:8px; font-size:0.9rem; color:#444;">
+        ✅ Hogar: <strong>${totalHogar}</strong> unidades | Precio aplicado: <strong>$${precioHogar.toFixed(3)}</strong> c/u (se ajusta automáticamente)
+      </div>`;
+    }
+
+    html += `</div>`;
+  });
+
+  html += `<div style="margin-top:16px; padding:12px; border-radius:10px; background:#ffffff; border:1px solid #e6e6e6;">
+    <div style="display:flex; justify-content:space-between; gap:10px; font-size:1rem;">
+      <div><strong>Total de unidades:</strong> ${totalUnidades}</div>
+      <div><strong>Subtotal:</strong> $${totalDinero.toFixed(2)}</div>
+    </div>
+    <div style="margin-top:6px; font-size:0.92rem; color:#555;">🚚 Envío: por confirmar según destino</div>
+  </div>`;
+
+  resumenEl.innerHTML = html;
 }
 
 
@@ -4880,35 +4957,99 @@ function enviarPedido() {
 
   // ✅ Asegurar que el precio de Línea Hogar esté actualizado antes de enviar
   const infoHogar = recalcularPreciosLineaHogarCarrito();
+  const totalHogar = infoHogar.totalHogar || 0;
+  const precioHogar = infoHogar.precioHogar || 0;
 
-  let totalLlaves = 0;
-  let totalDinero = 0;
-  let resumen = "";
-
-  carrito.forEach(item => {
-    const cantidad = parseInt(item.cantidad);
-    const subtotal = cantidad * item.precio;
-    totalLlaves += cantidad;
-    totalDinero += subtotal;
-    resumen += `${item.codigo} - ${cantidad} llaves = $${subtotal.toFixed(2)}\n`;
-  });
-
-  if (totalLlaves === 0) {
-    alert("Debe agregar al menos una llave al carrito.");
+  if (!carrito.length) {
+    alert("Debe agregar al menos un producto al carrito.");
     return;
   }
-const mensaje =
-  "Cotización EL VECI\n\n" +
-  "Está generando una cotización con la marca ‘EL VECI’, su aliado, garantizando llaves que le brindan seguridad y calidad.\n\n" +
-  "🧑 Nombre: " + nombre + "\n" +
-  "📍 Ciudad: " + ciudad + "\n\n" +
-  "🧾 " + resumen + "\n" +
-  "🔑 Total de llaves: " + totalLlaves + "\n" +
-  "💵 Total a pagar: $" + totalDinero.toFixed(2) + "\n\n";
 
-const mensajeCodificado = encodeURIComponent(mensaje);
-const url = "https://wa.me/5930983889592?text=" + mensajeCodificado;
-window.open(url, "_blank");
+  // Orden deseado de secciones
+  const orden = ["linea-hogar", "linea-automotriz", "espadas", "maquina-copiadora", "otros", "otra"];
+  const ordenIndex = (k) => {
+    const i = orden.indexOf(k);
+    return i === -1 ? 999 : i;
+  };
+
+  // Agrupar por línea
+  const grupos = {};
+  carrito.forEach(it => {
+    const key = it.linea || "otros";
+    if (!grupos[key]) grupos[key] = [];
+    grupos[key].push(it);
+  });
+
+  let totalUnidades = 0;
+  let totalDinero = 0;
+
+  const fecha = new Date();
+  const fechaTxt = fecha.toLocaleDateString('es-EC');
+
+  let detalle = "";
+  const keysOrdenadas = Object.keys(grupos).sort((a,b) => ordenIndex(a) - ordenIndex(b));
+
+  keysOrdenadas.forEach(key => {
+    const items = grupos[key];
+    if (!items || !items.length) return;
+
+    const nombreLinea = (items[0].lineaNombre) ? items[0].lineaNombre : (
+      key === "linea-hogar" ? "Línea Hogar" :
+      key === "linea-automotriz" ? "Línea Automotriz" :
+      key === "espadas" ? "Espadas" :
+      key === "maquina-copiadora" ? "Máquinas" :
+      "Otros"
+    );
+
+    detalle += `*${nombreLinea}*
+`;
+
+    items.forEach(it => {
+      const cantidad = parseInt(it.cantidad, 10) || 0;
+      const precio = parseFloat(it.precio) || 0;
+      const subtotal = cantidad * precio;
+
+      totalUnidades += cantidad;
+      totalDinero += subtotal;
+
+      detalle += `• ${it.codigo} | ${cantidad} u | $${formatearPrecio(precio)} c/u | $${subtotal.toFixed(2)}
+`;
+    });
+
+    if (key === "linea-hogar" && totalHogar > 0) {
+      detalle += `  ✅ Hogar: ${totalHogar} u | Precio aplicado: $${precioHogar.toFixed(3)} c/u
+`;
+    }
+
+    detalle += `
+`;
+  });
+
+  const mensaje =
+    `*COTIZACIÓN EL VECI*
+` +
+    `Fecha: ${fechaTxt}
+
+` +
+    `🧑 Cliente: ${nombre}
+` +
+    `📍 Ciudad: ${ciudad}
+
+` +
+    `🧾 *Detalle del pedido*
+${detalle}` +
+    `🔢 Total de unidades: ${totalUnidades}
+` +
+    `💵 Subtotal: $${totalDinero.toFixed(2)}
+` +
+    `🚚 Envío: por confirmar según destino
+
+` +
+    `Por favor confirme el destino exacto para calcular el valor del transporte.`;
+
+  const mensajeCodificado = encodeURIComponent(mensaje);
+  const url = "https://wa.me/5930983889592?text=" + mensajeCodificado;
+  window.open(url, "_blank");
 }
 </script>
 <script>
