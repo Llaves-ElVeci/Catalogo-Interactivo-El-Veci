@@ -3436,6 +3436,71 @@
 <label for="cantidadCHERYTP">Cantidad que desea comprar:</label>
 <input id="cantidadCHERYTP" placeholder="Ej: 5" type="number"/>
 <button class="boton-agregar" id="btn_cantidadCHERYTP" onclick="agregarPedido('CHERYTP', 'cantidadCHERYTP')">Agregar al pedido</button>
+</div>
+<div class="producto linea-automotriz" data-precio="8.00" style="margin: 0 auto; text-align: center; max-width: 600px;">
+  
+  <h2>🔑⚙️ CONTROL NAVAJA FRECUENCIA VARIABLE</h2>
+
+  <!-- Video demostrativo -->
+  <div class="imagen">
+    <video autoplay muted controls width="100%" style="margin-top: 30px; margin-bottom: 10px;">
+      <source src="imagenes/NAVAJAVARIABLE.mp4" type="video/mp4">
+      Su navegador no admite videos HTML5.
+    </video>
+  </div>
+
+  <!-- Enlace TikTok -->
+  <p style="margin-top: 10px;">
+    ▶️ <a href="https://www.tiktok.com/@LLAVESELVECI" target="_blank" style="color:#000; font-weight:bold;">
+      Para ver videos de los productos en TikTok
+    </a>
+  </p>
+
+  <a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+
+  <div class="detalles">
+    <p class="linea" style="display:none;">Línea: Automotriz</p>
+
+    <p><strong>Código:</strong> CONTROL NAVAJA FRECUENCIA VARIABLE</p>
+
+    <p><strong>DIFERENTES MODELOS:</strong><br>
+      🔑 Realiza la compra<br>
+      📞 Elige tus modelos favoritos del video y contáctanos por WhatsApp
+    </p>
+
+    <p><strong>Precio:</strong><br>
+      • 1 a 5 unidades: <strong>$8.00</strong><br>
+      • Desde 6 unidades: <strong>$7.50</strong>
+    </p>
+  </div>
+
+  <label for="cantidadNAVAJAVARIABLE">Cantidad que desea comprar:</label>
+
+  <p id="precioNAVAJAVARIABLE" style="margin-top:10px; font-weight:bold;">
+    Precio aplicado: $8.00
+  </p>
+
+  <input type="number"
+    id="cantidadNAVAJAVARIABLE"
+    placeholder="Ej: 1"
+    min="1"
+    oninput="actualizarPrecioEscalonado({
+      inputId:'cantidadNAVAJAVARIABLE',
+      precioId:'precioNAVAJAVARIABLE',
+      btnId:'btn_cantidadNAVAJAVARIABLE',
+      umbral:6,
+      precioMenor:8.00,
+      precioMayor:7.50
+    })">
+
+  <button class="boton-agregar"
+    id="btn_cantidadNAVAJAVARIABLE"
+    onclick="agregarPedido('CONTROL NAVAJA FRECUENCIA VARIABLE', 'cantidadNAVAJAVARIABLE')">
+    Agregar al pedido
+  </button>
+
+</div>
+
 
 </div>
 <div class="producto espadas" data-precio="0.80" style="margin: 0 auto; text-align: center; max-width: 600px;">
@@ -5455,6 +5520,7 @@ document.addEventListener('DOMContentLoaded', function() {
   "MAPA LANFORD LLAVE QUESO",
   "SINOTRUCK",
   "HINOP",
+  "CONTROL NAVAJA FRECUENCIA VARIABLE",
   "ESPADA 78 CHERY FEBGYUN",
   "ESPADA 84 CHERY A21",
   "ESPADA 39 CHEVROLET SAIL",
@@ -5559,6 +5625,24 @@ function buscarCodigoEnPagina(codigoBuscado) {
   if (!encontrado) {
     alert('Código no encontrado.');
   }
+}
+</script>
+<script>
+function actualizarPrecioEscalonado(config) {
+  const { inputId, precioId, btnId, umbral, precioMenor, precioMayor } = config;
+
+  const cantidad = parseInt(document.getElementById(inputId).value || "0", 10);
+  const precio = (cantidad >= umbral) ? precioMayor : precioMenor;
+
+  const etiqueta = document.getElementById(precioId);
+  if (etiqueta) etiqueta.textContent = "Precio aplicado: $" + precio.toFixed(2);
+
+  const boton = document.getElementById(btnId);
+  if (!boton) return;
+  const producto = boton.closest(".producto");
+  if (!producto) return;
+
+  producto.setAttribute("data-precio", precio.toFixed(2));
 }
 </script>
 
