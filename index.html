@@ -228,25 +228,23 @@
 <div <div="" class="producto" style="background:#e6f7ff; border: 2px solid #007bff; margin: 0 auto; max-width: 700px; text-align: center;">
 <h2 style="text-align:center;">Estimado cliente</h2>
 <p style="text-align:center; font-size:1rem;">
-  Antes de continuar con este catálogo interactivo, por favor seleccione el tipo de compra que desea realizar si va a adquirir llaves de la <strong>Línea de Hogar</strong>:
+  Este catálogo permite agregar productos al carrito y enviar su pedido por WhatsApp para recibir una cotización formal.
   <br/><br/>
-  • Al por menor (desde 1 llave – $0.21 c/u)<br/>
-  • Promoción EL VECI (desde 1.000 llaves – $0.19 c/u)<br/>
-  • Al por mayor (desde 5.000 llaves – $0.186 c/u)<br/>
-  • Al por mayor (desde 10.000 llaves – $0.176 c/u)<br/><br/>
-  Esta selección le permitirá visualizar los valores correspondientes por cada llave y generar su compra de forma correcta.
-  <br/><br/>
-<strong>Importante:</strong><br/>
-  • Si solo desea visualizar el catálogo, puede continuar sin seleccionar ninguna opción.<br/>
-  • Si desea comprar exclusivamente productos de la <strong>Línea Automotriz</strong>, <strong>Llaves de Colores</strong> u otros artículos, <strong>no necesita seleccionar un tipo de compra</strong>.
+  ✅ Para las <strong>Llaves (Línea Hogar)</strong>, el sistema aplica automáticamente el mejor precio según la cantidad total agregada al carrito.
+  <br/>
+  🚗 Los productos de <strong>Línea Automotriz</strong>, <strong>Máquinas</strong> y <strong>Otros</strong> mantienen su precio propio.
 </p>
-<select id="tipoCompra" onchange="actualizarResumen()" style="width:100%; padding:12px; font-size:1rem; border-radius:8px;">
-<option value="">-- Seleccione el tipo de compra --</option>
-<option value="0.21">Al por menor (1 a 999 llaves) - $0.21 c/u</option>
-<option value="0.19">Promoción EL VECI (1000 a 4999 llaves) - $0.19 c/u</option>
-<option value="0.186">Al por mayor (desde 5,000 llaves) - $0.186 c/u</option>
-<option value="0.176">Al por mayor (desde 10,000 llaves) - $0.176 c/u</option>
-</select>
+<div id="infoPreciosHogar" style="margin-top:12px; font-size:1rem; text-align:left; padding:12px; border-radius:10px; background:#ffffff;">
+  <p style="margin:0 0 8px 0; font-weight:bold;">✅ Precios automáticos para Llaves (Línea Hogar)</p>
+  <p style="margin:0;">
+    El sistema calcula automáticamente el mejor precio según el <strong>total de llaves Línea Hogar</strong> agregadas al carrito:
+    <br/>• 1 a 999 llaves: <strong>$0.21</strong> c/u
+    <br/>• 1.000 a 4.999 llaves: <strong>$0.19</strong> c/u
+    <br/>• 5.000 a 9.999 llaves: <strong>$0.186</strong> c/u
+    <br/>• 10.000 o más: <strong>$0.176</strong> c/u
+  </p>
+  <p style="margin:8px 0 0 0; color:#444;">Nota: Los productos con precio propio (automotriz, máquinas y otros) no cambian.</p>
+</div>
 </div>
 <div class="producto" style="margin: 0 auto; text-align: center; max-width: 600px;">
 <h2>CATÁLOGO INTERACTIVO "EL VECI"<div style="text-align:center;"><p style="font-family: 'Georgia', serif; font-size: 1.15rem; text-align: center; color: #333; margin: 15px 0;">Usted puede seleccionar el código de la llave que necesite, indicar la cantidad requerida y agregarla al carrito. Al finalizar, tendrá la opción de enviar su pedido por WhatsApp para recibir una cotización formal de manera directa.</p><img src="imagenes/logo_el_veci.png" style="max-width:300px;margin:20px 0;"/></div> </h2>
@@ -4812,6 +4810,58 @@ function formatearPrecio(precio) {
 <script>
 let carrito = [];
 
+// =====================
+// ✅ PRECIOS AUTOMÁTICOS - LÍNEA HOGAR (LLAVES)
+// Se calcula en base al TOTAL de llaves Línea Hogar en el carrito.
+// =====================
+function calcularPrecioLineaHogar(totalLlavesHogar) {
+  if (totalLlavesHogar >= 10000) return 0.176;
+  if (totalLlavesHogar >= 5000) return 0.186;
+  if (totalLlavesHogar >= 1000) return 0.19;
+  return 0.21;
+}
+
+function recalcularPreciosLineaHogarCarrito() {
+  const totalHogar = carrito
+    .filter(it => it.linea === "linea-hogar")
+    .reduce((acc, it) => acc + (parseInt(it.cantidad, 10) || 0), 0);
+
+  const precioHogar = calcularPrecioLineaHogar(totalHogar);
+
+  // Actualiza el precio de TODOS los ítems de Línea Hogar
+  carrito.forEach(it => {
+    if (it.linea === "linea-hogar") it.precio = precioHogar;
+  });
+
+  return { totalHogar, precioHogar };
+}
+
+// Toast simple (mensaje pequeño) para confirmar acciones
+function mostrarToast(mensaje) {
+  let toast = document.getElementById("toast");
+  if (!toast) {
+    toast = document.createElement("div");
+    toast.id = "toast";
+    toast.style.position = "fixed";
+    toast.style.bottom = "20px";
+    toast.style.left = "50%";
+    toast.style.transform = "translateX(-50%)";
+    toast.style.background = "rgba(0,0,0,0.85)";
+    toast.style.color = "white";
+    toast.style.padding = "10px 14px";
+    toast.style.borderRadius = "10px";
+    toast.style.fontSize = "0.95rem";
+    toast.style.zIndex = "999999";
+    toast.style.maxWidth = "90%";
+    toast.style.textAlign = "center";
+    document.body.appendChild(toast);
+  }
+  toast.textContent = mensaje;
+  toast.style.display = "block";
+  clearTimeout(window.__toastTimer);
+  window.__toastTimer = setTimeout(() => { toast.style.display = "none"; }, 1800);
+}
+
 /* ✅ Precios escalonados (mayor/menor) para edición en carrito
    - Agregue aquí otros productos con el NOMBRE EXACTO del código (igual al que envía a agregarPedido)
 */
@@ -4851,32 +4901,44 @@ function agregarPedido(nombreProducto, inputId) {
   }
 
   // ✅ Regla general:
-  // - Si existe data-precio => usarlo (máquinas, otros, automotriz, etc.)
-  // - Si NO existe data-precio => usar el selector tipoCompra (solo Línea Hogar)
-  const precioData = productoElemento.getAttribute("data-precio");
-  let precioUnitario;
+// - Si existe data-precio => usarlo (máquinas, otros, automotriz, etc.)
+// - Si NO existe data-precio y es Línea Hogar => precio automático según total de llaves en el carrito
+const precioData = productoElemento.getAttribute("data-precio");
+let precioUnitario;
 
-  if (precioData) {
-    precioUnitario = parseFloat(precioData);
-    if (isNaN(precioUnitario)) {
-      alert("Error: data-precio inválido en este producto.");
-      return;
-    }
-  } else {
-    const tipoCompraEl = document.getElementById("tipoCompra");
-    const tipoCompra = tipoCompraEl ? tipoCompraEl.value : "";
-    if (!tipoCompra) {
-      alert("⚠️ Para continuar, seleccione el tipo de compra (solo aplica a llaves de la Línea de Hogar).");
-      return;
-    }
-    precioUnitario = parseFloat(tipoCompra);
+// Detectar línea del producto
+const esLineaHogar = productoElemento.classList.contains("linea-hogar");
+const lineaProducto = esLineaHogar ? "linea-hogar" : "otra";
+
+if (precioData) {
+  precioUnitario = parseFloat(precioData);
+  if (isNaN(precioUnitario)) {
+    alert("Error: data-precio inválido en este producto.");
+    return;
   }
+} else if (esLineaHogar) {
+  // Calcular el precio considerando el total de Línea Hogar (incluyendo lo que está agregando)
+  const totalHogarActual = carrito
+    .filter(it => it.linea === "linea-hogar")
+    .reduce((acc, it) => acc + (parseInt(it.cantidad, 10) || 0), 0);
 
-  carrito.push({ codigo: nombreProducto, cantidad: cantidad, precio: precioUnitario });
-  actualizarListaCarrito();
-  actualizarResumen();
+  const totalConEste = totalHogarActual + cantidad;
+  precioUnitario = calcularPrecioLineaHogar(totalConEste);
+} else {
+  alert("Error: Este producto no tiene precio configurado.");
+  return;
+}
 
-  const boton = document.getElementById('btn_' + inputId);
+  carrito.push({ codigo: nombreProducto, cantidad: cantidad, precio: precioUnitario, linea: lineaProducto });
+
+// Si es Línea Hogar, recalcular precios por escalas (para que todo el carrito quede consistente)
+recalcularPreciosLineaHogarCarrito();
+
+actualizarListaCarrito();
+actualizarResumen();
+
+mostrarToast("✅ Producto agregado al carrito");
+const boton = document.getElementById('btn_' + inputId);
   if (boton) {
     boton.innerText = 'Agregado';
     boton.classList.add('boton-agregado');
@@ -4923,6 +4985,9 @@ function guardarCantidad(index) {
     // ✅ Si el producto tiene precio por mayor/menor, recalcular aquí también
     recalcularPrecioPorCantidad(carrito[index]);
 
+    // ✅ Si cambió una cantidad de Línea Hogar, actualizar precios por escalas
+    recalcularPreciosLineaHogarCarrito();
+
     actualizarListaCarrito();
     actualizarResumen();
   } else {
@@ -4932,27 +4997,49 @@ function guardarCantidad(index) {
 
 function eliminarDelCarrito(index) {
   carrito.splice(index, 1);
+
+  // ✅ Recalcular precios por escalas (Línea Hogar) por si bajó de tramo
+  recalcularPreciosLineaHogarCarrito();
+
   actualizarListaCarrito();
   actualizarResumen();
 }
 
 function actualizarResumen() {
   const resumen = document.getElementById("pedido");
+  if (!resumen) return;
+
+  // ✅ Antes de calcular totales, asegurar que Línea Hogar tenga el precio correcto por escala
+  const infoHogar = recalcularPreciosLineaHogarCarrito();
+  const totalHogar = infoHogar.totalHogar || 0;
+  const precioHogar = infoHogar.precioHogar || 0;
 
   let totalLlaves = 0;
   let totalDinero = 0;
   let texto = "";
 
   carrito.forEach(item => {
-    const cantidad = parseInt(item.cantidad);
-    const subtotal = cantidad * item.precio;
+    const cantidad = parseInt(item.cantidad, 10) || 0;
+    const subtotal = cantidad * (parseFloat(item.precio) || 0);
     totalLlaves += cantidad;
     totalDinero += subtotal;
-    texto += `${item.codigo} - ${cantidad} llaves = $${subtotal.toFixed(2)}\n`;
+    texto += `${item.codigo} - ${cantidad} unidades = $${subtotal.toFixed(2)}
+`;
   });
 
-  resumen.innerText = texto + `\nTotal de llaves: ${totalLlaves}\nTotal en USD: $${totalDinero.toFixed(2)}`;
+  if (totalHogar > 0) {
+    texto += `
+✅ Línea Hogar: ${totalHogar} llaves | Precio aplicado: $${precioHogar.toFixed(3)} c/u`;
+    texto += `
+   (El precio se ajusta automáticamente si cambia la cantidad total)
+`;
+  }
+
+  resumen.innerText = texto + `
+Total de unidades: ${totalLlaves}
+Total en USD: $${totalDinero.toFixed(2)}`;
 }
+
 
 function enviarPedido() {
   const nombre = document.getElementById('nombre').value.trim();
@@ -4962,6 +5049,9 @@ function enviarPedido() {
     alert("Por favor ingrese su nombre y ciudad antes de enviar el pedido.");
     return;
   }
+
+  // ✅ Asegurar que el precio de Línea Hogar esté actualizado antes de enviar
+  const infoHogar = recalcularPreciosLineaHogarCarrito();
 
   let totalLlaves = 0;
   let totalDinero = 0;
