@@ -4812,6 +4812,25 @@ function formatearPrecio(precio) {
 <script>
 let carrito = [];
 
+/* ✅ Precios escalonados (mayor/menor) para edición en carrito
+   - Agregue aquí otros productos con el NOMBRE EXACTO del código (igual al que envía a agregarPedido)
+*/
+function recalcularPrecioPorCantidad(item) {
+  const reglas = {
+    "CONTROL NAVAJA FRECUENCIA VARIABLE": { umbral: 6, menor: 8.00, mayor: 7.50 },
+    // "OTRO PRODUCTO": { umbral: 6, menor: 0.00, mayor: 0.00 },
+    // "OTRO PRODUCTO 2": { umbral: 6, menor: 0.00, mayor: 0.00 },
+    // "OTRO PRODUCTO 3": { umbral: 6, menor: 0.00, mayor: 0.00 },
+  };
+
+  const regla = reglas[item.codigo];
+  if (!regla) return; // si no aplica escalonado, no cambiar
+
+  const cantidad = parseInt(item.cantidad || 0, 10);
+  item.precio = (cantidad >= regla.umbral) ? regla.mayor : regla.menor;
+}
+
+
 function agregarPedido(nombreProducto, inputId) {
   const input = document.getElementById(inputId);
   if (!input) {
@@ -4900,6 +4919,10 @@ function guardarCantidad(index) {
   const nuevaCantidad = parseInt(document.getElementById("editCantidad" + index).value);
   if (!isNaN(nuevaCantidad) && nuevaCantidad > 0) {
     carrito[index].cantidad = nuevaCantidad;
+
+    // ✅ Si el producto tiene precio por mayor/menor, recalcular aquí también
+    recalcularPrecioPorCantidad(carrito[index]);
+
     actualizarListaCarrito();
     actualizarResumen();
   } else {
