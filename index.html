@@ -53,6 +53,30 @@
     box-shadow: 0 0 15px #25d366;
     transition: all 0.3s ease-in-out;
   }
+
+  /* Mejoras visuales (pulido) */
+  .subtitulo {
+    font-size: 0.95rem;
+    color: #555;
+    margin-top: -6px;
+    margin-bottom: 12px;
+    text-align: center;
+  }
+  a.regresar-btn {
+    display: inline-block;
+    margin: 10px auto 0 auto;
+    padding: 8px 14px;
+    border-radius: 999px;
+    background: #e9f9f0;
+    color: #128c7e !important;
+    text-decoration: none;
+    font-weight: bold;
+    border: 1px solid #bdebd0;
+  }
+  a.regresar-btn:hover { filter: brightness(0.98); }
+  .linea-automotriz .detalles p strong {
+    font-size: 1.05rem;
+  }
 </style>
 <style>
 .carrito-item-buttons button {
@@ -225,7 +249,7 @@
 }
 </style></head>
 <body>
-<div <div="" class="producto" style="background:#e6f7ff; border: 2px solid #007bff; margin: 0 auto; max-width: 700px; text-align: center;">
+<div class="producto" style="background:#e6f7ff; border: 2px solid #007bff; margin: 0 auto; max-width: 700px; text-align: center;">
 <h2 style="text-align:center;">Estimado cliente</h2>
 <p style="text-align:center; font-size:1rem;">
   Este catálogo permite agregar productos al carrito y enviar su pedido por WhatsApp para recibir una cotización formal.
@@ -269,8 +293,8 @@
 <img alt="TR3 llave" src="imagenes/TR3.jpg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
 </a>
 </div>
-<p style="text-align:center;"><strong>¿Quieres ver la llave más grande?</strong><br/><a href="imagenes/TR3.jpg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a></p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<p style="text-align:center;"><strong>🔍 Ver imagen en tamaño real</strong><br/><a href="imagenes/TR3.jpg" style="color:#25d366; text-decoration: underline;" target="_blank">Abrir imagen</a></p>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Hogar</p>
 <p><strong>Código:</strong> TR3</p>
@@ -283,14 +307,14 @@
 <button class="boton-agregar" id="btn_cantidadTR3" onclick="agregarPedido('TR3 TRAVEX', 'cantidadTR3')">Agregar al pedido</button>
 </div>
 <div class="producto linea-hogar" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>YA107 / YALE FORTE TRAVEX</h2>
+<h2>YA107 – YALE FORTE TRAVEX</h2>
 <div class="imagen">
 <a href="imagenes/YA107.jpg" target="_blank">
 <img alt="YA107 llave" src="imagenes/YA107.jpg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
 </a>
 </div>
-<p style="text-align:center;"><strong>¿Quieres ver la llave más grande?</strong><br/><a href="imagenes/YA107.jpg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a></p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<p style="text-align:center;"><strong>🔍 Ver imagen en tamaño real</strong><br/><a href="imagenes/YA107.jpg" style="color:#25d366; text-decoration: underline;" target="_blank">Abrir imagen</a></p>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Hogar</p>
 <p><strong>Código:</strong> YA107</p>
@@ -303,14 +327,14 @@
 <button class="boton-agregar" id="btn_cantidadYA107" onclick="agregarPedido('YA107 / YALE FORTE TRAVEX', 'cantidadYA107')">Agregar al pedido</button>
 </div>
 <div class="producto linea-hogar" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>KW7 / KWIKSET</h2>
+<h2>KW7 – KWIKSET</h2>
 <div class="imagen">
 <a href="imagenes/KW7.jpg" target="_blank">
 <img alt="KW7 llave" src="imagenes/KW7.jpg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
 </a>
 </div>
-<p style="text-align:center;"><strong>¿Quieres ver la llave más grande?</strong><br/><a href="imagenes/KW7.jpg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a></p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<p style="text-align:center;"><strong>🔍 Ver imagen en tamaño real</strong><br/><a href="imagenes/KW7.jpg" style="color:#25d366; text-decoration: underline;" target="_blank">Abrir imagen</a></p>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Hogar</p>
 <p><strong>Código:</strong> KW7</p>
@@ -323,14 +347,14 @@
 <button class="boton-agregar" id="btn_cantidadKW7" onclick="agregarPedido('KW7 / KWIKSET', 'cantidadKW7')">Agregar al pedido</button>
 </div>
 <div class="producto linea-hogar" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>CA7K / CANTOL</h2>
+<h2>CA7K – CANTOL</h2>
 <div class="imagen">
 <a href="imagenes/CA7K.jpg" target="_blank">
 <img alt="CA7K llave" src="imagenes/CA7K.jpg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
 </a>
 </div>
-<p style="text-align:center;"><strong>¿Quieres ver la llave más grande?</strong><br/><a href="imagenes/CA7K.jpg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a></p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<p style="text-align:center;"><strong>🔍 Ver imagen en tamaño real</strong><br/><a href="imagenes/CA7K.jpg" style="color:#25d366; text-decoration: underline;" target="_blank">Abrir imagen</a></p>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Hogar</p>
 <p><strong>Código:</strong> CA7K</p>
@@ -343,14 +367,14 @@
 <button class="boton-agregar" id="btn_cantidadCA7K" onclick="agregarPedido('CA7K / CANTOL', 'cantidadCA7K')">Agregar al pedido</button>
 </div>
 <div class="producto linea-hogar" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>VI14 / VIRO</h2>
+<h2>VI14 – VIRO</h2>
 <div class="imagen">
 <a href="imagenes/VI14.jpg" target="_blank">
 <img alt="VI1 llave" src="imagenes/VI14.jpg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
 </a>
 </div>
-<p style="text-align:center;"><strong>¿Quieres ver la llave más grande?</strong><br/><a href="imagenes/VI14.jpg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a></p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<p style="text-align:center;"><strong>🔍 Ver imagen en tamaño real</strong><br/><a href="imagenes/VI14.jpg" style="color:#25d366; text-decoration: underline;" target="_blank">Abrir imagen</a></p>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Hogar</p>
 <p><strong>Código:</strong> VI14</p>
@@ -363,14 +387,14 @@
 <button class="boton-agregar" id="btn_cantidadVI14" onclick="agregarPedido('VI14 / VIRO', 'cantidadVI14')">Agregar al pedido</button>
 </div>
 <div class="producto linea-hogar" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>VI13 / VIRO</h2>
+<h2>VI13 – VIRO</h2>
 <div class="imagen">
 <a href="imagenes/VI13.jpg" target="_blank">
 <img alt="VI1 llave" src="imagenes/VI13.jpg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
 </a>
 </div>
-<p style="text-align:center;"><strong>¿Quieres ver la llave más grande?</strong><br/><a href="imagenes/VI13.jpg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a></p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<p style="text-align:center;"><strong>🔍 Ver imagen en tamaño real</strong><br/><a href="imagenes/VI13.jpg" style="color:#25d366; text-decoration: underline;" target="_blank">Abrir imagen</a></p>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Hogar</p>
 <p><strong>Código:</strong> VI13</p>
@@ -383,14 +407,14 @@
 <button class="boton-agregar" id="btn_cantidadVI13" onclick="agregarPedido('VI13 VIRO', 'cantidadVI13')">Agregar al pedido</button>
 </div>
 <div class="producto linea-hogar" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>VI2 / 1065 / VIRO</h2>
+<h2>VI2 – VIRO</h2>
 <div class="imagen">
 <a href="imagenes/VI2.jpg" target="_blank">
 <img alt="VI2 llave" src="imagenes/VI2.jpg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
 </a>
 </div>
-<p style="text-align:center;"><strong>¿Quieres ver la llave más grande?</strong><br/><a href="imagenes/VI2.jpg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a></p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<p style="text-align:center;"><strong>🔍 Ver imagen en tamaño real</strong><br/><a href="imagenes/VI2.jpg" style="color:#25d366; text-decoration: underline;" target="_blank">Abrir imagen</a></p>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Hogar</p>
 <p><strong>Código:</strong> VI2</p>
@@ -403,14 +427,14 @@
 <button class="boton-agregar" id="btn_cantidadVI2" onclick="agregarPedido('VI2 / VIRO', 'cantidadVI2')">Agregar al pedido</button>
 </div>
 <div class="producto linea-hogar" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>VI1 / 1065R / VIRO</h2>
+<h2>VI1 – VIRO</h2>
 <div class="imagen">
 <a href="imagenes/VI1.jpg" target="_blank">
 <img alt="VI1 llave" src="imagenes/VI1.jpg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
 </a>
 </div>
-<p style="text-align:center;"><strong>¿Quieres ver la llave más grande?</strong><br/><a href="imagenes/VI1.jpg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a></p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<p style="text-align:center;"><strong>🔍 Ver imagen en tamaño real</strong><br/><a href="imagenes/VI1.jpg" style="color:#25d366; text-decoration: underline;" target="_blank">Abrir imagen</a></p>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Hogar</p>
 <p><strong>Código:</strong> VI1</p>
@@ -423,14 +447,14 @@
 <button class="boton-agregar" id="btn_cantidadVI1" onclick="agregarPedido('VI1 / VIRO', 'cantidadVI1')">Agregar al pedido</button>
 </div>
 <div class="producto linea-hogar" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>VI5 / VIRO</h2>
+<h2>VI5 – VIRO</h2>
 <div class="imagen">
 <a href="imagenes/VI5.jpg" target="_blank">
 <img alt="VI5 llave" src="imagenes/VI5.jpg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
 </a>
 </div>
-<p style="text-align:center;"><strong>¿Quieres ver la llave más grande?</strong><br/><a href="imagenes/VI5.jpg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a></p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<p style="text-align:center;"><strong>🔍 Ver imagen en tamaño real</strong><br/><a href="imagenes/VI5.jpg" style="color:#25d366; text-decoration: underline;" target="_blank">Abrir imagen</a></p>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Hogar</p>
 <p><strong>Código:</strong> VI5</p>
@@ -443,14 +467,14 @@
 <button class="boton-agregar" id="btn_cantidadVI5" onclick="agregarPedido('VI5 / VIRO', 'cantidadVI5')">Agregar al pedido</button>
 </div>
 <div class="producto linea-hogar" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>VI6 / VIRO</h2>
+<h2>VI6 – VIRO</h2>
 <div class="imagen">
 <a href="imagenes/VI6.jpg" target="_blank">
 <img alt="VI6 llave" src="imagenes/VI6.jpg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
 </a>
 </div>
-<p style="text-align:center;"><strong>¿Quieres ver la llave más grande?</strong><br/><a href="imagenes/VI6.jpg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a></p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<p style="text-align:center;"><strong>🔍 Ver imagen en tamaño real</strong><br/><a href="imagenes/VI6.jpg" style="color:#25d366; text-decoration: underline;" target="_blank">Abrir imagen</a></p>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Hogar</p>
 <p><strong>Código:</strong> VI6</p>
@@ -463,14 +487,14 @@
 <button class="boton-agregar" id="btn_cantidadVI6" onclick="agregarPedido('VI6 / VIRO', 'cantidadVI6')">Agregar al pedido</button>
 </div>
 <div class="producto linea-hogar" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>VI4 / 2002/ VIRO</h2>
+<h2>VI4 – VIRO</h2>
 <div class="imagen">
 <a href="imagenes/VI4.jpeg" target="_blank">
 <img alt="VI4 llave" src="imagenes/VI4.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
 </a>
 </div>
-<p style="text-align:center;"><strong>¿Quieres ver la llave más grande?</strong><br/><a href="imagenes/VI4.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a></p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<p style="text-align:center;"><strong>🔍 Ver imagen en tamaño real</strong><br/><a href="imagenes/VI4.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Abrir imagen</a></p>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Hogar</p>
 <p><strong>Código:</strong> VI4</p>
@@ -483,14 +507,14 @@
 <button class="boton-agregar" id="btn_cantidadVI4" onclick="agregarPedido('VI4 / VIRO', 'cantidadVI4')">Agregar al pedido</button>
 </div>
 <div class="producto linea-hogar" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>VI3 / 2002R / VIRO</h2>
+<h2>VI3 – VIRO</h2>
 <div class="imagen">
 <a href="imagenes/VI3.jpeg" target="_blank">
 <img alt="VI3 llave" src="imagenes/VI3.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
 </a>
 </div>
-<p style="text-align:center;"><strong>¿Quieres ver la llave más grande?</strong><br/><a href="imagenes/VI3.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a></p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<p style="text-align:center;"><strong>🔍 Ver imagen en tamaño real</strong><br/><a href="imagenes/VI3.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Abrir imagen</a></p>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Hogar</p>
 <p><strong>Código:</strong> VI3</p>
@@ -503,14 +527,14 @@
 <button class="boton-agregar" id="btn_cantidadVI3" onclick="agregarPedido('VI3 / VIRO', 'cantidadVI3')">Agregar al pedido</button>
 </div>
 <div class="producto linea-hogar" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>VI7 / VIRO</h2>
+<h2>VI7 – VIRO</h2>
 <div class="imagen">
 <a href="imagenes/VI7.jpeg" target="_blank">
 <img alt="VI7 llave" src="imagenes/VI7.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
 </a>
 </div>
-<p style="text-align:center;"><strong>¿Quieres ver la llave más grande?</strong><br/><a href="imagenes/VI7.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a></p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<p style="text-align:center;"><strong>🔍 Ver imagen en tamaño real</strong><br/><a href="imagenes/VI7.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Abrir imagen</a></p>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Hogar</p>
 <p><strong>Código:</strong> VI7</p>
@@ -523,14 +547,14 @@
 <button class="boton-agregar" id="btn_cantidadVI7" onclick="agregarPedido('VI7 / VIRO', 'cantidadVI7')">Agregar al pedido</button>
 </div>
 <div class="producto linea-hogar" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>VI8 / VIRO</h2>
+<h2>VI8 – VIRO</h2>
 <div class="imagen">
 <a href="imagenes/VI8.jpeg" target="_blank">
 <img alt="VI7 llave" src="imagenes/VI8.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
 </a>
 </div>
-<p style="text-align:center;"><strong>¿Quieres ver la llave más grande?</strong><br/><a href="imagenes/VI8.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a></p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<p style="text-align:center;"><strong>🔍 Ver imagen en tamaño real</strong><br/><a href="imagenes/VI8.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Abrir imagen</a></p>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Hogar</p>
 <p><strong>Código:</strong> VI8</p>
@@ -543,14 +567,14 @@
 <button class="boton-agregar" id="btn_cantidadVI8" onclick="agregarPedido('VI8 / VIRO', 'cantidadVI8')">Agregar al pedido</button>
 </div>
 <div class="producto linea-hogar" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>VI9 / VIRO</h2>
+<h2>VI9 – VIRO</h2>
 <div class="imagen">
 <a href="imagenes/VI9.jpeg" target="_blank">
 <img alt="VI9 llave" src="imagenes/VI9.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
 </a>
 </div>
-<p style="text-align:center;"><strong>¿Quieres ver la llave más grande?</strong><br/><a href="imagenes/VI9.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a></p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<p style="text-align:center;"><strong>🔍 Ver imagen en tamaño real</strong><br/><a href="imagenes/VI9.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Abrir imagen</a></p>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Hogar</p>
 <p><strong>Código:</strong> VI9</p>
@@ -563,14 +587,14 @@
 <button class="boton-agregar" id="btn_cantidadVI9" onclick="agregarPedido('VI9 / VIRO', 'cantidadVI9')">Agregar al pedido</button>
 </div>
 <div class="producto linea-hogar" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>VI10 / 2001 / VIRO</h2>
+<h2>VI10 – VIRO</h2>
 <div class="imagen">
 <a href="imagenes/VI10.jpeg" target="_blank">
 <img alt="VI10 llave" src="imagenes/VI10.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
 </a>
 </div>
-<p style="text-align:center;"><strong>¿Quieres ver la llave más grande?</strong><br/><a href="imagenes/VI10.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a></p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<p style="text-align:center;"><strong>🔍 Ver imagen en tamaño real</strong><br/><a href="imagenes/VI10.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Abrir imagen</a></p>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Hogar</p>
 <p><strong>Código:</strong> VI10</p>
@@ -583,14 +607,14 @@
 <button class="boton-agregar" id="btn_cantidadVI10" onclick="agregarPedido('VI10 / VIRO', 'cantidadVI10')">Agregar al pedido</button>
 </div>
 <div class="producto linea-hogar" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>GB3 / 2005R / GLOBE</h2>
+<h2>GB3 – GLOBE</h2>
 <div class="imagen">
 <a href="imagenes/GB3.jpeg" target="_blank">
 <img alt="GB3 llave" src="imagenes/GB3.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
 </a>
 </div>
-<p style="text-align:center;"><strong>¿Quieres ver la llave más grande?</strong><br/><a href="imagenes/GB3.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a></p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<p style="text-align:center;"><strong>🔍 Ver imagen en tamaño real</strong><br/><a href="imagenes/GB3.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Abrir imagen</a></p>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Hogar</p>
 <p><strong>Código:</strong> GB3</p>
@@ -603,14 +627,14 @@
 <button class="boton-agregar" id="btn_cantidadGB3" onclick="agregarPedido('GB3 / 2005R / GLOBE', 'cantidadGB3')">Agregar al pedido</button>
 </div>
 <div class="producto linea-hogar" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>GB4 / 2005 / GLOBE</h2>
+<h2>GB4 – GLOBE</h2>
 <div class="imagen">
 <a href="imagenes/GB4.jpeg" target="_blank">
 <img alt="GB4 llave" src="imagenes/GB4.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
 </a>
 </div>
-<p style="text-align:center;"><strong>¿Quieres ver la llave más grande?</strong><br/><a href="imagenes/GB4.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a></p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<p style="text-align:center;"><strong>🔍 Ver imagen en tamaño real</strong><br/><a href="imagenes/GB4.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Abrir imagen</a></p>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Hogar</p>
 <p><strong>Código:</strong> GB4</p>
@@ -623,14 +647,14 @@
 <button class="boton-agregar" id="btn_cantidadGB4" onclick="agregarPedido('GB4 / 2005 / GLOBE', 'cantidadGB4')">Agregar al pedido</button>
 </div>
 <div class="producto linea-hogar" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>GB7 / GLOBE</h2>
+<h2>GB7 – GLOBE</h2>
 <div class="imagen">
 <a href="imagenes/GB7.jpeg" target="_blank">
 <img alt="GB7 llave" src="imagenes/GB7.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
 </a>
 </div>
-<p style="text-align:center;"><strong>¿Quieres ver la llave más grande?</strong><br/><a href="imagenes/GB7.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a></p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<p style="text-align:center;"><strong>🔍 Ver imagen en tamaño real</strong><br/><a href="imagenes/GB7.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Abrir imagen</a></p>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Hogar</p>
 <p><strong>Código:</strong> GB7</p>
@@ -643,13 +667,13 @@
 <button class="boton-agregar" id="btn_cantidadGB7" onclick="agregarPedido('GB7 / GLOBE', 'cantidadGB7')">Agregar al pedido</button>
 </div>
 <div class="producto linea-hogar" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>FA5 / LLAVE LARGA DE LA GB3</h2>
+<h2>FA5 – LLAVE LARGA DE LA GB3</h2>
 <div class="imagen">
 <a href="imagenes/FA5.jpeg" target="_blank">
 <img alt="FA5 llave" src="imagenes/FA5.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
 </a></div>
-<p style="text-align:center;"><strong>¿Quieres ver la llave más grande?</strong><br/><a href="imagenes/FA5.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a></p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<p style="text-align:center;"><strong>🔍 Ver imagen en tamaño real</strong><br/><a href="imagenes/FA5.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Abrir imagen</a></p>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Hogar</p>
 <p><strong>Código:</strong> FA5</p>
@@ -662,14 +686,14 @@
 <button class="boton-agregar" id="btn_cantidadFA5" onclick="agregarPedido('FA5 / GLOBE / FAMA/GLOBE DORADO', 'cantidadFA5')">Agregar al pedido</button>
 </div>
 <div class="producto linea-hogar" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>FA6 / LLAVE CONTRARIA A LA FA5</h2>
+<h2>FA6 – LLAVE CONTRARIA A LA FA5</h2>
 <div class="imagen">
 <a href="imagenes/FA6.jpeg" target="_blank">
 <img alt="FA6 llave" src="imagenes/FA6.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
 </a>
 </div>
-<p style="text-align:center;"><strong>¿Quieres ver la llave más grande?</strong><br/><a href="imagenes/FA6.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a></p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<p style="text-align:center;"><strong>🔍 Ver imagen en tamaño real</strong><br/><a href="imagenes/FA6.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Abrir imagen</a></p>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Hogar</p>
 <p><strong>Código:</strong> FA6</p>
@@ -682,14 +706,15 @@
 <button class="boton-agregar" id="btn_cantidadFA6" onclick="agregarPedido('FA6 / GLOBE / FAMA/GLOBE DORADO', 'cantidadFA6')">Agregar al pedido</button>
 </div>
 <div class="producto linea-hogar" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>YA108 / YALE / TRAVÉX / FORTE</h2>
+<h2>YA108 – YALE</h2>
+<p class="subtitulo">TRAVÉX · FORTE</p>
 <div class="imagen">
 <a href="imagenes/YA108.jpeg" target="_blank">
 <img alt="YA108 llave" src="imagenes/YA108.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
 </a>
 </div>
-<p style="text-align:center;"><strong>¿Quieres ver la llave más grande?</strong><br/><a href="imagenes/YA108.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a></p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<p style="text-align:center;"><strong>🔍 Ver imagen en tamaño real</strong><br/><a href="imagenes/YA108.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Abrir imagen</a></p>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Hogar</p>
 <p><strong>Código:</strong> YA108</p>
@@ -702,14 +727,14 @@
 <button class="boton-agregar" id="btn_cantidadYA108" onclick="agregarPedido('YA108 / FORTE 7 PINES IZQUIERDA', 'cantidadYA108')">Agregar al pedido</button>
 </div>
 <div class="producto linea-hogar" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>YA8 / 1005R / YALE</h2>
+<h2>YA8 – YALE</h2>
 <div class="imagen">
 <a href="imagenes/YA8.jpeg" target="_blank">
 <img alt="YA8 llave" src="imagenes/YA8.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
 </a>
 </div>
-<p style="text-align:center;"><strong>¿Quieres ver la llave más grande?</strong><br/><a href="imagenes/YA8.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a></p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<p style="text-align:center;"><strong>🔍 Ver imagen en tamaño real</strong><br/><a href="imagenes/YA8.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Abrir imagen</a></p>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Hogar</p>
 <p><strong>Código:</strong> YA8</p>
@@ -722,14 +747,14 @@
 <button class="boton-agregar" id="btn_cantidadYA8" onclick="agregarPedido('YA8 / YALE 6 PINES IZQUIERDA', 'cantidadYA8')">Agregar al pedido</button>
 </div>
 <div class="producto linea-hogar" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>YA10 / 1000R / YALE</h2>
+<h2>YA10 – YALE</h2>
 <div class="imagen">
 <a href="imagenes/YA10.jpeg" target="_blank">
 <img alt="YA10 llave" src="imagenes/YA10.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
 </a>
 </div>
-<p style="text-align:center;"><strong>¿Quieres ver la llave más grande?</strong><br/><a href="imagenes/YA10.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a></p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<p style="text-align:center;"><strong>🔍 Ver imagen en tamaño real</strong><br/><a href="imagenes/YA10.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Abrir imagen</a></p>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Hogar</p>
 <p><strong>Código:</strong> YA10</p>
@@ -742,14 +767,14 @@
 <button class="boton-agregar" id="btn_cantidadYA10" onclick="agregarPedido('YA10 / YALE 5 PINES IZQUIERDA', 'cantidadYA10')">Agregar al pedido</button>
 </div>
 <div class="producto linea-hogar" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>YA6 / 1000 / YALE</h2>
+<h2>YA6 – YALE</h2>
 <div class="imagen">
 <a href="imagenes/YA6.jpeg" target="_blank">
 <img alt="YA6 llave" src="imagenes/YA6.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
 </a>
 </div>
-<p style="text-align:center;"><strong>¿Quieres ver la llave más grande?</strong><br/><a href="imagenes/YA6.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a></p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<p style="text-align:center;"><strong>🔍 Ver imagen en tamaño real</strong><br/><a href="imagenes/YA6.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Abrir imagen</a></p>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Hogar</p>
 <p><strong>Código:</strong> YA6</p>
@@ -762,14 +787,14 @@
 <button class="boton-agregar" id="btn_cantidadYA6" onclick="agregarPedido('YA6 / YALE 5 PINES DERECHA', 'cantidadYA6')">Agregar al pedido</button>
 </div>
 <div class="producto linea-hogar" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>YA35 / 1000 / YALE</h2>
+<h2>YA35 – YALE</h2>
 <div class="imagen">
 <a href="imagenes/YA35.jpeg" target="_blank">
 <img alt="YA35 llave" src="imagenes/YA35.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
 </a>
 </div>
-<p style="text-align:center;"><strong>¿Quieres ver la llave más grande?</strong><br/><a href="imagenes/YA35.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a></p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<p style="text-align:center;"><strong>🔍 Ver imagen en tamaño real</strong><br/><a href="imagenes/YA35.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Abrir imagen</a></p>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Hogar</p>
 <p><strong>Código:</strong> YA35</p>
@@ -782,14 +807,14 @@
 <button class="boton-agregar" id="btn_cantidadYA35" onclick="agregarPedido('YA35 / YALE 5 PINES DERECHA', 'cantidadYA35')">Agregar al pedido</button>
 </div>
 <div class="producto linea-hogar" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>YA11 / 1000 / YALE</h2>
+<h2>YA11 – YALE</h2>
 <div class="imagen">
 <a href="imagenes/YA11.jpeg" target="_blank">
 <img alt="YA11 llave" src="imagenes/YA11.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
 </a>
 </div>
-<p style="text-align:center;"><strong>¿Quieres ver la llave más grande?</strong><br/><a href="imagenes/YA11.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a></p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<p style="text-align:center;"><strong>🔍 Ver imagen en tamaño real</strong><br/><a href="imagenes/YA11.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Abrir imagen</a></p>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Hogar</p>
 <p><strong>Código:</strong> YA11</p>
@@ -802,14 +827,14 @@
 <button class="boton-agregar" id="btn_cantidadYA11" onclick="agregarPedido('YA11 / YALE 5 PINES DERECHA', 'cantidadYA11')">Agregar al pedido</button>
 </div>
 <div class="producto linea-hogar" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>YA29 / 1005 / YALE</h2>
+<h2>YA29 – YALE</h2>
 <div class="imagen">
 <a href="imagenes/YA29.jpeg" target="_blank">
 <img alt="YA29 llave" src="imagenes/YA29.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
 </a>
 </div>
-<p style="text-align:center;"><strong>¿Quieres ver la llave más grande?</strong><br/><a href="imagenes/YA29.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a></p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<p style="text-align:center;"><strong>🔍 Ver imagen en tamaño real</strong><br/><a href="imagenes/YA29.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Abrir imagen</a></p>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Hogar</p>
 <p><strong>Código:</strong> YA29</p>
@@ -822,14 +847,14 @@
 <button class="boton-agregar" id="btn_cantidadYA29" onclick="agregarPedido('YA29 / YALE TRAVEX 6 PINES DERECHA', 'cantidadYA29')">Agregar al pedido</button>
 </div>
 <div class="producto linea-hogar" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>YA7 / 1005 / YALE</h2>
+<h2>YA7 – YALE</h2>
 <div class="imagen">
 <a href="imagenes/YA7.jpeg" target="_blank">
 <img alt="YA7 llave" src="imagenes/YA7.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
 </a>
 </div>
-<p style="text-align:center;"><strong>¿Quieres ver la llave más grande?</strong><br/><a href="imagenes/YA7.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a></p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<p style="text-align:center;"><strong>🔍 Ver imagen en tamaño real</strong><br/><a href="imagenes/YA7.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Abrir imagen</a></p>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Hogar</p>
 <p><strong>Código:</strong> YA7</p>
@@ -842,14 +867,15 @@
 <button class="boton-agregar" id="btn_cantidadYA7" onclick="agregarPedido('YA7 / YALE 6 PINES DERECHA', 'cantidadYA7')">Agregar al pedido</button>
 </div>
 <div class="producto linea-hogar" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>YA30 / TRAVÉX / YALE</h2>
+<h2>YA30 – TRAVÉX</h2>
+<p class="subtitulo">YALE</p>
 <div class="imagen">
 <a href="imagenes/YA30.jpeg" target="_blank">
 <img alt="YA30 llave" src="imagenes/YA30.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
 </a>
 </div>
-<p style="text-align:center;"><strong>¿Quieres ver la llave más grande?</strong><br/><a href="imagenes/YA30.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a></p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<p style="text-align:center;"><strong>🔍 Ver imagen en tamaño real</strong><br/><a href="imagenes/YA30.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Abrir imagen</a></p>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Hogar</p>
 <p><strong>Código:</strong> YA30</p>
@@ -862,14 +888,14 @@
 <button class="boton-agregar" id="btn_cantidadYA30" onclick="agregarPedido('YA30 / YALE TRAVEX 6 PINES IZQUIERDA', 'cantidadYA30')">Agregar al pedido</button>
 </div>
 <div class="producto linea-hogar" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>YA1 / 2030 / YALE</h2>
+<h2>YA1 – YALE</h2>
 <div class="imagen">
 <a href="imagenes/YA1.jpeg" target="_blank">
 <img alt="YA1 llave" src="imagenes/YA1.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
 </a>
 </div>
-<p style="text-align:center;"><strong>¿Quieres ver la llave más grande?</strong><br/><a href="imagenes/YA1.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a></p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<p style="text-align:center;"><strong>🔍 Ver imagen en tamaño real</strong><br/><a href="imagenes/YA1.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Abrir imagen</a></p>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Hogar</p>
 <p><strong>Código:</strong> YA1</p>
@@ -882,14 +908,14 @@
 <button class="boton-agregar" id="btn_cantidadYA1" onclick="agregarPedido('YA1 / YALE MEDIANA 5 PINES DER.', 'cantidadYA1')">Agregar al pedido</button>
 </div>
 <div class="producto linea-hogar" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>YA2 / 2030R / YALE</h2>
+<h2>YA2 – YALE</h2>
 <div class="imagen">
 <a href="imagenes/YA2.jpeg" target="_blank">
 <img alt="YA2 llave" src="imagenes/YA2.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
 </a>
 </div>
-<p style="text-align:center;"><strong>¿Quieres ver la llave más grande?</strong><br/><a href="imagenes/YA2.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a></p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<p style="text-align:center;"><strong>🔍 Ver imagen en tamaño real</strong><br/><a href="imagenes/YA2.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Abrir imagen</a></p>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Hogar</p>
 <p><strong>Código:</strong> YA2</p>
@@ -902,14 +928,15 @@
 <button class="boton-agregar" id="btn_cantidadYA2" onclick="agregarPedido('YA2 / YALE MEDIANA 5 PINES IZQUIERDA', 'cantidadYA2')">Agregar al pedido</button>
 </div>
 <div class="producto linea-hogar" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>KW1L / KWIKSET / GEO</h2>
+<h2>KW1L – KWIKSET</h2>
+<p class="subtitulo">GEO</p>
 <div class="imagen">
 <a href="imagenes/KW1L.jpeg" target="_blank">
 <img alt="KW1L llave" src="imagenes/KW1L.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
 </a>
 </div>
-<p style="text-align:center;"><strong>¿Quieres ver la llave más grande?</strong><br/><a href="imagenes/KW1L.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a></p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<p style="text-align:center;"><strong>🔍 Ver imagen en tamaño real</strong><br/><a href="imagenes/KW1L.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Abrir imagen</a></p>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Hogar</p>
 <p><strong>Código:</strong> KW1L</p>
@@ -922,14 +949,15 @@
 <button class="boton-agregar" id="btn_cantidadKW1L" onclick="agregarPedido('KW1L / LLAVE LARGA KW1 KWIKSET / GEO', 'cantidadKW1L')">Agregar al pedido</button>
 </div>
 <div class="producto linea-hogar" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>KW1 / 1090 / KWIKSET / GEO / FANAL</h2>
+<h2>KW1 – KWIKSET</h2>
+<p class="subtitulo">GEO · FANAL</p>
 <div class="imagen">
 <a href="imagenes/KW1.jpeg" target="_blank">
 <img alt="KW1 llave" src="imagenes/KW1.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
 </a>
 </div>
-<p style="text-align:center;"><strong>¿Quieres ver la llave más grande?</strong><br/><a href="imagenes/KW1.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a></p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<p style="text-align:center;"><strong>🔍 Ver imagen en tamaño real</strong><br/><a href="imagenes/KW1.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Abrir imagen</a></p>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Hogar</p>
 <p><strong>Código:</strong> KW1</p>
@@ -942,14 +970,14 @@
 <button class="boton-agregar" id="btn_cantidadKW1" onclick="agregarPedido('KW1 / KWIKSET / GEO / FANAL', 'cantidadKW1')">Agregar al pedido</button>
 </div>
 <div class="producto linea-hogar" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>KW2 / KWIKSET</h2>
+<h2>KW2 – KWIKSET</h2>
 <div class="imagen">
 <a href="imagenes/KW1.jpeg" target="_blank">
 <img alt="KW2 llave" src="imagenes/KW2.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
 </a>
 </div>
-<p style="text-align:center;"><strong>¿Quieres ver la llave más grande?</strong><br/><a href="imagenes/KW2.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a></p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<p style="text-align:center;"><strong>🔍 Ver imagen en tamaño real</strong><br/><a href="imagenes/KW2.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Abrir imagen</a></p>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Hogar</p>
 <p><strong>Código:</strong> KW2</p>
@@ -962,14 +990,14 @@
 <button class="boton-agregar" id="btn_cantidadKW2" onclick="agregarPedido('KW2 / KWIKSET', 'cantidadKW2')">Agregar al pedido</button>
 </div>
 <div class="producto linea-hogar" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>GO2 / 1075 / GLOBE</h2>
+<h2>GO2 – GLOBE</h2>
 <div class="imagen">
 <a href="imagenes/GO2.jpeg" target="_blank">
 <img alt="GO2 llave" src="imagenes/GO2.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
 </a>
 </div>
-<p style="text-align:center;"><strong>¿Quieres ver la llave más grande?</strong><br/><a href="imagenes/GO2.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a></p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<p style="text-align:center;"><strong>🔍 Ver imagen en tamaño real</strong><br/><a href="imagenes/GO2.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Abrir imagen</a></p>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Hogar</p>
 <p><strong>Código:</strong> GO2</p>
@@ -982,14 +1010,15 @@
 <button class="boton-agregar" id="btn_cantidadGO2" onclick="agregarPedido('GO2 / GLOBE DORADO', 'cantidadGO2')">Agregar al pedido</button>
 </div>
 <div class="producto linea-hogar" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>SA2 / SARGENT LION / GLOBE DORADO</h2>
+<h2>SA2 – SARGENT LION</h2>
+<p class="subtitulo">GLOBE DORADO</p>
 <div class="imagen">
 <a href="imagenes/SA2.jpeg" target="_blank">
 <img alt="SA2 llave" src="imagenes/SA2.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
 </a>
 </div>
-<p style="text-align:center;"><strong>¿Quieres ver la llave más grande?</strong><br/><a href="imagenes/SA2.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a></p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<p style="text-align:center;"><strong>🔍 Ver imagen en tamaño real</strong><br/><a href="imagenes/SA2.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Abrir imagen</a></p>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Hogar</p>
 <p><strong>Código:</strong> SA2</p>
@@ -1002,14 +1031,14 @@
 <button class="boton-agregar" id="btn_cantidadSA2" onclick="agregarPedido('SA2 / SARGENT LION / GLOBE DORADO', 'cantidadSA2')">Agregar al pedido</button>
 </div>
 <div class="producto linea-hogar" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>CO2 / GLOBE DORADO</h2>
+<h2>CO2 – GLOBE DORADO</h2>
 <div class="imagen">
 <a href="imagenes/CO2.jpeg" target="_blank">
 <img alt="CO2 llave" src="imagenes/CO2.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
 </a>
 </div>
-<p style="text-align:center;"><strong>¿Quieres ver la llave más grande?</strong><br/><a href="imagenes/CO2.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a></p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<p style="text-align:center;"><strong>🔍 Ver imagen en tamaño real</strong><br/><a href="imagenes/CO2.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Abrir imagen</a></p>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Hogar</p>
 <p><strong>Código:</strong> CO2</p>
@@ -1022,14 +1051,14 @@
 <button class="boton-agregar" id="btn_cantidadCO2" onclick="agregarPedido('CO2 / GLOBE DORADO', 'cantidadCO2')">Agregar al pedido</button>
 </div>
 <div class="producto linea-hogar" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>CO6 / 1077 / GLOBE NEGRO</h2>
+<h2>CO6 – GLOBE NEGRO</h2>
 <div class="imagen">
 <a href="imagenes/CO6.jpeg" target="_blank">
 <img alt="CO6 llave" src="imagenes/CO6.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
 </a>
 </div>
-<p style="text-align:center;"><strong>¿Quieres ver la llave más grande?</strong><br/><a href="imagenes/CO6.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a></p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<p style="text-align:center;"><strong>🔍 Ver imagen en tamaño real</strong><br/><a href="imagenes/CO6.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Abrir imagen</a></p>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Hogar</p>
 <p><strong>Código:</strong> CO6</p>
@@ -1042,14 +1071,14 @@
 <button class="boton-agregar" id="btn_cantidadCO6" onclick="agregarPedido('CO6 / GLOBE NEGRO', 'cantidadCO6')">Agregar al pedido</button>
 </div>
 <div class="producto linea-hogar" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>CO38 / CORBIN</h2>
+<h2>CO38 – CORBIN</h2>
 <div class="imagen">
 <a href="imagenes/CO38.jpeg" target="_blank">
 <img alt="CO38 llave" src="imagenes/CO38.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
 </a>
 </div>
-<p style="text-align:center;"><strong>¿Quieres ver la llave más grande?</strong><br/><a href="imagenes/CO38.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a></p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<p style="text-align:center;"><strong>🔍 Ver imagen en tamaño real</strong><br/><a href="imagenes/CO38.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Abrir imagen</a></p>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Hogar</p>
 <p><strong>Código:</strong> CO38</p>
@@ -1062,14 +1091,14 @@
 <button class="boton-agregar" id="btn_cantidadCO38" onclick="agregarPedido('CO38 / CORBIN 5 PINES USA', 'cantidadCO38')">Agregar al pedido</button>
 </div>
 <div class="producto linea-hogar" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>SC7 / SCHLAGE</h2>
+<h2>SC7 – SCHLAGE</h2>
 <div class="imagen">
 <a href="imagenes/SC7.jpeg" target="_blank">
 <img alt="SC7 llave" src="imagenes/SC7.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
 </a>
 </div>
-<p style="text-align:center;"><strong>¿Quieres ver la llave más grande?</strong><br/><a href="imagenes/SC7.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a></p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<p style="text-align:center;"><strong>🔍 Ver imagen en tamaño real</strong><br/><a href="imagenes/SC7.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Abrir imagen</a></p>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Hogar</p>
 <p><strong>Código:</strong> SC7</p>
@@ -1082,14 +1111,14 @@
 <button class="boton-agregar" id="btn_cantidadSC7" onclick="agregarPedido('SC7 / SCHLAGE 6 PINES', 'cantidadCO38')">Agregar al pedido</button>
 </div>
 <div class="producto linea-hogar" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>SC1 / 1500 / SCHLAGE</h2>
+<h2>SC1 – SCHLAGE</h2>
 <div class="imagen">
 <a href="imagenes/SC1.jpeg" target="_blank">
 <img alt="SC1 llave" src="imagenes/SC1.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
 </a>
 </div>
-<p style="text-align:center;"><strong>¿Quieres ver la llave más grande?</strong><br/><a href="imagenes/SC1.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a></p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<p style="text-align:center;"><strong>🔍 Ver imagen en tamaño real</strong><br/><a href="imagenes/SC1.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Abrir imagen</a></p>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Hogar</p>
 <p><strong>Código:</strong> SC1</p>
@@ -1102,14 +1131,15 @@
 <button class="boton-agregar" id="btn_cantidadSC1" onclick="agregarPedido('SC1 / SCHLAGE 5 PINES', 'cantidadSC1')">Agregar al pedido</button>
 </div>
 <div class="producto linea-hogar" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>GT7 / GATO / IDEACE</h2>
+<h2>GT7 – GATO</h2>
+<p class="subtitulo">IDEACE</p>
 <div class="imagen">
 <a href="imagenes/GT7.jpeg" target="_blank">
 <img alt="GT7 llave" src="imagenes/GT7.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
 </a>
 </div>
-<p style="text-align:center;"><strong>¿Quieres ver la llave más grande?</strong><br/><a href="imagenes/GT7.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a></p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<p style="text-align:center;"><strong>🔍 Ver imagen en tamaño real</strong><br/><a href="imagenes/GT7.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Abrir imagen</a></p>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Hogar</p>
 <p><strong>Código:</strong> GT7</p>
@@ -1122,15 +1152,14 @@
 <button class="boton-agregar" id="btn_cantidadGT7" onclick="agregarPedido('GT7 / GATO 5 PINES DERECHA', 'cantidadGT7')">Agregar al pedido</button>
 </div>
 <div class="producto linea-hogar" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>FAN1D / FANAL</h2>
+<h2>FAN1D – FANAL</h2>
 <div class="imagen">
 <a href="imagenes/FAN1D.jpeg" target="_blank">
 <img alt="FAN1D llave" src="imagenes/FAN1D.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
 </a>
 </div>
-<p style="text-align:center;"><strong>¿Quieres ver la llave más grande?</strong><br/><a href="imagenes/FAN1D.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
-</p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<p style="text-align:center;"><strong>🔍 Ver imagen en tamaño real</strong><br/><a href="imagenes/FAN1D.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Abrir imagen</a></p>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Hogar</p>
 <p><strong>Código:</strong> FAN1D</p>
@@ -1143,14 +1172,14 @@
 <button class="boton-agregar" id="btn_cantidadFAN1D" onclick="agregarPedido('FAN1D / FANAL 5 PINES DERECHA', 'cantidadFAN1D')">Agregar al pedido</button>
 </div>
 <div class="producto linea-hogar" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>CO37 / CORBIN</h2>
+<h2>CO37 – CORBIN</h2>
 <div class="imagen">
 <a href="imagenes/CO37.jpeg" target="_blank">
 <img alt="CO37 llave" src="imagenes/CO37.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
 </a>
 </div>
-<p style="text-align:center;"><strong>¿Quieres ver la llave más grande?</strong><br/><a href="imagenes/CO37.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a></p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<p style="text-align:center;"><strong>🔍 Ver imagen en tamaño real</strong><br/><a href="imagenes/CO37.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Abrir imagen</a></p>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Hogar</p>
 <p><strong>Código:</strong> CO37</p>
@@ -1163,14 +1192,14 @@
 <button class="boton-agregar" id="btn_cantidadCO37" onclick="agregarPedido('CO37 / CORBIN 4 PINES USA', 'cantidadCO37')">Agregar al pedido</button>
 </div>
 <div class="producto linea-hogar" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>PH55/52 / PHILIPS</h2>
+<h2>PH55 – PHILIPS</h2>
 <div class="imagen">
 <a href="imagenes/PH55.jpeg" target="_blank">
 <img alt="PH55 llave" src="imagenes/PH55.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
 </a>
 </div>
-<p style="text-align:center;"><strong>¿Quieres ver la llave más grande?</strong><br/><a href="imagenes/PH55.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a></p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<p style="text-align:center;"><strong>🔍 Ver imagen en tamaño real</strong><br/><a href="imagenes/PH55.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Abrir imagen</a></p>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Hogar</p>
 <p><strong>Código:</strong> PH55/52</p>
@@ -1183,14 +1212,15 @@
 <button class="boton-agregar" id="btn_cantidadPH55" onclick="agregarPedido('PH55 / PHILIPS', 'cantidadPH55')">Agregar al pedido</button>
 </div>
 <div class="producto linea-hogar" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>PR1 / LANFOR / CURTISA</h2>
+<h2>PR1 – LANFOR</h2>
+<p class="subtitulo">CURTISA</p>
 <div class="imagen">
 <a href="imagenes/PR1.jpeg" target="_blank">
 <img alt="PR1 llave" src="imagenes/PR1.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
 </a>
 </div>
-<p style="text-align:center;"><strong>¿Quieres ver la llave más grande?</strong><br/><a href="imagenes/PR1.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a></p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<p style="text-align:center;"><strong>🔍 Ver imagen en tamaño real</strong><br/><a href="imagenes/PR1.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Abrir imagen</a></p>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Hogar</p>
 <p><strong>Código:</strong> PR1</p>
@@ -1203,14 +1233,14 @@
 <button class="boton-agregar" id="btn_cantidadPR1" onclick="agregarPedido('PR1 / LANFOR / CURTISA', 'cantidadPR1')">Agregar al pedido</button>
 </div>
 <div class="producto linea-hogar" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>QU1 / 1030 / SA1</h2>
+<h2>QU1 – SA1</h2>
 <div class="imagen">
 <a href="imagenes/QU1.jpeg" target="_blank">
 <img alt="QU1 llave" src="imagenes/QU1.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
 </a>
 </div>
-<p style="text-align:center;"><strong>¿Quieres ver la llave más grande?</strong><br/><a href="imagenes/QU1.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a></p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<p style="text-align:center;"><strong>🔍 Ver imagen en tamaño real</strong><br/><a href="imagenes/QU1.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Abrir imagen</a></p>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Hogar</p>
 <p><strong>Código:</strong> QU1 / SA1</p>
@@ -1223,14 +1253,14 @@
 <button class="boton-agregar" id="btn_cantidadQU1" onclick="agregarPedido('QU1 / QUEEN/GLOBE DORADO', 'cantidadQU1')">Agregar al pedido</button>
 </div>
 <div class="producto linea-hogar" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>TK1 / TAPA DE GASOLINA</h2>
+<h2>TK1 – TAPA DE GASOLINA</h2>
 <div class="imagen">
 <a href="imagenes/TK1.jpeg" target="_blank">
 <img alt="TK1 llave" src="imagenes/TK1.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
 </a>
 </div>
-<p style="text-align:center;"><strong>¿Quieres ver la llave más grande?</strong><br/><a href="imagenes/TK1.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a></p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<p style="text-align:center;"><strong>🔍 Ver imagen en tamaño real</strong><br/><a href="imagenes/TK1.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Abrir imagen</a></p>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Hogar</p>
 <p><strong>Código:</strong> TK1</p>
@@ -1243,14 +1273,14 @@
 <button class="boton-agregar" id="btn_cantidadTK1" onclick="agregarPedido('TK1 / TAPA DE GASOLINA', 'cantidadTK1')">Agregar al pedido</button>
 </div>
 <div class="producto linea-hogar" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>TRU3D / TRUPER KLAUSS</h2>
+<h2>TRU3D – TRUPER KLAUSS</h2>
 <div class="imagen">
 <a href="imagenes/TRU3D.jpeg" target="_blank">
 <img alt="TRU3D llave" src="imagenes/TRU3D.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
 </a>
 </div>
-<p style="text-align:center;"><strong>¿Quieres ver la llave más grande?</strong><br/><a href="imagenes/TRU3D.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a></p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<p style="text-align:center;"><strong>🔍 Ver imagen en tamaño real</strong><br/><a href="imagenes/TRU3D.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Abrir imagen</a></p>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Hogar</p>
 <p><strong>Código:</strong> TRU3D</p>
@@ -1263,14 +1293,14 @@
 <button class="boton-agregar" id="btn_cantidadTRU3D" onclick="agregarPedido('TRU3D / TRUPER KLAUSS', 'cantidadTRU3D')">Agregar al pedido</button>
 </div>
 <div class="producto linea-hogar" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>PH32 / PHILIPS</h2>
+<h2>PH32 – PHILIPS</h2>
 <div class="imagen">
 <a href="imagenes/PH32.jpeg" target="_blank">
 <img alt="PH32 llave" src="imagenes/PH32.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
 </a>
 </div>
-<p style="text-align:center;"><strong>¿Quieres ver la llave más grande?</strong><br/><a href="imagenes/PH32.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a></p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<p style="text-align:center;"><strong>🔍 Ver imagen en tamaño real</strong><br/><a href="imagenes/PH32.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Abrir imagen</a></p>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Hogar</p>
 <p><strong>Código:</strong> PH32</p>
@@ -1283,14 +1313,14 @@
 <button class="boton-agregar" id="btn_cantidadPH32" onclick="agregarPedido('PH32 / PHILIPS', 'cantidadPH32')">Agregar al pedido</button>
 </div>
 <div class="producto linea-hogar" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>GT8 / GATO</h2>
+<h2>GT8 – GATO</h2>
 <div class="imagen">
 <a href="imagenes/GT8.jpeg" target="_blank">
 <img alt="GT8 llave" src="imagenes/GT8.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
 </a>
 </div>
-<p style="text-align:center;"><strong>¿Quieres ver la llave más grande?</strong><br/><a href="imagenes/GT8.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a></p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<p style="text-align:center;"><strong>🔍 Ver imagen en tamaño real</strong><br/><a href="imagenes/GT8.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Abrir imagen</a></p>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Hogar</p>
 <p><strong>Código:</strong> GT8</p>
@@ -1303,14 +1333,14 @@
 <button class="boton-agregar" id="btn_cantidadGT8" onclick="agregarPedido('GT8 / GATO', 'cantidadGT8')">Agregar al pedido</button>
 </div>
 <div class="producto linea-hogar" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>AMC1 / GABETA</h2>
+<h2>AMC1 – GABETA</h2>
 <div class="imagen">
 <a href="imagenes/AMC1.jpeg" target="_blank">
 <img alt="AMC1 llave" src="imagenes/AMC1.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
 </a>
 </div>
-<p style="text-align:center;"><strong>¿Quieres ver la llave más grande?</strong><br/><a href="imagenes/AMC1.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a></p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<p style="text-align:center;"><strong>🔍 Ver imagen en tamaño real</strong><br/><a href="imagenes/AMC1.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Abrir imagen</a></p>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Hogar</p>
 <p><strong>Código:</strong> AMC1</p>
@@ -1324,14 +1354,14 @@
 </div>
 
 <div class="producto linea-hogar" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>YA34 / YALE 6 PINES DERECHA</h2>
+<h2>YA34 – YALE 6 PINES DERECHA</h2>
 <div class="imagen">
 <a href="imagenes/YA34.jpeg" target="_blank">
 <img alt=" llave" src="imagenes/YA34.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
 </a>
 </div>
-<p style="text-align:center;"><strong>¿Quieres ver la llave más grande?</strong><br/><a href="imagenes/YA34.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a></p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<p style="text-align:center;"><strong>🔍 Ver imagen en tamaño real</strong><br/><a href="imagenes/YA34.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Abrir imagen</a></p>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Hogar</p>
 <p><strong>Código:</strong> YA34</p>
@@ -1345,14 +1375,14 @@
 </div>
 
 <div class="producto linea-hogar" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>2040 / IGUAL A LA YA1 PERO LARGA</h2>
+<h2>2040 – IGUAL A LA YA1 PERO LARGA</h2>
 <div class="imagen">
 <a href="imagenes/2040.jpeg" target="_blank">
 <img alt=" llave" src="imagenes/2040.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
 </a>
 </div>
-<p style="text-align:center;"><strong>¿Quieres ver la llave más grande?</strong><br/><a href="imagenes/2040.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a></p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<p style="text-align:center;"><strong>🔍 Ver imagen en tamaño real</strong><br/><a href="imagenes/2040.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Abrir imagen</a></p>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Hogar</p>
 <p><strong>Código:</strong> 2040</p>
@@ -1366,14 +1396,15 @@
 </div>
 
 <div class="producto linea-hogar" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>SA1 / SARGERT LION/GLOBE DORADO</h2>
+<h2>SA1 – SARGERT LION</h2>
+<p class="subtitulo">GLOBE DORADO</p>
 <div class="imagen">
 <a href="imagenes/SA1.jpeg" target="_blank">
 <img alt=" llave" src="imagenes/SA1.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
 </a>
 </div>
-<p style="text-align:center;"><strong>¿Quieres ver la llave más grande?</strong><br/><a href="imagenes/SA1.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a></p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<p style="text-align:center;"><strong>🔍 Ver imagen en tamaño real</strong><br/><a href="imagenes/SA1.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Abrir imagen</a></p>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Hogar</p>
 <p><strong>Código:</strong> SA1</p>
@@ -1387,14 +1418,14 @@
 </div>
 
 <div class="producto linea-hogar" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>PH55-52L / PHILLIPS LARGA 9 PINES</h2>
+<h2>PH55-52L – PHILLIPS LARGA 9 PINES</h2>
 <div class="imagen">
 <a href="imagenes/PH52L.jpeg" target="_blank">
 <img alt=" llave" src="imagenes/PH52L.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
 </a>
 </div>
-<p style="text-align:center;"><strong>¿Quieres ver la llave más grande?</strong><br/><a href="imagenes/PH52L.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a></p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<p style="text-align:center;"><strong>🔍 Ver imagen en tamaño real</strong><br/><a href="imagenes/PH52L.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Abrir imagen</a></p>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Hogar</p>
 <p><strong>Código:</strong> PH55-52L</p>
@@ -1414,14 +1445,14 @@
 
 
 <div class="producto linea-hogar" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>AMC2 / GABETA FINA DERECHA</h2>
+<h2>AMC2 – GABETA FINA DERECHA</h2>
 <div class="imagen">
 <a href="imagenes/AMC2.jpeg" target="_blank">
 <img alt=" llave" src="imagenes/AMC2.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
 </a>
 </div>
-<p style="text-align:center;"><strong>¿Quieres ver la llave más grande?</strong><br/><a href="imagenes/AMC2.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a></p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<p style="text-align:center;"><strong>🔍 Ver imagen en tamaño real</strong><br/><a href="imagenes/AMC2.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Abrir imagen</a></p>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Hogar</p>
 <p><strong>Código:</strong> AMC2</p>
@@ -1435,14 +1466,14 @@
 </div>
 
 <div class="producto linea-hogar" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>TK2 / TAPA GASOLINA IZQUIERDA</h2>
+<h2>TK2 – TAPA GASOLINA IZQUIERDA</h2>
 <div class="imagen">
 <a href="imagenes/TK2.jpeg" target="_blank">
 <img alt=" llave" src="imagenes/TK2.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
 </a>
 </div>
-<p style="text-align:center;"><strong>¿Quieres ver la llave más grande?</strong><br/><a href="imagenes/TK2.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a></p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<p style="text-align:center;"><strong>🔍 Ver imagen en tamaño real</strong><br/><a href="imagenes/TK2.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Abrir imagen</a></p>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Hogar</p>
 <p><strong>Código:</strong> TK2</p>
@@ -1456,14 +1487,14 @@
 </div>
 
 <div class="producto linea-hogar" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>PH5 / GABETA CANAL FINO ESCRITORIO</h2>
+<h2>PH5 – GABETA CANAL FINO ESCRITORIO</h2>
 <div class="imagen">
 <a href="imagenes/PH5.jpeg" target="_blank">
 <img alt=" llave" src="imagenes/PH5.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
 </a>
 </div>
-<p style="text-align:center;"><strong>¿Quieres ver la llave más grande?</strong><br/><a href="imagenes/PH5.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a></p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<p style="text-align:center;"><strong>🔍 Ver imagen en tamaño real</strong><br/><a href="imagenes/PH5.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Abrir imagen</a></p>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Hogar</p>
 <p><strong>Código:</strong> PH5</p>
@@ -1483,8 +1514,8 @@
 <img alt=" llave" src="imagenes/CAN1.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
 </a>
 </div>
-<p style="text-align:center;"><strong>¿Quieres ver la llave más grande?</strong><br/><a href="imagenes/CAN1.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a></p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<p style="text-align:center;"><strong>🔍 Ver imagen en tamaño real</strong><br/><a href="imagenes/CAN1.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Abrir imagen</a></p>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Hogar</p>
 <p><strong>Código:</strong> CAN1</p>
@@ -1498,14 +1529,14 @@
 </div>
 
 <div class="producto linea-hogar" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>WA1 / RABBIT DERECHA </h2>
+<h2>WA1 – RABBIT DERECHA</h2>
 <div class="imagen">
 <a href="imagenes/WA1.jpeg" target="_blank">
 <img alt=" llave" src="imagenes/WA1.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
 </a>
 </div>
-<p style="text-align:center;"><strong>¿Quieres ver la llave más grande?</strong><br/><a href="imagenes/WA1.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a></p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<p style="text-align:center;"><strong>🔍 Ver imagen en tamaño real</strong><br/><a href="imagenes/WA1.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Abrir imagen</a></p>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Hogar</p>
 <p><strong>Código:</strong> WA1</p>
@@ -1519,14 +1550,14 @@
 </div>
 
 <div class="producto linea-hogar" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>WA2 / RABBIT IZQUIERDA </h2>
+<h2>WA2 – RABBIT IZQUIERDA</h2>
 <div class="imagen">
 <a href="imagenes/WA2.jpeg" target="_blank">
 <img alt=" llave" src="imagenes/WA2.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
 </a>
 </div>
-<p style="text-align:center;"><strong>¿Quieres ver la llave más grande?</strong><br/><a href="imagenes/WA2.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a></p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<p style="text-align:center;"><strong>🔍 Ver imagen en tamaño real</strong><br/><a href="imagenes/WA2.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Abrir imagen</a></p>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Hogar</p>
 <p><strong>Código:</strong> WA2</p>
@@ -1541,14 +1572,14 @@
 
 
 <div class="producto linea-hogar" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>EVG1 / GABETA IZQUIERDA</h2>
+<h2>EVG1 – GABETA IZQUIERDA</h2>
 <div class="imagen">
 <a href="imagenes/EVG1.jpeg" target="_blank">
 <img alt=" llave" src="imagenes/EVG1.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
 </a>
 </div>
-<p style="text-align:center;"><strong>¿Quieres ver la llave más grande?</strong><br/><a href="imagenes/EVG1.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a></p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<p style="text-align:center;"><strong>🔍 Ver imagen en tamaño real</strong><br/><a href="imagenes/EVG1.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Abrir imagen</a></p>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Hogar</p>
 <p><strong>Código:</strong> EVG1</p>
@@ -1561,7 +1592,7 @@
 <button class="boton-agregar" id="btn_cantidadEVG1" onclick="agregarPedido('EVG1/ GABETA IZQUIERDA', 'cantidadEVG1')">Agregar al pedido</button>
 </div>
 <div class="producto linea-automotriz" data-precio="0.75" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>CHV3P / GENERAL MOTORS SPARK-SAIL-AVEO</h2>
+<h2>CHV3P – GENERAL MOTORS SPARK-SAIL-AVEO</h2>
 <div class="imagen">
 <a href="imagenes/CHV3P.jpeg" target="_blank">
 <img alt="Llave CHV3P" src="imagenes/CHV3P.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -1570,7 +1601,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/CHV3P.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> CHV3P</p>
@@ -1582,7 +1613,7 @@
 <button class="boton-agregar" id="btn_cantidadCHV3P" onclick="agregarPedido('CHV3P / GENERAL MOTORS SPARK-SAIL-AVEO', 'cantidadCHV3P')">Agregar al pedido</button>
 </div>
 <div class="producto linea-automotriz" data-precio="0.75" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>CHV2P / DAEWOO CORSA EVOLUTION</h2>
+<h2>CHV2P – DAEWOO CORSA EVOLUTION</h2>
 <div class="imagen">
 <a href="imagenes/CHV2P.jpeg" target="_blank">
 <img alt="Llave CHV2P" src="imagenes/CHV2P.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -1591,7 +1622,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/CHV2P.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> CHV2P</p>
@@ -1603,7 +1634,7 @@
 <button class="boton-agregar" id="btn_cantidadCHV2P" onclick="agregarPedido('CHV2P / DAEWOO CORSA EVOLUTION', 'cantidadCHV2P')">Agregar al pedido</button>
 </div>
 <div class="producto linea-automotriz" data-precio="2.00" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>CAT / CATERPILLAR</h2>
+<h2>CAT – CATERPILLAR</h2>
 <div class="imagen">
 <a href="imagenes/CAT.jpeg" target="_blank">
 <img alt="Llave CAT" src="imagenes/CAT.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -1612,7 +1643,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/CAT.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> CAT</p>
@@ -1633,7 +1664,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/CARCASA SZ10.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> CARCASA SZ10</p>
@@ -1654,7 +1685,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/CARCASANAVAJASZ.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> CARCASA NAVAJA SZ</p>
@@ -1675,7 +1706,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/ASTRA TP.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> ASTRA TP</p>
@@ -1696,7 +1727,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/CORSA TP.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> CORSA TP</p>
@@ -1717,7 +1748,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/DMAX.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> DMAX</p>
@@ -1729,7 +1760,7 @@
 <button class="boton-agregar" id="btn_cantidadDMAX" onclick="agregarPedido('DMAX', 'cantidadDMAX')">Agregar al pedido</button>
 </div>
 <div class="producto linea-automotriz" data-precio="0.65" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>GM30P / CONTRARIA DMAX</h2>
+<h2>GM30P – CONTRARIA DMAX</h2>
 <div class="imagen">
 <a href="imagenes/GM30P.jpeg" target="_blank">
 <img alt="Llave GM30P" src="imagenes/GM30P.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -1738,7 +1769,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/GM30P.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> GM30P</p>
@@ -1759,7 +1790,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/VOLVO.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> VOLVO</p>
@@ -1780,7 +1811,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/CARCASAGREATWALL.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> CARCASA GREAT WALL TP </p>
@@ -1792,7 +1823,7 @@
 <button class="boton-agregar" id="btn_cantidadCARCASAGREATWALL" onclick="agregarPedido('CARCASA GREAT WALL TP', 'cantidadCARCASAGREATWALL')">Agregar al pedido</button>
 </div>
 <div class="producto linea-automotriz" data-precio="0.60" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>DN4 / DATSUN-NISSAN-INFINITI</h2>
+<h2>DN4 – DATSUN-NISSAN-INFINITI</h2>
 <div class="imagen">
 <a href="imagenes/DN4.jpeg" target="_blank">
 <img alt="Llave DN4" src="imagenes/DN4.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -1801,7 +1832,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/DN4.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> DN4</p>
@@ -1813,7 +1844,8 @@
 <button class="boton-agregar" id="btn_cantidadDN4" onclick="agregarPedido('DN4 / DATSUN-NISSAN-INFINITI', 'cantidadDN4')">Agregar al pedido</button>
 </div>
 <div class="producto linea-automotriz" data-precio="0.65" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>GM25P / GM/SUZUKI/TATA/HINO/HYUND/KIA</h2>
+<h2>GM25P – GM</h2>
+<p class="subtitulo">SUZUKI · TATA · HINO · HYUND · KIA</p>
 <div class="imagen">
 <a href="imagenes/GM25P.jpeg" target="_blank">
 <img alt="Llave GM25P" src="imagenes/GM25P.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -1822,7 +1854,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/GM25P.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> GM25P</p>
@@ -1834,7 +1866,8 @@
 <button class="boton-agregar" id="btn_cantidadGM25P" onclick="agregarPedido('GM25P / GM/SUZUKI/TATA/HINO/HYUND/KIA', 'cantidadGM25P')">Agregar al pedido</button>
 </div>
 <div class="producto linea-automotriz" data-precio="0.65" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>GM29P / GM/SUZUK/DAIHAT/HYUND/KIA/TOYO</h2>
+<h2>GM29P – GM</h2>
+<p class="subtitulo">SUZUK · DAIHAT · HYUND · KIA · TOYO</p>
 <div class="imagen">
 <a href="imagenes/GM29P.jpeg" target="_blank">
 <img alt="Llave GM29P" src="imagenes/GM29P.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -1843,7 +1876,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/GM29P.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> GM29P</p>
@@ -1860,7 +1893,8 @@
 
 </div>
 <div class="producto linea-automotriz" data-precio="0.65" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>GM26P / GM/SUZUKI/DAIHATSU/HYUNDAI/KIA</h2>
+<h2>GM26P – GM</h2>
+<p class="subtitulo">SUZUKI · DAIHATSU · HYUNDAI · KIA</p>
 <div class="imagen">
 <a href="imagenes/GM26P.jpeg" target="_blank">
 <img alt="Llave GM26P" src="imagenes/GM26P.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -1869,7 +1903,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/GM26P.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> GM26P</p>
@@ -1890,7 +1924,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/HINO.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> HINO</p>
@@ -1902,7 +1936,8 @@
 <button class="boton-agregar" id="btn_cantidadHINO" onclick="agregarPedido('HINO', 'cantidadHINO')">Agregar al pedido</button>
 </div>
 <div class="producto linea-automotriz" data-precio="0.65" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>HY9P / HYUNDAI/KIA ELANTRA</h2>
+<h2>HY9P – HYUNDAI</h2>
+<p class="subtitulo">KIA ELANTRA</p>
 <div class="imagen">
 <a href="imagenes/HY9P.jpeg" target="_blank">
 <img alt="Llave HY9P" src="imagenes/HY9P.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -1911,7 +1946,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/HY9P.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> HY9P</p>
@@ -1923,7 +1958,8 @@
 <button class="boton-agregar" id="btn_cantidadHY9P" onclick="agregarPedido('HY9P / HYUNDAI/KIA ELANTRA', 'cantidadHY9P')">Agregar al pedido</button>
 </div>
 <div class="producto linea-automotriz" data-precio="0.65" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>HY8P / HYUNDAI/KIA SANTA FE-TUCSON</h2>
+<h2>HY8P – HYUNDAI</h2>
+<p class="subtitulo">KIA SANTA FE-TUCSON</p>
 <div class="imagen">
 <a href="imagenes/HY8P.jpeg" target="_blank">
 <img alt="Llave HY8P" src="imagenes/HY8P.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -1932,7 +1968,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/HY8P.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> HY8P</p>
@@ -1944,7 +1980,7 @@
 <button class="boton-agregar" id="btn_cantidadHY8P" onclick="agregarPedido('HY8P / HYUNDAI/KIA SANTA FE-TUCSON', 'cantidadHY8P')">Agregar al pedido</button>
 </div>
 <div class="producto linea-automotriz" data-precio="0.65" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>HY7P / HYUNDAI TUCSON MATRIX ACCENT</h2>
+<h2>HY7P – HYUNDAI TUCSON MATRIX ACCENT</h2>
 <div class="imagen">
 <a href="imagenes/HY7P.jpeg" target="_blank">
 <img alt="Llave HY7P" src="imagenes/HY7P.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -1953,7 +1989,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/HY7P.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> HY7P</p>
@@ -1974,7 +2010,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/HY6P.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> HY6P</p>
@@ -1995,7 +2031,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/HONDA IZQUIERDA.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> HONDA IZQUIERDA</p>
@@ -2016,7 +2052,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/HONDA DERECHA.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> HONDA DERECHA</p>
@@ -2028,7 +2064,7 @@
 <button class="boton-agregar" id="btn_cantidadHONDA DERECHA" onclick="agregarPedido('HONDA DERECHA', 'cantidadHONDA DERECHA')">Agregar al pedido</button>
 </div>
 <div class="producto linea-automotriz" data-precio="0.75" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>HO12P / HONDA MOTO</h2>
+<h2>HO12P – HONDA MOTO</h2>
 <div class="imagen">
 <a href="imagenes/HO12P.jpeg" target="_blank">
 <img alt="Llave HO12P" src="imagenes/HO12P.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -2037,7 +2073,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/HO12P.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> HO12P</p>
@@ -2049,7 +2085,7 @@
 <button class="boton-agregar" id="btn_cantidadHO12P" onclick="agregarPedido('HO12P / HONDA MOTO', 'cantidadHO12P')">Agregar al pedido</button>
 </div>
 <div class="producto linea-automotriz" data-precio="0.75" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>MG1P / MULT-LOCK</h2>
+<h2>MG1P – MULT-LOCK</h2>
 <div class="imagen">
 <a href="imagenes/MG1P.jpeg" target="_blank">
 <img alt="Llave MG1P" src="imagenes/MG1P.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -2058,7 +2094,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/MG1P.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> MG1P</p>
@@ -2070,7 +2106,7 @@
 <button class="boton-agregar" id="btn_cantidadMG1P" onclick="agregarPedido('MG1P / MULT-LOCK', 'cantidadMG1P')">Agregar al pedido</button>
 </div>
 <div class="producto linea-automotriz" data-precio="0.75" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>MG1 / MULT-LOCK</h2>
+<h2>MG1 – MULT-LOCK</h2>
 <div class="imagen">
 <a href="imagenes/MG1.jpeg" target="_blank">
 <img alt="Llave MG1" src="imagenes/MG1.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -2079,7 +2115,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/MG1.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> MG1</p>
@@ -2091,7 +2127,7 @@
 <button class="boton-agregar" id="btn_cantidadMG1" onclick="agregarPedido('MG1 / MULT-LOCK', 'cantidadMG1')">Agregar al pedido</button>
 </div>
 <div class="producto linea-automotriz" data-precio="0.75" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>MG5 / MULT-LOCK</h2>
+<h2>MG5 – MULT-LOCK</h2>
 <div class="imagen">
 <a href="imagenes/MG5.jpeg" target="_blank">
 <img alt="Llave MG5" src="imagenes/MG5.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -2100,7 +2136,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/MG5.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> MG5</p>
@@ -2113,7 +2149,7 @@
 
 </div>
 <div class="producto linea-automotriz" data-precio="0.75" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>MG7 / MULT-LOCK</h2>
+<h2>MG7 – MULT-LOCK</h2>
 <div class="imagen">
 <a href="imagenes/MG7.jpeg" target="_blank">
 <img alt="Llave MG7" src="imagenes/MG7.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -2122,7 +2158,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/MG7.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> MG7</p>
@@ -2134,7 +2170,7 @@
 <button class="boton-agregar" id="btn_cantidadMG7" onclick="agregarPedido('MG7 / MULT-LOCK', 'cantidadMG7')">Agregar al pedido</button>
 </div>
 <div class="producto linea-automotriz" data-precio="1.10" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>SO1P / MULT-LOCK</h2>
+<h2>SO1P – MULT-LOCK</h2>
 <div class="imagen">
 <a href="imagenes/SO1P.jpeg" target="_blank">
 <img alt="Llave SO1P" src="imagenes/SO1P.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -2143,7 +2179,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/SO1P.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> SO1P</p>
@@ -2155,7 +2191,7 @@
 <button class="boton-agregar" id="btn_cantidadSO1P" onclick="agregarPedido('SO1P / MULT-LOCK', 'cantidadSO1P')">Agregar al pedido</button>
 </div>
 <div class="producto linea-automotriz" data-precio="1.15" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>MAPA LANFORD / LLAVE QUESO</h2>
+<h2>MAPA LANFORD – LLAVE QUESO</h2>
 <div class="imagen">
 <a href="imagenes/MAPALANFORD.jpeg" target="_blank">
 <img alt="Llave MAPALANFORD" src="imagenes/MAPALANFORD.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -2164,7 +2200,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/MAPALANFORD.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> MAPA LANFORD / LLAVE QUESO</p>
@@ -2176,7 +2212,7 @@
 <button class="boton-agregar" id="btn_cantidadMAPALANFORD" onclick="agregarPedido('MAPA LANFORD / LLAVE QUESO', 'cantidadMAPALANFORD')">Agregar al pedido</button>
 </div>
 <div class="producto linea-automotriz" data-precio="0.65" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>FO4P / FORD</h2>
+<h2>FO4P – FORD</h2>
 <div class="imagen">
 <a href="imagenes/FO4P.jpeg" target="_blank">
 <img alt="Llave FO4P" src="imagenes/FO4P.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -2185,7 +2221,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/FO4P.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> FO4P</p>
@@ -2206,7 +2242,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/VW-TP DIFERENTE.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> VW-TP DIFERENTE</p>
@@ -2218,7 +2254,7 @@
 <button class="boton-agregar" id="btn_cantidadVW-TP DIFERENTE" onclick="agregarPedido('VW-TP DIFERENTE', 'cantidadVW-TP DIFERENTE')">Agregar al pedido</button>
 </div>
 <div class="producto linea-automotriz" data-precio="2.00" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>TP-DN9 / DATSUN-NISSAN-INFINITI</h2>
+<h2>TP-DN9 – DATSUN-NISSAN-INFINITI</h2>
 <div class="imagen">
 <a href="imagenes/TP-DN9.jpeg" target="_blank">
 <img alt="Llave TP-DN9" src="imagenes/TP-DN9.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -2227,7 +2263,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/TP-DN9.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> TP-DN9</p>
@@ -2248,7 +2284,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/MAPA LISA.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> MAPA LISA</p>
@@ -2269,7 +2305,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/MAPA CENTRO.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> MAPA CENTRO</p>
@@ -2290,7 +2326,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/MAPA DERECHA.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> MAPA DERECHA</p>
@@ -2311,7 +2347,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/MAPA ZQUIERDA.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> MAPA IZQUIERDA</p>
@@ -2323,7 +2359,7 @@
 <button class="boton-agregar" id="btn_cantidadMAPA IZQUIERDA" onclick="agregarPedido('MAPA IZQUIERDA', 'cantidadMAPA IZQUIERDA')">Agregar al pedido</button>
 </div>
 <div class="producto linea-automotriz" data-precio="0.65" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>MZ5 / MAZDA</h2>
+<h2>MZ5 – MAZDA</h2>
 <div class="imagen">
 <a href="imagenes/MZ5 CONTRARIA.jpeg" target="_blank">
 <img alt="Llave MZ5" src="imagenes/MZ5 CONTRARIA.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -2332,7 +2368,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/MZ5 CONTRARIA.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> MZ5</p>
@@ -2344,7 +2380,7 @@
 <button class="boton-agregar" id="btn_cantidadMZ5" onclick="agregarPedido('MZ5', 'cantidadMZ5')">Agregar al pedido</button>
 </div>
 <div class="producto linea-automotriz" data-precio="0.65" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>MZ5P / MAZDA</h2>
+<h2>MZ5P – MAZDA</h2>
 <div class="imagen">
 <a href="imagenes/MZ5P.jpeg" target="_blank">
 <img alt="Llave MZ5P" src="imagenes/MZ5P.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -2353,7 +2389,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/MZ5P.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> MZ5P</p>
@@ -2374,7 +2410,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/OP7P CORSA.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> OP7P ASTRA</p>
@@ -2395,7 +2431,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/OP8P ASTRA.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> OP8P CORSA</p>
@@ -2416,7 +2452,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/PEUGEOT 2 BOTONES.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> PEUGEOT 2 BOTONES</p>
@@ -2437,7 +2473,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/PEUGEOT TP.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> PEUGEOT TP</p>
@@ -2449,7 +2485,7 @@
 <button class="boton-agregar" id="btn_cantidadPEUGEOT TP" onclick="agregarPedido('PEUGEOT TP', 'cantidadPEUGEOT TP')">Agregar al pedido</button>
 </div>
 <div class="producto linea-automotriz" data-precio="0.75" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>KI2P / KIA SORENTO CARNIVAL</h2>
+<h2>KI2P – KIA SORENTO CARNIVAL</h2>
 <div class="imagen">
 <a href="imagenes/KI2P.jpeg" target="_blank">
 <img alt="Llave KI2P" src="imagenes/KI2P.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -2458,7 +2494,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/KI2P.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> KI2P</p>
@@ -2470,7 +2506,7 @@
 <button class="boton-agregar" id="btn_cantidadKI2P" onclick="agregarPedido('KI2P / KIA SORENTO CARNIVAL', 'cantidadKI2P')">Agregar al pedido</button>
 </div>
 <div class="producto linea-automotriz" data-precio="0.75" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>KI2P ANCHA / KIA SORENTO CARNIVAL</h2>
+<h2>KI2P ANCHA – KIA SORENTO CARNIVAL</h2>
 <div class="imagen">
 <a href="imagenes/KI2P ANCHA.jpeg" target="_blank">
 <img alt="Llave KI2P ANCHA" src="imagenes/KI2P ANCHA.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -2479,7 +2515,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/KI2P ANCHA.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> KI2P ANCHA</p>
@@ -2491,7 +2527,7 @@
 <button class="boton-agregar" id="btn_cantidadKI2P ANCHA" onclick="agregarPedido('KI2P ANCHA / KIA SORENTO CARNIVAL', 'cantidadKI2P ANCHA')">Agregar al pedido</button>
 </div>
 <div class="producto linea-automotriz" data-precio="0.75" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>KI1P / KIA SPORTAGE PICANTO</h2>
+<h2>KI1P – KIA SPORTAGE PICANTO</h2>
 <div class="imagen">
 <a href="imagenes/KI1P.jpeg" target="_blank">
 <img alt="Llave KI1P" src="imagenes/KI1P.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -2500,7 +2536,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/KI1P.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> KI1P</p>
@@ -2521,7 +2557,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/SAIL TP.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> SAIL TP</p>
@@ -2533,7 +2569,7 @@
 <button class="boton-agregar" id="btn_cantidadSAIL TP" onclick="agregarPedido('SAIL TP', 'cantidadSAIL TP')">Agregar al pedido</button>
 </div>
 <div class="producto linea-automotriz" data-precio="0.60" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>TO11 / TOYOTA</h2>
+<h2>TO11 – TOYOTA</h2>
 <div class="imagen">
 <a href="imagenes/TO11.jpeg" target="_blank">
 <img alt="Llave TO11" src="imagenes/TO11.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -2542,7 +2578,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/TO11.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> TO11</p>
@@ -2554,7 +2590,7 @@
 <button class="boton-agregar" id="btn_cantidadTO11" onclick="agregarPedido('TO11 / TOYOTA', 'cantidadTO11')">Agregar al pedido</button>
 </div>
 <div class="producto linea-automotriz" data-precio="0.65" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>TO11P / TOYOTA</h2>
+<h2>TO11P – TOYOTA</h2>
 <div class="imagen">
 <a href="imagenes/TO11P.jpeg" target="_blank">
 <img alt="Llave TO11P" src="imagenes/TO11P.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -2563,7 +2599,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/TO11P.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> TO11P</p>
@@ -2575,7 +2611,7 @@
 <button class="boton-agregar" id="btn_cantidadTO11P" onclick="agregarPedido('TO11P / TOYOTA', 'cantidadTO11P')">Agregar al pedido</button>
 </div>
 <div class="producto linea-automotriz" data-precio="0.65" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>TO12P / TOYOTA</h2>
+<h2>TO12P – TOYOTA</h2>
 <div class="imagen">
 <a href="imagenes/TO12P.jpeg" target="_blank">
 <img alt="Llave TO12P" src="imagenes/TO12P.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -2584,7 +2620,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/TO12P.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> TO12P</p>
@@ -2596,7 +2632,7 @@
 <button class="boton-agregar" id="btn_cantidadTO12P" onclick="agregarPedido('TO12P / TOYOTA', 'cantidadTO12P')">Agregar al pedido</button>
 </div>
 <div class="producto linea-automotriz" data-precio="2.00" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>TO11 TP / TOYOTA</h2>
+<h2>TO11 TP – TOYOTA</h2>
 <div class="imagen">
 <a href="imagenes/TO11 TP.jpeg" target="_blank">
 <img alt="Llave TO11 TP" src="imagenes/TO11 TP.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -2605,7 +2641,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/TO11 TP.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> TO11 TP</p>
@@ -2617,7 +2653,7 @@
 <button class="boton-agregar" id="btn_cantidadTO11 TP" onclick="agregarPedido('TO11 TP / TOYOTA', 'cantidadTO11 TP')">Agregar al pedido</button>
 </div>
 <div class="producto linea-automotriz" data-precio="2.50" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>TO11P 2 BOTONES / TOYOTA</h2>
+<h2>TO11P 2 BOTONES – TOYOTA</h2>
 <div class="imagen">
 <a href="imagenes/TO11P 2 BOTONES.jpeg" target="_blank">
 <img alt="Llave TO11P 2 BOTONES" src="imagenes/TO11P 2 BOTONES.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -2626,7 +2662,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/TO11P 2 BOTONOES.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> TO11P 2 BOTONES</p>
@@ -2638,7 +2674,7 @@
 <button class="boton-agregar" id="btn_cantidadTO11P 2 BOTONES" onclick="agregarPedido('TO11P 2 BOTONES / TOYOTA', 'cantidadTO11P 2 BOTONES')">Agregar al pedido</button>
 </div>
 <div class="producto linea-automotriz" data-precio="2.50" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>TO11P 4 BOTONES / TOYOTA</h2>
+<h2>TO11P 4 BOTONES – TOYOTA</h2>
 <div class="imagen">
 <a href="imagenes/TO11P 4 BOTONES.jpeg" target="_blank">
 <img alt="Llave TO11P 4 BOTONES" src="imagenes/TO11P 4 BOTONES.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -2647,7 +2683,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/TO11P 4 BOTONES.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> TO11P 4 BOTONES</p>
@@ -2659,7 +2695,8 @@
 <button class="boton-agregar" id="btn_cantidadTO11P 4 BOTONES" onclick="agregarPedido('TO11P 4 BOTONES / TOYOTA', 'cantidadTO11P 4 BOTONES')">Agregar al pedido</button>
 </div>
 <div class="producto linea-automotriz" data-precio="0.60" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>TO5 / TOYOTA/SUZUKI/GM</h2>
+<h2>TO5 – TOYOTA</h2>
+<p class="subtitulo">SUZUKI · GM</p>
 <div class="imagen">
 <a href="imagenes/TO5.jpeg" target="_blank">
 <img alt="Llave TO5" src="imagenes/TO5.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -2668,7 +2705,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/TO5.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> TO5</p>
@@ -2680,7 +2717,8 @@
 <button class="boton-agregar" id="btn_cantidadTO5" onclick="agregarPedido('TO5 / TOYOTA/SUZUKI/GM', 'cantidadTO5')">Agregar al pedido</button>
 </div>
 <div class="producto linea-automotriz" data-precio="0.60" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>TO6 / TOYOTA COROLLA/DAIHATSU/LAND CRUISER</h2>
+<h2>TO6 – TOYOTA COROLLA</h2>
+<p class="subtitulo">DAIHATSU · LAND CRUISER</p>
 <div class="imagen">
 <a href="imagenes/TO6.jpeg" target="_blank">
 <img alt="Llave TO6" src="imagenes/TO6.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -2689,7 +2727,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/TO6.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> TO6</p>
@@ -2710,7 +2748,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/IZU3.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> IZU3</p>
@@ -2722,7 +2760,8 @@
 <button class="boton-agregar" id="btn_cantidadIZU3" onclick="agregarPedido('IZU3', 'cantidadIZU3')">Agregar al pedido</button>
 </div>
 <div class="producto linea-automotriz" data-precio="0.65" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>TO5P / TOYOTA/SUZUKI/GM</h2>
+<h2>TO5P – TOYOTA</h2>
+<p class="subtitulo">SUZUKI · GM</p>
 <div class="imagen">
 <a href="imagenes/TO5P.jpeg" target="_blank">
 <img alt="Llave TO5P" src="imagenes/TO5P.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -2731,7 +2770,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/TO5P.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> TO5P</p>
@@ -2743,7 +2782,8 @@
 <button class="boton-agregar" id="btn_cantidadTO5P" onclick="agregarPedido('TO5P / TOYOTA/SUZUKI/GM', 'cantidadTO5P')">Agregar al pedido</button>
 </div>
 <div class="producto linea-automotriz" data-precio="0.65" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>TO6P / TOYOTA/DAIHATSU/LAND CRUISER</h2>
+<h2>TO6P – TOYOTA</h2>
+<p class="subtitulo">DAIHATSU · LAND CRUISER</p>
 <div class="imagen">
 <a href="imagenes/TO6P.jpeg" target="_blank">
 <img alt="Llave TO6P" src="imagenes/TO6P.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -2752,7 +2792,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/TO5P.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> TO6P</p>
@@ -2773,7 +2813,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/MAPA CENTRO TP KIA.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> MAPA CENTRO TP KIA</p>
@@ -2794,7 +2834,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/MERCEDES TP.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> MERCEDES TP</p>
@@ -2806,7 +2846,7 @@
 <button class="boton-agregar" id="btn_cantidadMERCEDES TP" onclick="agregarPedido('MERCEDES TP', 'cantidadMERCEDES TP')">Agregar al pedido</button>
 </div>
 <div class="producto linea-automotriz" data-precio="0.65" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2> DN9P / DATSUN-NISSAN-INFINITI</h2>
+<h2>DN9P – DATSUN-NISSAN-INFINITI</h2>
 <div class="imagen">
 <a href="imagenes/DN9P.jpeg" target="_blank">
 <img alt="Llave DN9P" src="imagenes/DN9P.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -2815,7 +2855,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/DN9P.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> DN9P </p>
@@ -2836,7 +2876,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/TO1P.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> TO1P</p>
@@ -2848,7 +2888,8 @@
 <button class="boton-agregar" id="btn_cantidadTO1P" onclick="agregarPedido('TO1P', 'cantidadTO1P')">Agregar al pedido</button>
 </div>
 <div class="producto linea-automotriz" data-precio="0.60" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>SZ1 / GM/SUZUKI II</h2>
+<h2>SZ1 – GM</h2>
+<p class="subtitulo">SUZUKI II</p>
 <div class="imagen">
 <a href="imagenes/SZ1.jpeg" target="_blank">
 <img alt="Llave SZ1" src="imagenes/SZ1.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -2857,7 +2898,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/SZ1.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> SZ1</p>
@@ -2878,7 +2919,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/SZ10P.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> SZ10P</p>
@@ -2899,7 +2940,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/NAVAJAPULSAR.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> NAVAJA PULSAR</p>
@@ -2920,7 +2961,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/MAPAPULSAR.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> MAPA PULSAR</p>
@@ -2941,7 +2982,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/CITROEN.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> CITROEN</p>
@@ -2962,7 +3003,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/SOBO.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> SOBO</p>
@@ -2983,7 +3024,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/FIAT.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> FIAT </p>
@@ -3004,7 +3045,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/FIATLARGA.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> FIAT LARGA </p>
@@ -3025,7 +3066,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/CONTROLNAVAJACHEVY.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> CONTROL NAVAJA CHEVY</p>
@@ -3046,7 +3087,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/CONTROLCHEVY.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> CONTROL CHEVY CLÁSICO</p>
@@ -3067,7 +3108,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/CARCASACHEVY.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> CARCASA CHEVY</p>
@@ -3088,7 +3129,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/CARCASAKIA.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> CARCASA KIA</p>
@@ -3109,7 +3150,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/CARCASAHYUNDAI.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> CARCASA HYUNDAI</p>
@@ -3130,7 +3171,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/NAVAJALISA.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> NAVAJA LISA</p>
@@ -3151,7 +3192,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/NAVAJATO5.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> NAVAJA TO5</p>
@@ -3172,7 +3213,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/NAVAJATO6.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> NAVAJA TO6</p>
@@ -3193,7 +3234,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/PU2PIMANYAMAHA.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> PU2P IMÁN YAMAHA</p>
@@ -3205,7 +3246,7 @@
 <button class="boton-agregar" id="btn_cantidadPU2PIMANYAMAHA" onclick="agregarPedido('PU2PIMANYAMAHA', 'cantidadPU2PIMANYAMAHA')">Agregar al pedido</button>
 </div>
 <div class="producto linea-automotriz" data-precio="0.65" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2> MT3P / MOTO DERECHA</h2>
+<h2>MT3P – MOTO DERECHA</h2>
 <div class="imagen">
 <a href="imagenes/MT3P.jpeg" target="_blank">
 <img alt="Llave MT3P" src="imagenes/MT3P.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -3214,7 +3255,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/MT3P.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> MT3P</p>
@@ -3235,7 +3276,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/MT3PIMAN.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> MT3P IMÁN</p>
@@ -3247,7 +3288,7 @@
 <button class="boton-agregar" id="btn_cantidadMT3PIMAN" onclick="agregarPedido('MT3PIMAN', 'cantidadMT3PIMAN')">Agregar al pedido</button>
 </div>
 <div class="producto linea-automotriz" data-precio="0.65" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2> MT4P / MOTO IZQUIERDA</h2>
+<h2>MT4P – MOTO IZQUIERDA</h2>
 <div class="imagen">
 <a href="imagenes/MT4P.jpeg" target="_blank">
 <img alt="Llave MT4P" src="imagenes/MT4P.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -3256,7 +3297,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/MT4P.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> MT4P</p>
@@ -3268,7 +3309,7 @@
 <button class="boton-agregar" id="btn_cantidadMT4P" onclick="agregarPedido('MT4P', 'cantidadMT4P')">Agregar al pedido</button>
 </div>
 <div class="producto linea-automotriz" data-precio="0.65" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2> PU1P / BAJAJ PULSAR MOTO</h2>
+<h2>PU1P – BAJAJ PULSAR MOTO</h2>
 <div class="imagen">
 <a href="imagenes/PU1P.jpeg" target="_blank">
 <img alt="Llave PU1P" src="imagenes/PU1P.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -3277,7 +3318,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/PU1P.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> PU1P</p>
@@ -3289,7 +3330,7 @@
 <button class="boton-agregar" id="btn_cantidadPU1P" onclick="agregarPedido('PU1P', 'cantidadPU1P')">Agregar al pedido</button>
 </div>
 <div class="producto linea-automotriz" data-precio="1.25" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2> MAPA CENTRO MOTO / SCOOTERS Y MOTOS ELÉCTRICAS</h2>
+<h2>MAPA CENTRO MOTO – SCOOTERS Y MOTOS ELÉCTRICAS</h2>
 <div class="imagen">
 <a href="imagenes/MAPACENTROMOTO.jpeg" target="_blank">
 <img alt="Llave MAPACENTROMOTO" src="imagenes/MAPACENTROMOTO.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -3298,7 +3339,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/MAPACENTROMOTO.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> MAPA CENTRO MOTO</p>
@@ -3319,7 +3360,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/TO1.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> TO1</p>
@@ -3340,7 +3381,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/TO2.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> TO2</p>
@@ -3361,7 +3402,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/SINOTRUCK.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> SINOTRUCK TP</p>
@@ -3382,7 +3423,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/HINOP.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> HINOP</p>
@@ -3403,7 +3444,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/CARCASATRAKERCRUZE.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> CARCASA TRAKER CRUZE</p>
@@ -3424,7 +3465,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/CHERYTP.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> CHERY TP</p>
@@ -3454,7 +3495,7 @@
     </a>
   </p>
 
-  <a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+  <a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 
   <div class="detalles">
     <p class="linea" style="display:none;">Línea: Automotriz</p>
@@ -3518,7 +3559,7 @@
     </a>
   </p>
 
-  <a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+  <a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 
   <div class="detalles">
     <p class="linea" style="display:none;">Línea: Automotriz</p>
@@ -3582,7 +3623,7 @@
     </a>
   </p>
 
-  <a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+  <a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 
   <div class="detalles">
     <p class="linea" style="display:none;">Línea: Automotriz</p>
@@ -3646,7 +3687,7 @@
     </a>
   </p>
 
-  <a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+  <a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 
   <div class="detalles">
     <p class="linea" style="display:none;">Línea: Automotriz</p>
@@ -3695,7 +3736,7 @@
 
 </div>
 <div class="producto espadas" data-precio="0.80" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2> ESPADA 78 / CHERY FEBGYUN</h2>
+<h2>ESPADA 78 – CHERY FEBGYUN</h2>
 <div class="imagen">
 <a href="imagenes/78.jpeg" target="_blank">
 <img alt="Llave 78" src="imagenes/78.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -3704,7 +3745,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/78.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> ESPADA 78 CHERY FEBGYUN</p>
@@ -3716,7 +3757,7 @@
 <button class="boton-agregar" id="btn_cantidadESPADA78" onclick="agregarPedido('ESPADA 78 CHERY FEBGYUN', 'cantidadESPADA78')">Agregar al pedido</button>
 </div>
 <div class="producto espadas" data-precio="0.80" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2> Espada 84 / Chery A21</h2>
+<h2>Espada 84 – Chery A21</h2>
 <div class="imagen">
 <a href="imagenes/84.jpeg" target="_blank">
 <img alt="Llave 84" src="imagenes/84.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -3725,7 +3766,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/84.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> Espada 84 Chery A21</p>
@@ -3738,7 +3779,7 @@
 
 </div>
 <div class="producto espadas" data-precio="0.80" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2> Espada 39 / Chevrolet Sail</h2>
+<h2>Espada 39 – Chevrolet Sail</h2>
 <div class="imagen">
 <a href="imagenes/39.jpeg" target="_blank">
 <img alt="Llave 39" src="imagenes/39.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -3747,7 +3788,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/39.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> Espada 39 Chevrolet Sail</p>
@@ -3759,7 +3800,7 @@
 <button class="boton-agregar" id="btn_cantidadESPADA39" onclick="agregarPedido('Espada 39 Chevrolet Sail', 'cantidadESPADA39')">Agregar al pedido</button>
 </div>
 <div class="producto espadas" data-precio="0.80" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2> Espada 50 / Hyundai Elantra</h2>
+<h2>Espada 50 – Hyundai Elantra</h2>
 <div class="imagen">
 <a href="imagenes/50.jpeg" target="_blank">
 <img alt="Llave 50" src="imagenes/50.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -3768,7 +3809,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/50.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> Espada 50 Hyundai Elantra</p>
@@ -3780,7 +3821,7 @@
 <button class="boton-agregar" id="btn_cantidadESPADA50" onclick="agregarPedido('Espada 50 Hyundai Elantra', 'cantidadESPADA50')">Agregar al pedido</button>
 </div>
 <div class="producto espadas" data-precio="0.80" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2> Espada 63 / Chery QQ6</h2>
+<h2>Espada 63 – Chery QQ6</h2>
 <div class="imagen">
 <a href="imagenes/63.jpeg" target="_blank">
 <img alt="Llave 63" src="imagenes/39.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -3789,7 +3830,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/63.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> Espada 63 Chery QQ6</p>
@@ -3801,7 +3842,7 @@
 <button class="boton-agregar" id="btn_cantidadESPADA63" onclick="agregarPedido('Espada 63 Chery QQ6', 'cantidadESPADA63')">Agregar al pedido</button>
 </div>
 <div class="producto espadas" data-precio="0.80" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2> Espada 77 / Kia Regata </h2>
+<h2>Espada 77 – Kia Regata</h2>
 <div class="imagen">
 <a href="imagenes/77.jpeg" target="_blank">
 <img alt="Llave 77" src="imagenes/77.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -3810,7 +3851,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/77.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> Espada 77 Kia Regata </p>
@@ -3822,7 +3863,7 @@
 <button class="boton-agregar" id="btn_cantidadESPADA77" onclick="agregarPedido('Espada 77 Kia Regata ', 'cantidadESPADA77')">Agregar al pedido</button>
 </div>
 <div class="producto espadas" data-precio="0.80" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2> Espada 27 / Mazda Family 323 - M6-M7</h2>
+<h2>Espada 27 – Mazda Family 323 - M6-M7</h2>
 <div class="imagen">
 <a href="imagenes/27.jpeg" target="_blank">
 <img alt="Llave 27" src="imagenes/27.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -3831,7 +3872,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/27.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> Espada 27 Mazda Family 323 - M6-M7</p>
@@ -3843,7 +3884,7 @@
 <button class="boton-agregar" id="btn_cantidadESPADA27" onclick="agregarPedido('Espada 27 Mazda Family 323 - M6-M7', 'cantidadESPADA27')">Agregar al pedido</button>
 </div>
 <div class="producto espadas" data-precio="0.80" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2> Espada 28 / Jac - Kia </h2>
+<h2>Espada 28 – Jac - Kia</h2>
 <div class="imagen">
 <a href="imagenes/28.jpeg" target="_blank">
 <img alt="Llave 28" src="imagenes/28.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -3852,7 +3893,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/28.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> Espada 28 Jac - Kia </p>
@@ -3864,7 +3905,7 @@
 <button class="boton-agregar" id="btn_cantidadESPADA28" onclick="agregarPedido('Espada 28 Jac - Kia', 'cantidadESPADA28')">Agregar al pedido</button>
 </div>
 <div class="producto espadas" data-precio="0.80" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2> Espada 33 / Hyundai Inf</h2>
+<h2>Espada 33 – Hyundai Inf</h2>
 <div class="imagen">
 <a href="imagenes/33.jpeg" target="_blank">
 <img alt="Llave 33" src="imagenes/33.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -3873,7 +3914,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/33.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> Espada 33 Hyundai Inf</p>
@@ -3885,7 +3926,7 @@
 <button class="boton-agregar" id="btn_cantidadESPADA33" onclick="agregarPedido('Espada 33 Hyundai Inf', 'cantidadESPADA33')">Agregar al pedido</button>
 </div>
 <div class="producto espadas" data-precio="0.80" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2> Espada 129 / Kia - Hyundai</h2>
+<h2>Espada 129 – Kia - Hyundai</h2>
 <div class="imagen">
 <a href="imagenes/129.jpeg" target="_blank">
 <img alt="Llave 129" src="imagenes/129.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -3894,7 +3935,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/129.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> Espada 129 Kia - Hyundai</p>
@@ -3906,7 +3947,7 @@
 <button class="boton-agregar" id="btn_cantidadESPADA129" onclick="agregarPedido('Espada 129 Kia - Hyundai', 'cantidadESPADA129')">Agregar al pedido</button>
 </div>
 <div class="producto espadas" data-precio="0.80" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2> Espada 22 / Nissan Tida - Opel</h2>
+<h2>Espada 22 – Nissan Tida - Opel</h2>
 <div class="imagen">
 <a href="imagenes/22.jpeg" target="_blank">
 <img alt="Llave 22" src="imagenes/22.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -3915,7 +3956,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/22.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> Espada 22 Nissan Tida - Opel</p>
@@ -3927,7 +3968,7 @@
 <button class="boton-agregar" id="btn_cantidadESPADA22" onclick="agregarPedido('Espada 22 Nissan Tida - Opel', 'cantidadESPADA22')">Agregar al pedido</button>
 </div>
 <div class="producto espadas" data-precio="0.80" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2> Espada 05 / Great Wall - Suzuki Spark</h2>
+<h2>Espada 05 – Great Wall - Suzuki Spark</h2>
 <div class="imagen">
 <a href="imagenes/05.jpeg" target="_blank">
 <img alt="Llave 05" src="imagenes/05.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -3936,7 +3977,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/05.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> Espada 05 Great Wall - Suzuki Spark</p>
@@ -3948,7 +3989,7 @@
 <button class="boton-agregar" id="btn_cantidadESPADA05" onclick="agregarPedido('Espada 05 Great Wall - Suzuki Spark', 'cantidadESPADA05')">Agregar al pedido</button>
 </div>
 <div class="producto espadas" data-precio="0.80" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2> Espada 11 / Mercedes Benz</h2>
+<h2>Espada 11 – Mercedes Benz</h2>
 <div class="imagen">
 <a href="imagenes/11.jpeg" target="_blank">
 <img alt="Llave 11" src="imagenes/11.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -3957,7 +3998,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/11.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> Espada 11 Mercedes Benz</p>
@@ -3969,7 +4010,7 @@
 <button class="boton-agregar" id="btn_cantidadESPADA11" onclick="agregarPedido('Espada 11 Mercedes Benz', 'cantidadESPADA11')">Agregar al pedido</button>
 </div>
 <div class="producto espadas" data-precio="0.80" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2> Espada 125 / BMW</h2>
+<h2>Espada 125 – BMW</h2>
 <div class="imagen">
 <a href="imagenes/125.jpeg" target="_blank">
 <img alt="Llave 125" src="imagenes/125.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -3978,7 +4019,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/125.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> Espada 125 BMW</p>
@@ -3990,7 +4031,7 @@
 <button class="boton-agregar" id="btn_cantidadESPADA125" onclick="agregarPedido('Espada 125 BMW', 'cantidadESPADA125')">Agregar al pedido</button>
 </div>
 <div class="producto espadas" data-precio="0.80" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2> Espada 31 / Volkswagen </h2>
+<h2>Espada 31 – Volkswagen</h2>
 <div class="imagen">
 <a href="imagenes/31.jpeg" target="_blank">
 <img alt="Llave 31" src="imagenes/31.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -3999,7 +4040,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/31.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> Espada 31 Volkswagen </p>
@@ -4011,7 +4052,7 @@
 <button class="boton-agregar" id="btn_cantidadESPADA31" onclick="agregarPedido('Espada 31 Volkswagen ', 'cantidadESPADA31')">Agregar al pedido</button>
 </div>
 <div class="producto espadas" data-precio="0.80" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2> Espada 130 / Hyundai - Kia</h2>
+<h2>Espada 130 – Hyundai - Kia</h2>
 <div class="imagen">
 <a href="imagenes/130.jpeg" target="_blank">
 <img alt="Llave 130" src="imagenes/130.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -4020,7 +4061,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/130.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> Espada 130 Hyundai - Kia</p>
@@ -4032,7 +4073,7 @@
 <button class="boton-agregar" id="btn_cantidadESPADA130" onclick="agregarPedido('Espada 130 Hyundai - Kia ', 'cantidadESPADA130')">Agregar al pedido</button>
 </div>
 <div class="producto espadas" data-precio="0.80" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2> Espada 19 / Ford Mercury </h2>
+<h2>Espada 19 – Ford Mercury</h2>
 <div class="imagen">
 <a href="imagenes/19.jpeg" target="_blank">
 <img alt="Llave 19" src="imagenes/19.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -4041,7 +4082,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/19.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> Espada 19 Ford Mercury </p>
@@ -4053,7 +4094,7 @@
 <button class="boton-agregar" id="btn_cantidadESPADA19" onclick="agregarPedido('Espada 19 Ford Mercury ', 'cantidadESPADA19')">Agregar al pedido</button>
 </div>
 <div class="producto espadas" data-precio="0.80" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2> Espada 02 / Toyota TO11</h2>
+<h2>Espada 02 – Toyota TO11</h2>
 <div class="imagen">
 <a href="imagenes/02.jpeg" target="_blank">
 <img alt="Llave 02" src="imagenes/02.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -4062,7 +4103,7 @@
 <p><strong>¿Quieres ver la llave más grande?</strong><br/>
 <a href="imagenes/02.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> Espada 02 Toyota TO11</p>
@@ -4083,7 +4124,7 @@
 <p><strong>¿Quieres ver este producto más grande?</strong><br/>
 <a href="imagenes/PILACR2032.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> PILACR2032</p>
@@ -4107,7 +4148,7 @@
 <p><strong>¿Quieres ver este producto más grande?</strong><br/>
 <a href="imagenes/PENETRANTEALEMAN.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> PENETRANTE ALEMÁN</p>
@@ -4128,7 +4169,7 @@
 <p><strong>¿Quieres ver este prodcuto más grande?</strong><br/>
 <a href="imagenes/REMOVEDORDEÓXIDO.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> REMOVEDOR DE ÓXIDO</p>
@@ -4149,7 +4190,7 @@
 <p><strong>¿Quieres ver este producto más grande?</strong><br/>
 <a href="imagenes/LIMPIADORELÉCTRONICO.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> LIMPIADOR ELÉCTRONICO</p>
@@ -4169,7 +4210,7 @@
       Su navegador no admite videos HTML5.
     </video>
 </div>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> PEGATANKE TOKE</p>
@@ -4190,7 +4231,7 @@
 <p><strong>¿Quieres ver este producto más grande?</strong><br/>
 <a href="imagenes/CEPILLODE6FILAS.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> CEPILLO DE ACERO DE 6 FILAS</p>
@@ -4211,7 +4252,7 @@
 <p><strong>¿Quieres ver este producto más grande?</strong><br/>
 <a href="imagenes/CORTACANDADOS.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> CORTA CANDADOS</p>
@@ -4232,7 +4273,7 @@
 <p><strong>¿Quieres ver este producto más grande?</strong><br/>
 <a href="imagenes/TAG.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> TAG</p>
@@ -4244,7 +4285,7 @@
 <button class="boton-agregar" id="btn_cantidadTAG" onclick="agregarPedido('TAG', 'cantidadTAG')">Agregar al pedido</button>
 </div>
 <div class="producto otros" data-precio="60.00" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>TAG / PROMOCIÓN 100 UNIDADES </h2>
+<h2>TAG – PROMOCIÓN 100 UNIDADES</h2>
 <div class="imagen">
 <a href="imagenes/TAG.jpeg" target="_blank">
 <img alt="Llave TAG" src="imagenes/TAG.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -4253,7 +4294,7 @@
 <p><strong>¿Quieres ver este producto más grande?</strong><br/>
 <a href="imagenes/TAG.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> TAG</p>
@@ -4266,7 +4307,7 @@
 <button class="boton-agregar" id="btn_cantidadTAG" onclick="agregarPedido('TAG', 'cantidadTAG')">Agregar al pedido</button>
 </div>
 <div class="producto otros" data-precio="100.00" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>TAG / AL POR MAYOR 200 UNIDADES </h2>
+<h2>TAG – AL POR MAYOR 200 UNIDADES</h2>
 <div class="imagen">
 <a href="imagenes/TAG.jpeg" target="_blank">
 <img alt="Llave TAG" src="imagenes/TAG.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -4275,7 +4316,7 @@
 <p><strong>¿Quieres ver este producto más grande?</strong><br/>
 <a href="imagenes/TAG.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong> TAG</p>
@@ -4297,7 +4338,7 @@
 <p><strong>¿Quieres ver este producto más grande?</strong><br/>
 <a href="imagenes/IDENTIFICADORES.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong>IDENTIFICADORES DE LLAVES</p>
@@ -4319,7 +4360,7 @@
 <p><strong>¿Quieres ver este producto más grande?</strong><br/>
 <a href="imagenes/CALIBRADOR.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong>CALIBRADOR DE CANALES</p>
@@ -4340,7 +4381,7 @@
 <p><strong>¿Quieres ver este producto más grande?</strong><br/>
 <a href="imagenes/REMOVEDORDEPASADOR.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Línea: Automotriz</p>
 <p><strong>Código:</strong>REMOVEDOR DE PASADOR</p>
@@ -4353,7 +4394,8 @@
 
 </div>
 <div class="producto otros" data-precio="80.00" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>DISCO 60 DIENTES / HERMEX / TRUPER</h2>
+<h2>DISCO 60 DIENTES – HERMEX</h2>
+<p class="subtitulo">TRUPER</p>
 <div class="imagen">
 <a href="imagenes/DISCO 60 DIENTES.jpeg" target="_blank">
 <img alt="DISCO 60 DIENTES" src="imagenes/DISCO 60 DIENTES.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -4362,7 +4404,7 @@
 <p><strong>¿Quieres ver el disco más grande?</strong><br/>
 <a href="imagenes/DISCO 60 DIENTES.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Linea: otros</p>
 <p><strong>Código:</strong> DISCO 60 DIENTES</p>
@@ -4374,7 +4416,8 @@
 <button class="boton-agregar" id="btn_cantidadDISCO 60 DIENTES" onclick="agregarPedido('DISCO 60 DIENTES / HERMEX / TRUPER', 'cantidadDISCO 60 DIENTES')">Agregar al pedido</button>
 </div>
 <div class="producto otros" data-precio="90.00" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>DISCO 80 DIENTES / HERMEX / TRUPER</h2>
+<h2>DISCO 80 DIENTES – HERMEX</h2>
+<p class="subtitulo">TRUPER</p>
 <div class="imagen">
 <a href="imagenes/DISCO 80 DIENTES.jpeg" target="_blank">
 <img alt="DISCO 80 DIENTES" src="imagenes/DISCO 80 DIENTES.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -4383,7 +4426,7 @@
 <p><strong>¿Quieres ver el disco más grande?</strong><br/>
 <a href="imagenes/DISCO 80 DIENTES.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Linea: otros</p>
 <p><strong>Código:</strong> DISCO 80 DIENTES</p>
@@ -4404,7 +4447,7 @@
 <p><strong>¿Quieres ver el disco más grande?</strong><br/>
 <a href="imagenes/DISCOGOSO.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Linea: otros</p>
 <p><strong>Código:</strong> DISCO GOSO</p>
@@ -4425,7 +4468,7 @@
 <p><strong>¿Quieres ver este producto más grande?</strong><br/>
 <a href="imagenes/FRESA2MM.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Linea: otros</p>
 <p><strong>Código:</strong> FRESA 2MM </p>
@@ -4446,7 +4489,7 @@
 <p><strong>¿Quieres ver este producto más grande?</strong><br/>
 <a href="imagenes/FRESA2.5MM.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Linea: otros</p>
 <p><strong>Código:</strong> FRESA 2.5MM </p>
@@ -4467,7 +4510,7 @@
 <p><strong>¿Quieres ver este producto más grande?</strong><br/>
 <a href="imagenes/ADAPTADORUNIVERSAL.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Linea: otros</p>
 <p><strong>Código:</strong> ADAPTADOR UNIVERSAL</p>
@@ -4488,7 +4531,7 @@
 <p><strong>¿Quieres ver este producto más grande?</strong><br/>
 <a href="imagenes/CEPILLO.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Linea: otros</p>
 <p><strong>Código:</strong> CEPILLO </p>
@@ -4500,7 +4543,7 @@
 <button class="boton-agregar" id="btn_cantidad" onclick="agregarPedido('CEPILLO', 'cantidadCEPILLO')">Agregar al pedido</button>
 </div>
 <div class="producto otros" data-precio="16.00" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>ARGOLLAS / AL POR MAYOR PAQUETE DE 1000 UNIDADES</h2>
+<h2>ARGOLLAS – AL POR MAYOR PAQUETE DE 1000 UNIDADES</h2>
 <div class="imagen">
 <a href="imagenes/ARGOLLAS.jpeg" target="_blank">
 <img alt="ARGOLLAS" src="imagenes/ARGOLLAS.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -4509,7 +4552,7 @@
 <p><strong>¿Quieres ver este producto más grande?</strong><br/>
 <a href="imagenes/ARGOLLAS.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Linea: otros</p>
 <p><strong>Código:</strong> ARGOLLAS</p>
@@ -4522,7 +4565,7 @@
 <button class="boton-agregar" id="btn_cantidadARGOLLAS" onclick="agregarPedido('ARGOLLAS / AL POR MAYOR PAQUETE DE 1000 UNIDADES', 'cantidadARGOLLAS')">Agregar al pedido</button>
 </div>
 <div class="producto otros" data-precio="15.00" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>ARGOLLAS (P) / "PROMOCIÓN" A PARTIR DE 2000 UNIDADES</h2>
+<h2>ARGOLLAS (P) – &quot;PROMOCIÓN&quot; A PARTIR DE 2000 UNIDADES</h2>
 <div class="imagen">
 <a href="imagenes/ARGOLLAS.jpeg" target="_blank">
 <img alt="ARGOLLAS" src="imagenes/ARGOLLAS.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -4531,7 +4574,7 @@
 <p><strong>¿Quieres ver este producto más grande?</strong><br/>
 <a href="imagenes/ARGOLLAS.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Linea: otros</p>
 <p><strong>Código:</strong> ARGOLLAS</p>
@@ -4544,7 +4587,7 @@
 <button class="boton-agregar" id="btn_cantidadARGOLLAS (P)" onclick="agregarPedido('ARGOLLAS (P) / PROMOCIÓN A PARTIR DE 2000 UNIDADES', 'cantidadARGOLLAS (P)')">Agregar al pedido</button>
 </div>
 <div class="producto otros" data-precio="9.00" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>ARGOLLAS MEDIO MILLAR / 500 UNIDADES</h2>
+<h2>ARGOLLAS MEDIO MILLAR – 500 UNIDADES</h2>
 <div class="imagen">
 <a href="imagenes/ARGOLLAS.jpeg" target="_blank">
 <img alt="ARGOLLAS" src="imagenes/ARGOLLAS.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -4553,7 +4596,7 @@
 <p><strong>¿Quieres ver este producto más grande?</strong><br/>
 <a href="imagenes/ARGOLLAS.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Linea: otros</p>
 <p><strong>Código:</strong> ARGOLLAS</p>
@@ -4566,7 +4609,7 @@
 <button class="boton-agregar" id="btn_cantidadARGOLLAS MEDIO MILLAR" onclick="agregarPedido('ARGOLLAS MEDIO MILLAR / 500 UNIDADES', 'cantidadARGOLLAS MEDIO MILLAR')">Agregar al pedido</button>
 </div>
 <div class="producto otros" data-precio="2.00" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>ARGOLLAS AL POR MENOR / 100 UNIDADES</h2>
+<h2>ARGOLLAS AL POR MENOR – 100 UNIDADES</h2>
 <div class="imagen">
 <a href="imagenes/ARGOLLAS.jpeg" target="_blank">
 <img alt="ARGOLLAS" src="imagenes/ARGOLLAS.jpeg" style="width: 100%; height: auto; object-fit: contain; transform: scale(1.3); margin-top: 30px; margin-bottom: 30px;"/>
@@ -4575,7 +4618,7 @@
 <p><strong>¿Quieres ver este producto más grande?</strong><br/>
 <a href="imagenes/ARGOLLAS.jpeg" style="color:#25d366; text-decoration: underline;" target="_blank">Dale clic aquí</a>
 </p>
-<a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+<a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 <div class="detalles">
 <p class="linea" style="display:none;">Linea: otros</p>
 <p><strong>Código:</strong> ARGOLLAS</p>
@@ -4606,7 +4649,7 @@
     </a>
   </p>
 
-  <a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+  <a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 
   <div class="detalles">
     <p class="linea" style="display:none;">Línea: Automotriz</p>
@@ -4652,7 +4695,7 @@
     </a>
   </p>
 
-  <a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+  <a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 
   <div class="detalles">
     <p class="linea" style="display:none;">Línea: Automotriz</p>
@@ -4698,7 +4741,7 @@
     </a>
   </p>
 
-  <a href="#" onclick="filtrarPorLinea('todas')" style="color:#25d366;">⬅️ Regresar al inicio</a>
+  <a href="#"  onclick="filtrarPorLinea(\'todas\')"  class="regresar-btn">⬅️ Regresar al inicio</a>
 
   <div class="detalles">
     <p class="linea" style="display:none;">Línea: Automotriz</p>
@@ -4726,7 +4769,7 @@
   </button>
 </div>
 <div class="producto otros" data-precio="0.20" style="margin: 0 auto; text-align: center; max-width: 600px;">
-<h2>LLAVES DE COLORES / YA107, TR3, VI2, KW1, YA6</h2>
+<h2>LLAVES DE COLORES – YA107, TR3, VI2, KW1, YA6</h2>
 <div class="imagen">
 <video autoplay="" controls="" muted="" style="margin-top: 30px; margin-bottom: 30px;" width="100%">
 <source src="imagenes/llaves_colores.mp4" type="video/mp4"/>
@@ -4796,7 +4839,7 @@
 <h2>Productos en el carrito</h2>
 <div id="lista-carrito">
 </div>
-<div <div="" class="producto" style="background:#e6f7ff; border: 2px solid #007bff; margin: 0 auto; max-width: 700px; text-align: center;">
+<div class="producto" style="background:#e6f7ff; border: 2px solid #007bff; margin: 0 auto; max-width: 700px; text-align: center;">
 <h2>Resumen del Pedido</h2>
 <div id="pedido"></div>
 <label for="nombre">Nombre:</label>
