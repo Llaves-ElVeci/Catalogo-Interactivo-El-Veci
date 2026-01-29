@@ -93,7 +93,7 @@
   position: fixed;
   top: 30%;
   right: 10px;
-  display: flex;
+  display: none;
   flex-direction: column;
   gap: 10px;
   z-index: 10000;
@@ -4768,7 +4768,7 @@ function filtrarLlaves() {
 
 function resetearFiltro() {
   document.querySelectorAll(".producto").forEach((producto, index) => {
-    if (index === 0 || index === 1) return;
+    if (index === 0) return;
     producto.style.display = "block";
   });
   document.getElementById("verTodoBtn").style.display = "none";
@@ -4777,7 +4777,7 @@ function resetearFiltro() {
 function filtrarPorLinea(clase) {
   const productos = document.querySelectorAll(".producto");
   productos.forEach((producto, index) => {
-    if (index === 0 || index === 1) return;
+    if (index === 0) return;
 
     if (clase === "todas") {
       producto.style.display = "block";
@@ -4998,38 +4998,61 @@ function actualizarResumen() {
   const resumen = document.getElementById("pedido");
   if (!resumen) return;
 
-  // ✅ Antes de calcular totales, asegurar que Línea Hogar tenga el precio correcto por escala
+  // ✅ Asegurar que Línea Hogar tenga el precio correcto por escala
   const infoHogar = recalcularPreciosLineaHogarCarrito();
   const totalHogar = infoHogar.totalHogar || 0;
   const precioHogar = infoHogar.precioHogar || 0;
 
-  let totalLlaves = 0;
-  let totalDinero = 0;
-  let texto = "";
+  // Ordenar SOLO para el resumen (sin tocar el orden real del carrito para editar/eliminar)
+  const ordenado = (carrito || []).slice().sort((a, b) => {
+    const prio = (x) => (x.linea === "linea-hogar" ? 0 : 1);
+    const d = prio(a) - prio(b);
+    if (d !== 0) return d;
+    return (a.codigo || "").localeCompare((b.codigo || ""), "es", { sensitivity: "base" });
+  });
 
-  carrito.forEach(item => {
+  let totalUnidades = 0;
+  let totalDinero = 0;
+
+  let texto = "🧾 RESUMEN (Cotización)\n";
+  texto += "--------------------------------\n";
+
+  if (ordenado.length === 0) {
+    resumen.innerText = "Aún no tiene productos en el carrito.";
+    actualizarBarraRapida();
+    return;
+  }
+
+  ordenado.forEach((item, i) => {
     const cantidad = parseInt(item.cantidad, 10) || 0;
-    const subtotal = cantidad * (parseFloat(item.precio) || 0);
-    totalLlaves += cantidad;
+    const precio = parseFloat(item.precio) || 0;
+    const subtotal = cantidad * precio;
+
+    totalUnidades += cantidad;
     totalDinero += subtotal;
-    texto += `${item.codigo} - ${cantidad} unidades = $${subtotal.toFixed(2)}
-`;
+
+    texto += `${i + 1}. ${item.codigo}\n`;
+    texto += `   Cantidad: ${cantidad}\n`;
+    texto += `   Precio unitario: $${formatearPrecio(precio)}\n`;
+    texto += `   Subtotal: $${subtotal.toFixed(2)}\n`;
   });
 
   if (totalHogar > 0) {
-    texto += `
-✅ Línea Hogar: ${totalHogar} llaves | Precio aplicado: $${precioHogar.toFixed(3)} c/u`;
-    texto += `
-   (El precio se ajusta automáticamente si cambia la cantidad total)
-`;
+    texto += "\n✅ Línea Hogar (precio automático)\n";
+    texto += `   Total llaves hogar: ${totalHogar}\n`;
+    texto += `   Precio aplicado: $${formatearPrecio(precioHogar)} c/u\n`;
+    texto += "   (El precio se ajusta automáticamente si cambia la cantidad total)\n";
   }
 
-  resumen.innerText = texto + `
-Total de unidades: ${totalLlaves}
-Total en USD: $${totalDinero.toFixed(2)}`;
+  texto += "\n--------------------------------\n";
+  texto += `Total de unidades: ${totalUnidades}\n`;
+  texto += `Total en USD: $${totalDinero.toFixed(2)}`;
+
+  resumen.innerText = texto;
 
   actualizarBarraRapida();
 }
+
 
 // =====================
 // 🧾 Barra rápida (carrito visible mientras navega)
@@ -5067,38 +5090,63 @@ function enviarPedido() {
     return;
   }
 
-  // ✅ Asegurar que el precio de Línea Hogar esté actualizado antes de enviar
-  const infoHogar = recalcularPreciosLineaHogarCarrito();
-
-  let totalLlaves = 0;
-  let totalDinero = 0;
-  let resumen = "";
-
-  carrito.forEach(item => {
-    const cantidad = parseInt(item.cantidad);
-    const subtotal = cantidad * item.precio;
-    totalLlaves += cantidad;
-    totalDinero += subtotal;
-    resumen += `${item.codigo} - ${cantidad} llaves = $${subtotal.toFixed(2)}\n`;
-  });
-
-  if (totalLlaves === 0) {
-    alert("Debe agregar al menos una llave al carrito.");
+  if (!carrito || carrito.length === 0) {
+    alert("Debe agregar al menos un producto al carrito.");
     return;
   }
-const mensaje =
-  "Cotización EL VECI\n\n" +
-  "Está generando una cotización con la marca ‘EL VECI’, su aliado, garantizando llaves que le brindan seguridad y calidad.\n\n" +
-  "🧑 Nombre: " + nombre + "\n" +
-  "📍 Ciudad: " + ciudad + "\n\n" +
-  "🧾 " + resumen + "\n" +
-  "🔑 Total de llaves: " + totalLlaves + "\n" +
-  "💵 Total a pagar: $" + totalDinero.toFixed(2) + "\n\n";
 
-const mensajeCodificado = encodeURIComponent(mensaje);
-const url = "https://wa.me/5930983889592?text=" + mensajeCodificado;
-window.open(url, "_blank");
+  // ✅ Asegurar que el precio de Línea Hogar esté actualizado antes de enviar
+  const infoHogar = recalcularPreciosLineaHogarCarrito();
+  const totalHogar = infoHogar.totalHogar || 0;
+  const precioHogar = infoHogar.precioHogar || 0;
+
+  // Ordenar SOLO para el mensaje (no altera el carrito real)
+  const ordenado = carrito.slice().sort((a, b) => {
+    const prio = (x) => (x.linea === "linea-hogar" ? 0 : 1);
+    const d = prio(a) - prio(b);
+    if (d !== 0) return d;
+    return (a.codigo || "").localeCompare((b.codigo || ""), "es", { sensitivity: "base" });
+  });
+
+  let totalUnidades = 0;
+  let totalDinero = 0;
+
+  let detalle = "";
+  ordenado.forEach((item, i) => {
+    const cantidad = parseInt(item.cantidad, 10) || 0;
+    const precio = parseFloat(item.precio) || 0;
+    const subtotal = cantidad * precio;
+
+    totalUnidades += cantidad;
+    totalDinero += subtotal;
+
+    detalle += `\n${i + 1}) ${item.codigo}` +
+              `\n   Cantidad: ${cantidad}` +
+              `\n   Precio unitario: $${formatearPrecio(precio)}` +
+              `\n   Subtotal: $${subtotal.toFixed(2)}\n`;
+  });
+
+  let mensaje =
+    "*Cotización EL VECI*\n\n" +
+    "Está generando una cotización con la marca *EL VECI*, su aliado, garantizando llaves que le brindan seguridad y calidad.\n\n" +
+    `🧑 Nombre: ${nombre}\n` +
+    `📍 Ciudad: ${ciudad}\n\n` +
+    "*🧾 Detalle del pedido:*" +
+    detalle +
+    `\n🔢 Total de unidades: ${totalUnidades}` +
+    `\n💵 Total a pagar: $${totalDinero.toFixed(2)}`;
+
+  if (totalHogar > 0) {
+    mensaje +=
+      `\n\n✅ Línea Hogar (precio automático):` +
+      `\n   Total llaves hogar: ${totalHogar}` +
+      `\n   Precio aplicado: $${formatearPrecio(precioHogar)} c/u`;
+  }
+
+  const url = "https://wa.me/5930983889592?text=" + encodeURIComponent(mensaje);
+  window.open(url, "_blank");
 }
+
 </script>
 <script>
 document.getElementById("enviarPedido").addEventListener("click", function (e) {
@@ -5175,11 +5223,7 @@ document.getElementById("enviarPedido").addEventListener("click", function (e) {
 </style>
 <div id="navegacion-flotante">
 </div>
-<div id="botonesFlotantes">
-<button onclick="mostrarGuia()" title="Guía rápida">i</button>
-<button onclick="document.getElementById('buscador').focus()" title="Buscar">🔍</button>
-<button onclick="document.getElementById('pedido').scrollIntoView({ behavior: 'smooth' })" title="Resumen">🛒</button>
-</div>
+
 <script>
 function mostrarGuia() {
   const mensaje = document.createElement('div');
@@ -5559,14 +5603,15 @@ function buscarCodigoEnPagina(codigoBuscado) {
 </script>
 <script>
 function normalizarTexto(str) {
+  // Normaliza para búsquedas (sin tildes, minúsculas, espacios simples)
   return (str || "")
     .toString()
-    .trim()
-    .toUpperCase()
+    .toLowerCase()
     .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, ""); // quita tildes
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
 }
-
 document.addEventListener('DOMContentLoaded', function() {
   const buscador = document.getElementById('buscador');
   const sugerencias = document.getElementById('sugerencias');
