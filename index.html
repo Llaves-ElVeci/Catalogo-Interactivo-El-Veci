@@ -41,6 +41,7 @@
     color: #555;
     cursor: default;
   }
+</style>
 <style>
   .producto {
     margin-bottom: 40px;
@@ -53,6 +54,62 @@
     box-shadow: 0 0 15px #25d366;
     transition: all 0.3s ease-in-out;
   }
+
+/* =====================
+   Cotización (resumen pro)
+   ===================== */
+.pedido-cotizacion h3{margin:0 0 10px 0;}
+.cotizacion-info{display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;font-size:.95rem;margin-bottom:12px;color:#333;}
+.tabla-cotizacion{width:100%;border-collapse:collapse;margin-top:10px;font-size:.95rem;}
+.tabla-cotizacion th{background:#f3f4f6;padding:10px 8px;border-bottom:2px solid #ddd;text-align:left;}
+.tabla-cotizacion td{padding:10px 8px;border-bottom:1px solid #eee;vertical-align:top;}
+.tabla-cotizacion td.num{text-align:right;white-space:nowrap;}
+.totales{margin-top:15px;text-align:right;font-size:.95rem;}
+.total-final{font-size:1.12rem;font-weight:bold;margin-top:6px;}
+.nota{margin-top:15px;font-size:.9rem;color:#555;background:#f9f9f9;padding:10px;border-radius:8px;}
+.boton-gris{padding:12px 18px;border:none;border-radius:10px;background:#6c757d;color:#fff;font-weight:700;cursor:pointer;}
+@media print{
+  @page{ size:A4; margin:12mm; }
+  body{ background:#fff !important; padding:0 !important; margin:0 !important; }
+
+  /* Oculta todo lo demás */
+  body > *{ display:none !important; }
+
+  /* Deja solo la sección del carrito */
+  #carritoSeccion{ display:block !important; }
+
+  /* Dentro del carrito, imprime solo el resumen */
+  #carritoSeccion > :not(#resumenCotizacion){ display:none !important; }
+#resumenCotizacion{ 
+  display:block !important;
+  width:100% !important;
+  margin:0 !important;
+  border:none !important;
+  outline:none !important;  
+  box-shadow:none !important;
+  max-height:none !important;
+  overflow:visible !important;
+  background:#fff !important;
+}
+#carritoSeccion{
+  border:none !important;
+  outline:none !important;
+  box-shadow:none !important;
+}
+
+#carritoSeccion[style]{
+  border:none !important;
+}
+
+  /* No imprimir botones/campos */
+  #resumenCotizacion button,
+  #resumenCotizacion input,
+  #resumenCotizacion label{ display:none !important; }
+
+  #resumenCotizacion tr{ page-break-inside:avoid; }
+}
+
+
 </style>
 <style>
 .carrito-item-buttons button {
@@ -4583,18 +4640,57 @@ body{ padding-bottom: 92px; }
   </p>
 </div>
 </div>
-<div class="producto" style="background:#e6f7ff; border: 2px solid #007bff; margin: 0 auto; max-width: 700px; text-align: center;">
+<div class="producto" id="carritoSeccion" style="background:#e6f7ff; border: 2px solid #007bff; margin: 0 auto; max-width: 700px; text-align: center;">
 <h2>Productos en el carrito</h2>
 <div id="lista-carrito">
 </div>
-<div class="producto" style="background:#e6f7ff; border: 2px solid #007bff; margin: 0 auto; max-width: 700px; text-align: center;">
+<div id="resumenCotizacion" class="resumen imprimible no-filtrar" style="background:#e6f7ff; border: 2px solid #007bff; margin: 0 auto; max-width: 700px; text-align: center;">
 <h2>Resumen del Pedido</h2>
-<div id="pedido"></div>
+<div id="pedido" class="pedido-cotizacion imprimible">
+  <h3>📄 Cotización – Llaves El Veci</h3>
+  <div class="cotizacion-info">
+    <div><strong>Fecha:</strong> <span id="fechaCotizacion"></span></div>
+    <div><strong>N° Cotización:</strong> <span id="numeroCotizacion"></span></div>
+  </div>
+
+  <table class="tabla-cotizacion">
+    <thead>
+      <tr>
+        <th style="width:18%;">Código</th>
+        <th>Descripción</th>
+        <th style="width:12%; text-align:right;">Cant.</th>
+        <th style="width:18%; text-align:right;">P. Unit</th>
+        <th style="width:18%; text-align:right;">Subtotal</th>
+      </tr>
+    </thead>
+    <tbody id="detalleCotizacion"></tbody>
+  </table>
+
+  <div class="totales">
+    <p><strong>Total llaves Línea Hogar:</strong> <span id="totalLlavesHogar"></span></p>
+    <p><strong>Precio aplicado Hogar:</strong> <span id="precioAplicadoHogar"></span></p>
+    <p class="total-final">TOTAL PRODUCTOS: <span id="totalFinalCotizacion"></span></p>
+  </div>
+
+  <div class="nota">
+    <p>🚚 <strong>Envío:</strong> Se confirma según destino</p>
+    <p>📌 <strong>Validez:</strong> 24 horas</p>
+  </div>
+
+  <pre id="pedidoTexto" style="display:none;"></pre>
+</div>
+
 <label for="nombre">Nombre:</label>
 <input id="nombre" placeholder="Tu nombre" type="text"/>
 <label for="ciudad">Ciudad:</label>
 <input id="ciudad" placeholder="Tu ciudad" type="text"/>
-<button onclick="enviarPedido()">Enviar por WhatsApp</button>
+
+<div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-top:12px;">
+  <button class="boton-verde" onclick="enviarPedido()">Enviar por WhatsApp</button>
+  <button class="boton-azul" onclick="imprimirCotizacion()">Imprimir / Guardar PDF</button>
+  <button class="boton-gris" onclick="nuevaCotizacion()">Nueva cotización</button>
+</div>
+
 </div>
 <!-- FIN DEL ASISTENTE -->
 <script>
@@ -4693,7 +4789,7 @@ Subtotal: $${subtotal.toFixed(2)}`;
 
 💵 *Total a pagar:* $${total.toFixed(2)}`;
 
-    const url = "https://wa.me/5930983889592?text=" + encodeURIComponent(mensaje);
+    const url = "https://wa.me/593983889592?text=" + encodeURIComponent(mensaje);
     window.open(url, "_blank");
 }
 </script>
@@ -5001,6 +5097,90 @@ function eliminarDelCarrito(index) {
   actualizarResumen();
 }
 
+
+// =====================
+// 🧾 Cotización (UI pro en el resumen) - NO altera funciones existentes
+// =====================
+function hoyEC() {
+  const d = new Date();
+  const dd = String(d.getDate()).padStart(2,'0');
+  const mm = String(d.getMonth()+1).padStart(2,'0');
+  const yyyy = d.getFullYear();
+  return `${dd}/${mm}/${yyyy}`;
+}
+
+function generarNumeroCotizacion() {
+  // EV-AAAAMMDD-### (contador diario)
+  const d = new Date();
+  const y = d.getFullYear();
+  const m = String(d.getMonth()+1).padStart(2,'0');
+  const day = String(d.getDate()).padStart(2,'0');
+  const key = `cotizacion_counter_${y}${m}${day}`;
+  const c = Number(localStorage.getItem(key) || 0) + 1;
+  localStorage.setItem(key, String(c));
+  return `EV-${y}${m}${day}-${String(c).padStart(3,'0')}`;
+}
+
+function asegurarCabeceraCotizacion() {
+  const fechaEl = document.getElementById("fechaCotizacion");
+  const numEl = document.getElementById("numeroCotizacion");
+  if (fechaEl) fechaEl.textContent = hoyEC();
+
+  if (numEl) {
+    let num = localStorage.getItem("numeroCotizacion_actual");
+    if (!num) {
+      num = generarNumeroCotizacion();
+      localStorage.setItem("numeroCotizacion_actual", num);
+    }
+    numEl.textContent = num;
+  }
+}
+
+function imprimirCotizacion() {
+  // Asegurar que el resumen esté actualizado antes de imprimir
+  try{
+    if (typeof actualizarResumen === "function") actualizarResumen();
+    if (typeof actualizarListaCarrito === "function") actualizarListaCarrito();
+  }catch(e){}
+  setTimeout(() => window.print(), 150);
+}
+
+function nuevaCotizacion() {
+  // Genera un NUEVO número de cotización y deja el catálogo listo para empezar de cero
+  localStorage.removeItem("numeroCotizacion_actual");
+  asegurarCabeceraCotizacion();
+
+  // Vaciar carrito
+  if (Array.isArray(carrito)) carrito.length = 0;
+
+  // Resetear cantidades (inputs del catálogo)
+  document.querySelectorAll("input[type='number']").forEach((el) => {
+    // Evitar tocar inputs de edición del carrito si existieran
+    if (el.id && el.id.startsWith("editCantidad")) return;
+    el.value = "";
+  });
+
+  // Rehabilitar botones "Agregar al pedido"
+  document.querySelectorAll("button[id^='btn_']").forEach((btn) => {
+    btn.innerText = "Agregar al pedido";
+    btn.classList.remove("boton-agregado");
+    btn.disabled = false;
+    btn.style.backgroundColor = "";
+    btn.style.color = "";
+  });
+
+  // Actualizar UI
+  if (typeof actualizarListaCarrito === "function") actualizarListaCarrito();
+  if (typeof actualizarResumen === "function") actualizarResumen();
+  if (typeof actualizarBarraRapida === "function") actualizarBarraRapida();
+
+  // Llevar al resumen para que el usuario vea que quedó limpio
+  const resumen = document.getElementById("resumenCotizacion");
+  if (resumen) resumen.scrollIntoView({ behavior: "smooth", block: "start" });
+
+  alert("✅ Nueva cotización lista. Carrito reiniciado.");
+}
+
 function actualizarResumen() {
   const resumen = document.getElementById("pedido");
   if (!resumen) return;
@@ -5025,7 +5205,21 @@ function actualizarResumen() {
   texto += "--------------------------------\n";
 
   if (ordenado.length === 0) {
-    resumen.innerText = "Aún no tiene productos en el carrito.";
+    const tbody = document.getElementById("detalleCotizacion");
+    if (tbody) {
+      asegurarCabeceraCotizacion();
+      tbody.innerHTML = "";
+      const totalLlavesEl = document.getElementById("totalLlavesHogar");
+      const precioHogarEl = document.getElementById("precioAplicadoHogar");
+      const totalFinalEl = document.getElementById("totalFinalCotizacion");
+      if (totalLlavesEl) totalLlavesEl.textContent = "0";
+      if (precioHogarEl) precioHogarEl.textContent = "$0.00 c/u";
+      if (totalFinalEl) totalFinalEl.textContent = "$0.00";
+      const pre = document.getElementById("pedidoTexto");
+      if (pre) pre.textContent = "Aún no tiene productos en el carrito.";
+    } else {
+      resumen.innerText = "Aún no tiene productos en el carrito.";
+    }
     actualizarBarraRapida();
     return;
   }
@@ -5055,7 +5249,41 @@ function actualizarResumen() {
   texto += `Total de unidades: ${totalUnidades}\n`;
   texto += `Total en USD: $${totalDinero.toFixed(2)}`;
 
-  resumen.innerText = texto;
+  // ✅ Renderizar como tabla (si existe el layout pro)
+  const tbody = document.getElementById("detalleCotizacion");
+  if (tbody) {
+    asegurarCabeceraCotizacion();
+    tbody.innerHTML = "";
+
+    ordenado.forEach((item) => {
+      const cantidad = parseInt(item.cantidad, 10) || 0;
+      const precio = parseFloat(item.precio) || 0;
+      const subtotal = cantidad * precio;
+
+      const tr = document.createElement("tr");
+      tr.innerHTML = `
+        <td><strong>${item.codigo}</strong></td>
+        <td>${item.codigo}</td>
+        <td class="num">${cantidad}</td>
+        <td class="num">$${formatearPrecio(precio)}</td>
+        <td class="num"><strong>$${subtotal.toFixed(2)}</strong></td>
+      `;
+      tbody.appendChild(tr);
+    });
+
+    const totalLlavesEl = document.getElementById("totalLlavesHogar");
+    const precioHogarEl = document.getElementById("precioAplicadoHogar");
+    const totalFinalEl = document.getElementById("totalFinalCotizacion");
+    if (totalLlavesEl) totalLlavesEl.textContent = totalHogar.toString();
+    if (precioHogarEl) precioHogarEl.textContent = "$" + formatearPrecio(precioHogar) + " c/u";
+    if (totalFinalEl) totalFinalEl.textContent = "$" + totalDinero.toFixed(2);
+
+    const pre = document.getElementById("pedidoTexto");
+    if (pre) pre.textContent = texto;
+  } else {
+    resumen.innerText = texto;
+  }
+
 
   actualizarBarraRapida();
 }
@@ -5150,7 +5378,7 @@ function enviarPedido() {
       `\n   Precio aplicado: $${formatearPrecio(precioHogar)} c/u`;
   }
 
-  const url = "https://wa.me/5930983889592?text=" + encodeURIComponent(mensaje);
+  const url = "https://wa.me/593983889592?text=" + encodeURIComponent(mensaje);
   window.open(url, "_blank");
 }
 
