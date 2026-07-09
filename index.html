@@ -454,8 +454,138 @@ body{ padding-bottom: 92px; }
 .ev-card-precios .ev-price-grid div{border:1px solid #dbeafe;border-radius:12px;padding:10px;text-align:center;background:#f8fbff;}
 .ev-card-precios .ev-price-grid span{display:block;font-size:.82rem;color:#4b5563;}.ev-card-precios .ev-price-grid strong{display:block;font-size:1.12rem;color:#064a91;}.ev-card-precios .ev-price-grid small{color:#6b7280;}
 @media(max-width:700px){.ev-menu button,.ev-subfiltros button{width:100%;max-width:380px}.ev-card-precios .ev-price-grid{grid-template-columns:repeat(2,1fr)}}
-</style></head>
+</style>
+<style id="ev-welcome-premium-style">
+/* EL VECI - Bienvenida premium segura: no modifica productos ni categorías */
+#evWelcomeOverlay{
+  position:fixed; inset:0; z-index:2147483000;
+  display:flex; align-items:center; justify-content:center;
+  padding:18px; background:rgba(1,12,28,.72); backdrop-filter:blur(8px);
+}
+#evWelcomeOverlay.ev-hide{display:none!important;}
+.ev-welcome-card{
+  width:min(920px,96vw); position:relative; overflow:hidden;
+  border-radius:28px; background:linear-gradient(135deg,#ffffff 0%,#f7fbff 45%,#eaf5ff 100%);
+  box-shadow:0 24px 70px rgba(0,0,0,.34); border:1px solid rgba(0,123,255,.25);
+}
+.ev-welcome-card:before{content:""; position:absolute; inset:0 0 auto 0; height:9px; background:linear-gradient(90deg,#0057b8,#ffd21f,#0057b8);} 
+.ev-welcome-inner{display:grid; grid-template-columns:320px 1fr; gap:18px; align-items:center; padding:34px 34px 28px;}
+.ev-welcome-mascota{display:flex; justify-content:center; align-items:center;}
+.ev-welcome-mascota img{max-width:285px; width:100%; height:auto; filter:drop-shadow(0 16px 24px rgba(0,0,0,.23)); animation:evSaludo 1.25s ease-in-out infinite alternate; transform-origin:60% 20%;}
+@keyframes evSaludo{from{transform:translateY(0) rotate(-1deg)}to{transform:translateY(-5px) rotate(1.5deg)}}
+.ev-welcome-content{text-align:left;}
+.ev-pill{display:inline-flex; align-items:center; gap:8px; background:#fff7cc; color:#5f4500; border:1px solid #ffe680; border-radius:999px; padding:8px 12px; font-weight:800; font-size:.9rem; margin-bottom:10px;}
+.ev-welcome-title{font-size:clamp(1.65rem,4vw,2.65rem); line-height:1.08; margin:0 0 10px; color:#062a55; font-weight:900; letter-spacing:-.4px;}
+.ev-welcome-title span{color:#f4b400; text-shadow:0 1px 0 #7a5a00;}
+.ev-welcome-text{font-size:1.05rem; color:#243247; line-height:1.42; margin:0 0 15px;}
+.ev-welcome-actions{display:grid; grid-template-columns:repeat(3,1fr); gap:9px; margin:16px 0;}
+.ev-action{background:#fff; border:1px solid #dbeafe; border-radius:16px; padding:12px 10px; text-align:center; box-shadow:0 4px 14px rgba(0,0,0,.05);}
+.ev-action b{display:block; color:#063d7a; font-size:.93rem; margin-top:4px;}.ev-action span{font-size:1.35rem;}
+.ev-welcome-note{font-size:.93rem; color:#526070; margin:6px 0 16px;}
+.ev-start-btn{width:100%; border:none; border-radius:999px; padding:15px 22px; font-size:1.08rem; font-weight:900; color:#fff; background:linear-gradient(135deg,#0057b8,#007bff); box-shadow:0 10px 22px rgba(0,123,255,.32); cursor:pointer;}
+.ev-start-btn:hover{filter:brightness(1.05); transform:translateY(-1px);} 
+.ev-close-x{position:absolute; top:13px; right:14px; width:38px; height:38px; border-radius:50%; border:none; background:rgba(0,0,0,.08); color:#123; font-size:22px; cursor:pointer;}
+@media(max-width:760px){.ev-welcome-inner{grid-template-columns:1fr; padding:26px 18px 22px; text-align:center}.ev-welcome-content{text-align:center}.ev-welcome-mascota img{max-width:200px}.ev-welcome-actions{grid-template-columns:1fr}.ev-welcome-card{border-radius:22px}}
+</style>
+
+
+<style id="ev-ajuste-final-seguro-2">
+/* Ajuste final seguro: solo visual, no toca productos/categorías/cotización JS */
+#estadoCatalogo,
+#evResultadoInfo{
+  display:none !important;
+  visibility:hidden !important;
+  height:0 !important;
+  margin:0 !important;
+  padding:0 !important;
+  overflow:hidden !important;
+}
+/* Limpieza visual de métodos de pago */
+.producto:has(img[src*="metodos_pago"]){
+  border:none !important;
+  background:#ffffff !important;
+  box-shadow:0 6px 18px rgba(0,0,0,.06) !important;
+}
+/* Bienvenida: mascota oficial sin movimiento */
+.ev-welcome-mascota img{
+  animation:none !important;
+  transform:none !important;
+}
+/* Cotización en pantalla: dentro de márgenes */
+#carritoSeccion,
+#resumenCotizacion{
+  width:calc(100% - 24px) !important;
+  max-width:980px !important;
+  box-sizing:border-box !important;
+  overflow-x:auto !important;
+}
+#pedido{
+  width:100% !important;
+  box-sizing:border-box !important;
+  overflow-x:auto !important;
+}
+.tabla-cotizacion{
+  width:100% !important;
+  table-layout:fixed !important;
+  border-collapse:collapse !important;
+  font-size:.88rem !important;
+}
+.tabla-cotizacion th,
+.tabla-cotizacion td{
+  word-break:break-word !important;
+  overflow-wrap:anywhere !important;
+  white-space:normal !important;
+  padding:7px 5px !important;
+}
+.tabla-cotizacion th:nth-child(1), .tabla-cotizacion td:nth-child(1){width:23% !important;}
+.tabla-cotizacion th:nth-child(2), .tabla-cotizacion td:nth-child(2){width:37% !important;}
+.tabla-cotizacion th:nth-child(3), .tabla-cotizacion td:nth-child(3){width:9% !important;}
+.tabla-cotizacion th:nth-child(4), .tabla-cotizacion td:nth-child(4){width:14% !important;}
+.tabla-cotizacion th:nth-child(5), .tabla-cotizacion td:nth-child(5){width:17% !important;}
+/* Impresión A4 horizontal para que la cotización salga completa */
+@media print{
+  @page{ size:A4 landscape; margin:8mm; }
+  html, body{ width:100% !important; background:#fff !important; padding:0 !important; margin:0 !important; }
+  body > *{ display:none !important; }
+  #carritoSeccion{ display:block !important; width:100% !important; max-width:none !important; margin:0 !important; padding:0 !important; border:none !important; box-shadow:none !important; overflow:visible !important; background:#fff !important; }
+  #carritoSeccion > :not(#resumenCotizacion){ display:none !important; }
+  #resumenCotizacion{ display:block !important; width:100% !important; max-width:none !important; margin:0 !important; padding:0 !important; border:none !important; box-shadow:none !important; overflow:visible !important; background:#fff !important; }
+  #pedido{ width:100% !important; overflow:visible !important; }
+  .pedido-cotizacion h3{ font-size:16px !important; margin:0 0 6px 0 !important; }
+  .cotizacion-info{ font-size:11px !important; margin-bottom:6px !important; }
+  .tabla-cotizacion{ width:100% !important; table-layout:fixed !important; font-size:10px !important; }
+  .tabla-cotizacion th,.tabla-cotizacion td{ padding:4px 3px !important; word-break:break-word !important; overflow-wrap:anywhere !important; white-space:normal !important; }
+  .totales,.nota{ font-size:10px !important; margin-top:6px !important; }
+  #barraRapida,#botonesFlotantes,#verTodoBtn,#evWelcomeOverlay{ display:none !important; }
+}
+</style>
+
+</head>
 <body>
+
+<div id="evWelcomeOverlay" role="dialog" aria-modal="true" aria-label="Bienvenida al catálogo El Veci">
+  <div class="ev-welcome-card">
+    <button class="ev-close-x" type="button" onclick="evCerrarBienvenida()" aria-label="Cerrar">×</button>
+    <div class="ev-welcome-inner">
+      <div class="ev-welcome-mascota">
+        <img src="imagenes/mascota_el_veci.png" alt="Mascota Llaves El Veci saludando">
+      </div>
+      <div class="ev-welcome-content">
+        <div class="ev-pill">🔐 Plataforma interactiva EL VECI</div>
+        <h1 class="ev-welcome-title"><span>Bienvenido</span> al catálogo oficial</h1>
+        <p class="ev-welcome-text">Busque por código, marca o línea. Agregue las cantidades al carrito y envíe su pedido por WhatsApp de forma rápida.</p>
+        <div class="ev-welcome-actions" aria-label="Pasos para usar el catálogo">
+          <div class="ev-action"><span>🔎</span><b>Buscar</b></div>
+          <div class="ev-action"><span>🛒</span><b>Agregar</b></div>
+          <div class="ev-action"><span>📲</span><b>Cotizar</b></div>
+        </div>
+        <p class="ev-welcome-note">Promociones de Línea Hogar se calculan automáticamente en el carrito.</p>
+        <button class="ev-start-btn" type="button" onclick="evCerrarBienvenida()">Comenzar catálogo</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <section aria-label="Introducción del catálogo" class="hero">
 <div class="hero-inner">
 <img alt="Llaves El Veci - Logo" class="logo" src="imagenes/logo_el_veci.png"/>
@@ -510,7 +640,7 @@ body{ padding-bottom: 92px; }
 <button onclick="filtrarSubAuto('espadas')">🔧 Espadas</button>
 </div>
 </div>
-<div id="inicio"></div><div id="estadoCatalogo" style="text-align:center; margin:10px auto; max-width:700px; font-weight:bold; color:#333;">Catálogo completo visible.</div><div id="sinResultadosCatalogo" style="display:none; text-align:center; margin:10px auto; max-width:700px; background:#fff3cd; border:1px solid #ffeeba; padding:12px; border-radius:10px; color:#856404;">No se encontraron productos con esa búsqueda.</div>
+<div id="inicio"></div><div id="estadoCatalogo" style="text-align:center; margin:10px auto; max-width:700px; font-weight:bold; color:#333;"></div><div id="sinResultadosCatalogo" style="display:none; text-align:center; margin:10px auto; max-width:700px; background:#fff3cd; border:1px solid #ffeeba; padding:12px; border-radius:10px; color:#856404;">No se encontraron productos con esa búsqueda.</div>
 <div style="text-align: center; margin-top: 12px;">
 <button id="verTodoBtn" onclick="resetearFiltro()" style="display:none; background-color:#007bff; color:white; border:none; border-radius:8px; padding:10px 20px; font-size:1rem;">Ver todo el catálogo nuevamente</button>
 </div>
@@ -5099,7 +5229,7 @@ body{ padding-bottom: 92px; }
 </input></div>
 </div>
 <!-- MÉTODOS DE PAGO ACEPTADOS -->
-<div class="producto" data-categoria="otros" data-ev-categoria="otros" data-ev-subauto="" style="margin: 0 auto; text-align: center; max-width: 600px; border: 2px dashed #28a745; padding: 20px; border-radius: 12px; background: #f8fff5;">
+<div class="producto" data-categoria="otros" data-ev-categoria="otros" data-ev-subauto="" style="margin: 0 auto; text-align: center; max-width: 600px; border: none; padding: 20px; border-radius: 12px; background: #ffffff;">
 <h2 style="color: #28a745;">💳 Métodos de Pago Aceptados</h2>
 <p style="font-size: 1.1rem; margin-top: 10px;">Usted puede realizar su pago de forma segura mediante:</p>
 <ul style="list-style: none; padding: 0; font-size: 1rem; text-align: left; display: inline-block;">
@@ -6738,7 +6868,7 @@ function volverAlInicio(e){
 </div>
 <div class="right">
 <div class="mini">🛒 <strong><span id="barraCount">0</span></strong> items · <strong><span id="barraTotal">$0.00</span></strong></div>
-<button class="boton-verde" onclick="document.getElementById('pedido').scrollIntoView({ behavior: 'smooth' });" type="button">Ver carrito</button>
+<button class="boton-verde" onclick="evIrCarrito()" type="button">Ver carrito</button>
 </div>
 </div>
 </div>
@@ -6783,7 +6913,7 @@ function volverAlInicio(e){
     var btn=document.getElementById('verTodoBtn'); if(btn) btn.style.display='none';
     var sug=document.getElementById('sugerencias'); if(sug) sug.innerHTML='';
     var sin=document.getElementById('sinResultadosCatalogo'); if(sin) sin.style.display='none';
-    var estado=document.getElementById('estadoCatalogo'); if(estado) estado.textContent='Catálogo completo visible.';
+    var estado=document.getElementById('estadoCatalogo'); if(estado) estado.textContent='';
   };
   window.filtrarPorLinea=function(clase){
     var nombres={
@@ -7081,7 +7211,7 @@ function volverAlInicio(e){
     var sub=document.getElementById('subFiltrosAuto'); if(sub) sub.style.display='none';
     var btn=document.getElementById('verTodoBtn'); if(btn) btn.style.display='none';
     var sug=document.getElementById('sugerencias'); if(sug) sug.innerHTML='';
-    setActivo(''); mostrarConteo(ps.length,'Catálogo completo visible.');
+    setActivo(''); mostrarConteo(ps.length,'');
   };
   window.filtrarPorLinea=function(clase){
     var ps=lista(), n=0, primero=null;
@@ -7142,7 +7272,7 @@ function volverAlInicio(e){
     preparar();
     var b=document.getElementById('buscador');
     if(b){b.oninput=window.mostrarSugerenciasCatalogo; b.onkeydown=window.detectarEnter;}
-    mostrarConteo(lista().length,'Catálogo completo visible.');
+    mostrarConteo(lista().length,'');
   }
   if(document.readyState==='loading') document.addEventListener('DOMContentLoaded', iniciar); else iniciar();
 })();
@@ -7193,7 +7323,7 @@ function volverAlInicio(e){
   window.resetearFiltro = function(){
     subAutoDisplay(false); limpiarActivos();
     productos().forEach(p=>mostrar(p,true));
-    var e=document.getElementById('estadoCatalogo'); if(e) e.textContent='Catálogo completo visible.';
+    var e=document.getElementById('estadoCatalogo'); if(e) e.textContent='';
     var s=document.getElementById('sinResultadosCatalogo'); if(s) s.style.display='none';
     var v=document.getElementById('verTodoBtn'); if(v) v.style.display='none';
   };
@@ -7211,5 +7341,20 @@ function volverAlInicio(e){
   };
   window.detectarEnter = function(event){ if(event && event.key==='Enter') buscarProducto(); };
 })();
-</script></body>
+</script>
+<script id="ev-welcome-premium-script">
+function evCerrarBienvenida(){
+  var w=document.getElementById('evWelcomeOverlay');
+  if(w){ w.classList.add('ev-hide'); }
+}
+function evIrCarrito(){
+  var seccion=document.getElementById('carritoSeccion');
+  var pedido=document.getElementById('pedido');
+  if(seccion){ seccion.style.display='block'; }
+  var target=pedido || seccion;
+  if(target){ target.scrollIntoView({behavior:'smooth', block:'start'}); }
+}
+</script>
+
+</body>
 </html>
