@@ -649,4 +649,116 @@
   new MutationObserver(schedule).observe(document.documentElement,{childList:true,subtree:true,characterData:true});
 })();
 </script>
+
+<style id="ev-mejora-total-imagenes-busqueda-global">
+/* Todas las fotografías de producto ganan protagonismo sin deformarse */
+.producto:not(#carritoSeccion):not(.ev-info-pago):not(.ev-info-ubicacion) .imagen{
+  height:360px!important;
+  max-height:360px!important;
+  overflow:hidden!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  margin:6px auto 14px!important;
+  padding:0!important;
+}
+.producto:not(#carritoSeccion):not(.ev-info-pago):not(.ev-info-ubicacion) .imagen a{
+  width:100%!important;
+  height:100%!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  overflow:hidden!important;
+}
+.producto:not(#carritoSeccion):not(.ev-info-pago):not(.ev-info-ubicacion) .imagen img{
+  width:100%!important;
+  max-width:none!important;
+  height:100%!important;
+  max-height:none!important;
+  object-fit:contain!important;
+  object-position:center!important;
+  transform:scale(1.55)!important;
+  transform-origin:center center!important;
+  margin:0!important;
+  padding:0!important;
+}
+/* La llave de colores conserva el aumento que ya gustó */
+.producto.ev-color-llaves .imagen img{transform:scale(1.72)!important}
+/* Un resultado encontrado debe mostrarse aunque antes estuviera activo otro filtro */
+.producto.ev-busqueda-destino{display:block!important;visibility:visible!important;opacity:1!important}
+@media(max-width:700px){
+  .producto:not(#carritoSeccion):not(.ev-info-pago):not(.ev-info-ubicacion) .imagen{
+    height:285px!important;
+    max-height:285px!important;
+  }
+  .producto:not(#carritoSeccion):not(.ev-info-pago):not(.ev-info-ubicacion) .imagen img{
+    transform:scale(1.65)!important;
+  }
+  .producto.ev-color-llaves .imagen img{transform:scale(1.85)!important}
+}
+</style>
+<script id="ev-mejora-total-imagenes-busqueda-global-script">
+(function(){
+  'use strict';
+  const norm=s=>(s||'').toString().normalize('NFD').replace(/[\u0300-\u036f]/g,'').toUpperCase().trim();
+  function codigo(card){
+    const nodes=[...card.querySelectorAll('.detalles p,.detalles div,p')];
+    for(const n of nodes){
+      const t=(n.textContent||'').trim();
+      if(/^C[ÓO]DIGO\s*:/i.test(t))return norm(t.split(':').slice(1).join(':'));
+    }
+    return '';
+  }
+  function todas(){return [...document.querySelectorAll('.producto')].filter(c=>c.id!=='carritoSeccion')}
+  function buscarTarjeta(q){
+    q=norm(q); if(!q)return null;
+    const cards=todas();
+    return cards.find(c=>codigo(c)===q) ||
+           cards.find(c=>norm(c.querySelector('h2')?.textContent)===q) ||
+           cards.find(c=>codigo(c).startsWith(q)) ||
+           cards.find(c=>norm(c.querySelector('h2')?.textContent).includes(q));
+  }
+  function mostrarDestino(card){
+    if(!card)return;
+    document.querySelectorAll('.producto.ev-busqueda-destino').forEach(c=>c.classList.remove('ev-busqueda-destino'));
+    card.classList.add('ev-busqueda-destino');
+    card.style.setProperty('display','block','important');
+    let p=card.parentElement;
+    while(p&&p!==document.body){
+      const cs=getComputedStyle(p);
+      if(cs.display==='none')p.style.setProperty('display','block','important');
+      p=p.parentElement;
+    }
+    setTimeout(()=>card.scrollIntoView({behavior:'smooth',block:'center'}),40);
+    setTimeout(()=>card.classList.add('ev-alternativa-destacada'),120);
+    setTimeout(()=>card.classList.remove('ev-alternativa-destacada'),1900);
+  }
+  function consultaDesdeBoton(btn){
+    const strong=btn.querySelector('strong');
+    if(strong)return strong.textContent;
+    const txt=(btn.textContent||'').replace(/Disponible|Agotado|Código\s*:/gi,' ').replace(/[·•]/g,' ').trim();
+    return txt;
+  }
+  document.addEventListener('click',function(e){
+    const btn=e.target.closest&&e.target.closest('#evSugerenciasBusqueda button,.ev-sugerencia,#sugerencias button');
+    if(!btn)return;
+    const q=consultaDesdeBoton(btn);
+    const card=buscarTarjeta(q) || buscarTarjeta((q.match(/[A-Z]{1,5}\d+[A-Z]*/i)||[])[0]);
+    if(card){
+      /* Se ejecuta antes de los buscadores anteriores para que el filtro activo no lo oculte */
+      mostrarDestino(card);
+      setTimeout(()=>mostrarDestino(card),180);
+      setTimeout(()=>mostrarDestino(card),500);
+    }
+  },true);
+  const input=document.getElementById('buscador');
+  if(input){
+    input.addEventListener('keydown',function(e){
+      if(e.key!=='Enter')return;
+      const card=buscarTarjeta(input.value);
+      if(card){e.preventDefault();e.stopImmediatePropagation();mostrarDestino(card)}
+    },true);
+  }
+})();
+</script>
 </body></html>
