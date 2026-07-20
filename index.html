@@ -381,4 +381,272 @@
   else setTimeout(init,2400);
 })();
 </script>
+
+
+<!-- LLAVES EL VECI · CORRECCIÓN AGOTADOS + ESCRITORIO · 2026-07-20 -->
+<style id="ev-correccion-agotados-escritorio">
+/* Los productos agotados quedan únicamente informativos. */
+.producto.ev-agotado-bloqueado input[type="number"],
+.producto.ev-agotado-bloqueado select,
+.producto.ev-agotado-bloqueado label[for^="cantidad"],
+.producto.ev-agotado-bloqueado .boton-agregar,
+.producto.ev-agotado-bloqueado .ev-consultar-stock,
+.producto.ev-agotado-bloqueado button:not(.ev-ver-alternativa){
+  display:none!important;
+  pointer-events:none!important;
+}
+.producto.ev-agotado-bloqueado .ev-stock-actions:empty{display:none!important}
+.producto.ev-agotado-bloqueado .ev-ver-alternativa{
+  display:block!important;
+  pointer-events:auto!important;
+  width:100%!important;
+  min-height:48px!important;
+  margin-top:10px!important;
+  border:0!important;
+  border-radius:12px!important;
+  background:#18a957!important;
+  color:#fff!important;
+  font-weight:900!important;
+}
+
+@media (min-width: 1000px){
+  body{padding-left:0!important;padding-right:0!important;padding-bottom:92px!important}
+  #evProductosGrid{
+    width:min(1240px,calc(100% - 48px))!important;
+    max-width:1240px!important;
+    margin:24px auto 110px!important;
+    display:grid!important;
+    grid-template-columns:repeat(3,minmax(0,1fr))!important;
+    gap:22px!important;
+    align-items:start!important;
+  }
+  #evProductosGrid>.producto{
+    width:auto!important;
+    max-width:none!important;
+    margin:0!important;
+    min-width:0!important;
+  }
+  #evProductosGrid>.producto.ev-info-pago,
+  #evProductosGrid>.producto.ev-info-ubicacion{
+    grid-column:span 1!important;
+    min-height:100%!important;
+  }
+  #evProductosGrid>.producto.ev-info-pago img[src*="metodos_pago"]{display:none!important}
+  #evProductosGrid>#carritoSeccion{
+    grid-column:1/-1!important;
+    width:100%!important;
+    max-width:1120px!important;
+    margin:8px auto 0!important;
+    padding:28px!important;
+    text-align:left!important;
+  }
+  #carritoSeccion #lista-carrito{
+    display:grid!important;
+    grid-template-columns:repeat(2,minmax(0,1fr))!important;
+    gap:16px!important;
+  }
+  #carritoSeccion .carrito-item{margin:0!important}
+  #resumenCotizacion{
+    width:100%!important;
+    max-width:1040px!important;
+    margin:26px auto 0!important;
+    padding:28px!important;
+    box-sizing:border-box!important;
+  }
+  #pedido{width:100%!important;max-width:none!important}
+  .tabla-cotizacion{font-size:.96rem!important}
+  #barraRapida{
+    left:50%!important;
+    right:auto!important;
+    transform:translateX(-50%)!important;
+    width:min(1180px,calc(100% - 40px))!important;
+    min-height:64px!important;
+    padding:8px 14px!important;
+    border-radius:18px 18px 0 0!important;
+  }
+  #evSmartBot,#evSellerBtn,#evAsistenteBoton{
+    right:24px!important;
+    bottom:86px!important;
+  }
+  #evSmartPanel,#evSellerPanel,#evAsistentePanel{
+    right:24px!important;
+    bottom:140px!important;
+  }
+}
+@media (min-width:1000px) and (max-width:1199px){
+  #evProductosGrid{grid-template-columns:repeat(2,minmax(0,1fr))!important}
+  #evProductosGrid>#carritoSeccion{grid-column:1/-1!important}
+}
+</style>
+<script id="ev-correccion-agotados-escritorio-script">
+(function(){
+  'use strict';
+  const norm=v=>(v||'').toString().normalize('NFD').replace(/[\u0300-\u036f]/g,'').toUpperCase().trim();
+  function unavailable(card){
+    const t=norm(card.innerText||card.textContent);
+    return /AGOTADO|NO DISPONIBLE|SIN STOCK/.test(t)||!!card.querySelector('button[disabled],input[disabled]');
+  }
+  function availableAlternative(card){
+    const btn=card.querySelector('.ev-ver-alternativa');
+    return !!btn;
+  }
+  function fixCard(card){
+    if(!unavailable(card))return;
+    card.classList.add('ev-agotado-bloqueado');
+    card.querySelectorAll('.ev-consultar-stock').forEach(el=>el.remove());
+    card.querySelectorAll('button').forEach(btn=>{
+      const tx=norm(btn.textContent);
+      const isAlt=btn.classList.contains('ev-ver-alternativa')||/VER ALTERNATIVA/.test(tx);
+      if(!isAlt)btn.setAttribute('aria-hidden','true');
+    });
+    card.querySelectorAll('input,select').forEach(el=>{el.disabled=true;el.value='';});
+    const actions=card.querySelector('.ev-stock-actions');
+    if(actions&&!availableAlternative(card))actions.remove();
+  }
+  function classify(){
+    document.querySelectorAll('.producto').forEach(card=>{
+      const h=norm(card.querySelector('h2')?.textContent||'');
+      if(/METODOS DE PAGO/.test(h))card.classList.add('ev-info-pago');
+      if(/NUESTRA UBICACION/.test(h))card.classList.add('ev-info-ubicacion');
+      fixCard(card);
+    });
+  }
+  function init(){
+    classify();
+    let timer;
+    new MutationObserver(()=>{clearTimeout(timer);timer=setTimeout(classify,120)}).observe(document.body,{childList:true,subtree:true,characterData:true});
+    document.addEventListener('click',e=>{
+      const card=e.target.closest&&e.target.closest('.producto.ev-agotado-bloqueado');
+      if(!card)return;
+      const btn=e.target.closest&&e.target.closest('button');
+      if(btn&&(btn.classList.contains('ev-ver-alternativa')||/VER ALTERNATIVA/.test(norm(btn.textContent))))return;
+      if(btn||e.target.matches?.('input,select')){e.preventDefault();e.stopImmediatePropagation();}
+    },true);
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>setTimeout(init,2800));
+  else setTimeout(init,2800);
+})();
+</script>
+
+<style id="ev-correccion-final-visual-contenido">
+/* Corrección final: texto, imágenes y productos agotados */
+.ev-hero-logo-mejorado{
+  width:min(300px,72vw)!important;
+  max-width:300px!important;
+  height:auto!important;
+  display:block!important;
+  margin:8px auto 22px!important;
+  transform:none!important;
+  object-fit:contain!important;
+}
+.producto.ev-color-llaves .imagen{
+  height:390px!important;
+  max-height:390px!important;
+  overflow:hidden!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  margin:6px auto 14px!important;
+}
+.producto.ev-color-llaves .imagen a{
+  width:100%!important;
+  height:100%!important;
+  display:flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  overflow:hidden!important;
+}
+.producto.ev-color-llaves .imagen img{
+  width:100%!important;
+  max-width:none!important;
+  height:100%!important;
+  max-height:none!important;
+  object-fit:contain!important;
+  transform:scale(1.72)!important;
+  transform-origin:center center!important;
+  margin:0!important;
+}
+.producto.ev-agotado-definitivo label,
+.producto.ev-agotado-definitivo input,
+.producto.ev-agotado-definitivo select,
+.producto.ev-agotado-definitivo button:not(.ev-ver-alternativa){display:none!important}
+.producto.ev-agotado-definitivo .ev-stock-actions:empty{display:none!important}
+@media(max-width:700px){
+  .ev-hero-logo-mejorado{width:min(220px,65vw)!important;max-width:220px!important;margin:4px auto 16px!important}
+  .producto.ev-color-llaves .imagen{height:285px!important;max-height:285px!important}
+  .producto.ev-color-llaves .imagen img{transform:scale(1.85)!important}
+  #evSellerPanel,#evSmartPanel{
+    width:calc(100% - 16px)!important;
+    right:8px!important;
+    left:8px!important;
+    max-height:58vh!important;
+    bottom:190px!important;
+  }
+  #evSellerBody,#evSmartChat{font-size:.9rem!important;padding:10px!important}
+}
+@media(min-width:1000px){
+  body{max-width:1500px!important;margin:0 auto!important}
+  .producto{max-width:920px!important}
+  #carritoSeccion{max-width:1100px!important;margin-left:auto!important;margin-right:auto!important}
+}
+</style>
+<script id="ev-correccion-final-visual-contenido-script">
+(function(){
+  'use strict';
+  const norm=s=>(s||'').toString().normalize('NFD').replace(/[\u0300-\u036f]/g,'').toUpperCase().trim();
+  function reemplazarTextoVisible(root=document.body){
+    const walker=document.createTreeWalker(root,NodeFilter.SHOW_TEXT,{acceptNode(n){
+      const p=n.parentElement;
+      if(!p||/SCRIPT|STYLE|NOSCRIPT|TEXTAREA/.test(p.tagName))return NodeFilter.FILTER_REJECT;
+      return NodeFilter.FILTER_ACCEPT;
+    }});
+    const nodes=[]; while(walker.nextNode())nodes.push(walker.currentNode);
+    nodes.forEach(n=>{
+      let t=n.nodeValue;
+      t=t.replace(/,?\s*llaves?\s+de\s+cañ[oó]n/gi,'');
+      t=t.replace(/\bllaves?\s+de\s+cañ[oó]n\b/gi,'');
+      t=t.replace(/\btags\b/gi,'RFID');
+      t=t.replace(/\s{2,}/g,' ');
+      if(t!==n.nodeValue)n.nodeValue=t;
+    });
+  }
+  function prepararHero(){
+    const headings=[...document.querySelectorAll('h1,h2,h3')];
+    const h=headings.find(x=>/TODO PARA CERRAJERIA/.test(norm(x.textContent)));
+    if(!h)return;
+    let scope=h.parentElement;
+    for(let i=0;i<3&&scope;i++,scope=scope.parentElement){
+      const imgs=[...scope.querySelectorAll('img')].filter(img=>!img.closest('.producto'));
+      if(imgs.length){
+        const hero=imgs[0]; hero.classList.add('ev-hero-logo-mejorado'); return;
+      }
+    }
+    const preceding=[...document.querySelectorAll('img')].filter(img=>img.compareDocumentPosition(h)&Node.DOCUMENT_POSITION_FOLLOWING);
+    if(preceding.length)preceding[preceding.length-1].classList.add('ev-hero-logo-mejorado');
+  }
+  function prepararProductos(){
+    document.querySelectorAll('.producto').forEach(card=>{
+      const title=norm(card.querySelector('h2')?.textContent||'');
+      if(/CABEZA PLASTICA DE COLORES|CABEZA PLASTICA.*COLOR/.test(title))card.classList.add('ev-color-llaves');
+      const txt=norm(card.innerText||card.textContent);
+      const agotado=/STOCK\s*:\s*AGOTADO|NO DISPONIBLE|SIN STOCK/.test(txt)||!!card.querySelector('button[disabled]');
+      if(agotado){
+        card.classList.add('ev-agotado-definitivo');
+        card.querySelectorAll('button').forEach(btn=>{
+          const bt=norm(btn.textContent);
+          const alt=btn.classList.contains('ev-ver-alternativa')||/VER ALTERNATIVA/.test(bt);
+          if(!alt)btn.remove();
+        });
+        card.querySelectorAll('input,select,label').forEach(el=>el.remove());
+      }
+    });
+  }
+  function aplicar(){reemplazarTextoVisible();prepararHero();prepararProductos();}
+  let timer;
+  function schedule(){clearTimeout(timer);timer=setTimeout(aplicar,100)}
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>setTimeout(aplicar,3100));
+  else setTimeout(aplicar,3100);
+  new MutationObserver(schedule).observe(document.documentElement,{childList:true,subtree:true,characterData:true});
+})();
+</script>
 </body></html>
