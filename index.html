@@ -761,4 +761,560 @@
   }
 })();
 </script>
+
+
+<!-- LLAVES EL VECI · AJUSTE FINAL COTIZACIÓN GUARDADA · 2026-07-21 -->
+<style id="ev-ajuste-cotizacion-guardada-style">
+#evCotizacionAnteriorOverlay{
+  position:fixed;inset:0;z-index:2147483600;display:none;
+  align-items:center;justify-content:center;padding:18px;
+  background:rgba(14,31,47,.62);backdrop-filter:blur(3px);
+}
+#evCotizacionAnteriorOverlay.ev-visible{display:flex}
+#evCotizacionAnteriorModal{
+  width:min(430px,100%);background:#fff;border-radius:20px;padding:26px 22px 22px;
+  box-shadow:0 24px 70px rgba(0,0,0,.28);text-align:center;color:#17324a;
+  box-sizing:border-box;
+}
+#evCotizacionAnteriorModal h2{margin:0 0 10px;font-size:1.35rem;line-height:1.25}
+#evCotizacionAnteriorModal p{margin:0 0 20px;font-size:1rem;line-height:1.45;color:#4b5f70}
+#evCotizacionAnteriorAcciones{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+#evCotizacionAnteriorAcciones button{
+  min-height:50px;border:0;border-radius:12px;padding:12px 10px;
+  font-weight:900;font-size:.98rem;cursor:pointer;
+}
+#evContinuarCotizacion{background:#20a85a;color:#fff}
+#evNuevaCotizacionGuardada{background:#1677c8;color:#fff}
+@media(max-width:520px){
+  #evCotizacionAnteriorModal{padding:23px 17px 18px;border-radius:17px}
+  #evCotizacionAnteriorAcciones{grid-template-columns:1fr}
+}
+</style>
+<script id="ev-ajuste-cotizacion-guardada-script">
+(function(){
+  'use strict';
+  var pedidoAnterior=[];
+  try{pedidoAnterior=JSON.parse(localStorage.getItem('ev_pedido_guardado')||'[]')}catch(e){pedidoAnterior=[]}
+  var habiaPedidoAnterior=Array.isArray(pedidoAnterior)&&pedidoAnterior.length>0;
+
+  function norm(v){return (v||'').toString().normalize('NFD').replace(/[\u0300-\u036f]/g,'').toUpperCase().trim()}
+
+  function quitarImprimirPDF(){
+    document.querySelectorAll('button,a').forEach(function(el){
+      var t=norm(el.textContent);
+      if(/IMPRIMIR\s*(\/|Y)?\s*GUARDAR\s*PDF|IMPRIMIR\s*PDF|GUARDAR\s*PDF/.test(t)){
+        el.remove();
+      }
+    });
+  }
+
+  function crearModal(){
+    if(document.getElementById('evCotizacionAnteriorOverlay'))return document.getElementById('evCotizacionAnteriorOverlay');
+    var overlay=document.createElement('div');
+    overlay.id='evCotizacionAnteriorOverlay';
+    overlay.setAttribute('role','dialog');
+    overlay.setAttribute('aria-modal','true');
+    overlay.setAttribute('aria-labelledby','evCotizacionAnteriorTitulo');
+    overlay.innerHTML=
+      '<div id="evCotizacionAnteriorModal">'+
+        '<h2 id="evCotizacionAnteriorTitulo">Se encontró una cotización anterior.</h2>'+
+        '<p>¿Qué desea hacer?</p>'+
+        '<div id="evCotizacionAnteriorAcciones">'+
+          '<button type="button" id="evContinuarCotizacion">🟢 Continuar</button>'+
+          '<button type="button" id="evNuevaCotizacionGuardada">🔵 Empezar una nueva</button>'+
+        '</div>'+
+      '</div>';
+    document.body.appendChild(overlay);
+
+    overlay.querySelector('#evContinuarCotizacion').addEventListener('click',function(){
+      overlay.classList.remove('ev-visible');
+    });
+
+    overlay.querySelector('#evNuevaCotizacionGuardada').addEventListener('click',function(){
+      try{
+        if(typeof window.nuevaCotizacion==='function')window.nuevaCotizacion();
+        else{
+          localStorage.removeItem('ev_pedido_guardado');
+          localStorage.removeItem('numeroCotizacion_actual');
+          if(typeof window.carrito!=='undefined'&&Array.isArray(window.carrito))window.carrito.length=0;
+          if(typeof window.actualizarListaCarrito==='function')window.actualizarListaCarrito();
+          if(typeof window.actualizarResumen==='function')window.actualizarResumen();
+        }
+        localStorage.setItem('ev_pedido_guardado','[]');
+      }catch(e){}
+      overlay.classList.remove('ev-visible');
+    });
+    return overlay;
+  }
+
+  function iniciar(){
+    quitarImprimirPDF();
+    var obs=new MutationObserver(function(){quitarImprimirPDF()});
+    obs.observe(document.body,{childList:true,subtree:true});
+    if(habiaPedidoAnterior){
+      setTimeout(function(){crearModal().classList.add('ev-visible')},900);
+    }
+  }
+
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(iniciar,3200)});
+  else setTimeout(iniciar,3200);
+})();
+</script>
+
+
+<!-- LLAVES EL VECI · AJUSTE CARRITO VERTICAL + BOTÓN AGREGAR PERMANENTE · 2026-07-21 -->
+<style id="ev-ajuste-carrito-vertical-agregar-style">
+/* Solo el bloque final del carrito queda en una columna, tanto en PC como en celular. */
+#evProductosGrid > #carritoSeccion{
+  grid-column:1 / -1 !important;
+  width:min(100%,1120px) !important;
+  max-width:1120px !important;
+  box-sizing:border-box !important;
+}
+#carritoSeccion #lista-carrito,
+#carritoSeccion #resumenCotizacion,
+#carritoSeccion .lista-carrito,
+#carritoSeccion .resumen-cotizacion{
+  display:grid !important;
+  grid-template-columns:minmax(0,1fr) !important;
+  width:100% !important;
+  max-width:100% !important;
+  gap:14px !important;
+  box-sizing:border-box !important;
+}
+#carritoSeccion #lista-carrito > *,
+#carritoSeccion #resumenCotizacion > *,
+#carritoSeccion .lista-carrito > *,
+#carritoSeccion .resumen-cotizacion > *{
+  width:100% !important;
+  max-width:100% !important;
+  min-width:0 !important;
+  box-sizing:border-box !important;
+  grid-column:1 / -1 !important;
+}
+#carritoSeccion .carrito-item{
+  display:block !important;
+  width:100% !important;
+  max-width:100% !important;
+  margin:0 0 14px !important;
+  box-sizing:border-box !important;
+}
+/* Los formularios internos del cierre también quedan uno debajo de otro. */
+#carritoSeccion form,
+#carritoSeccion fieldset,
+#carritoSeccion .datos-cliente,
+#carritoSeccion .campos-cliente,
+#carritoSeccion .acciones-cotizacion{
+  grid-template-columns:minmax(0,1fr) !important;
+  max-width:100% !important;
+  box-sizing:border-box !important;
+}
+/* En productos disponibles el botón Agregar nunca se oculta después de usarlo. */
+.producto:not(.ev-agotado):not(.ev-agotado-bloqueado):not(.ev-agotado-definitivo):not(.ev-sin-stock-final) .boton-agregar,
+.producto:not(.ev-agotado):not(.ev-agotado-bloqueado):not(.ev-agotado-definitivo):not(.ev-sin-stock-final) button[data-ev-agregar-restaurado="1"]{
+  display:block !important;
+  visibility:visible !important;
+  opacity:1 !important;
+  pointer-events:auto !important;
+}
+</style>
+<script id="ev-ajuste-carrito-vertical-agregar-script">
+(function(){
+  'use strict';
+  var plantillas=new WeakMap();
+  var norm=function(v){return (v||'').toString().normalize('NFD').replace(/[\u0300-\u036f]/g,'').toUpperCase().trim()};
+
+  function agotado(card){
+    if(!card)return true;
+    if(card.classList.contains('ev-agotado')||card.classList.contains('ev-agotado-bloqueado')||card.classList.contains('ev-agotado-definitivo')||card.classList.contains('ev-sin-stock-final'))return true;
+    var texto=norm(card.innerText||card.textContent);
+    return /STOCK\s*:\s*AGOTADO|NO DISPONIBLE|SIN STOCK/.test(texto);
+  }
+
+  function botonAgregar(card){
+    if(!card)return null;
+    return Array.from(card.querySelectorAll('button')).find(function(btn){
+      return btn.classList.contains('boton-agregar')||/AGREGAR AL PEDIDO|ANADIR AL PEDIDO|AGREGAR/.test(norm(btn.textContent));
+    })||null;
+  }
+
+  function guardarPlantillas(){
+    document.querySelectorAll('.producto').forEach(function(card){
+      if(card.id==='carritoSeccion'||agotado(card)||plantillas.has(card))return;
+      var btn=botonAgregar(card);
+      if(btn)plantillas.set(card,btn.cloneNode(true));
+    });
+  }
+
+  function restaurarBoton(card){
+    if(!card||card.id==='carritoSeccion'||agotado(card))return;
+    var btn=botonAgregar(card);
+    if(btn){
+      btn.hidden=false;
+      btn.disabled=false;
+      btn.removeAttribute('aria-hidden');
+      btn.style.setProperty('display','block','important');
+      btn.style.setProperty('visibility','visible','important');
+      btn.style.setProperty('opacity','1','important');
+      btn.style.setProperty('pointer-events','auto','important');
+      return;
+    }
+    var plantilla=plantillas.get(card);
+    if(!plantilla)return;
+    var nuevo=plantilla.cloneNode(true);
+    nuevo.dataset.evAgregarRestaurado='1';
+    nuevo.hidden=false;
+    nuevo.disabled=false;
+    nuevo.removeAttribute('aria-hidden');
+    nuevo.style.setProperty('display','block','important');
+    var input=card.querySelector('input[type="number"],select');
+    if(input&&input.parentNode)input.parentNode.insertBefore(nuevo,input.nextSibling);
+    else card.appendChild(nuevo);
+  }
+
+  function revisarTodo(){
+    guardarPlantillas();
+    document.querySelectorAll('.producto').forEach(restaurarBoton);
+  }
+
+  document.addEventListener('click',function(e){
+    var btn=e.target.closest&&e.target.closest('button');
+    if(!btn||!/AGREGAR AL PEDIDO|ANADIR AL PEDIDO|AGREGAR/.test(norm(btn.textContent)))return;
+    var card=btn.closest('.producto');
+    if(!card||agotado(card))return;
+    if(!plantillas.has(card))plantillas.set(card,btn.cloneNode(true));
+    setTimeout(function(){restaurarBoton(card)},80);
+    setTimeout(function(){restaurarBoton(card)},350);
+    setTimeout(function(){restaurarBoton(card)},900);
+  },true);
+
+  function iniciar(){
+    revisarTodo();
+    var timer;
+    new MutationObserver(function(){
+      clearTimeout(timer);
+      timer=setTimeout(revisarTodo,90);
+    }).observe(document.body,{childList:true,subtree:true,attributes:true,attributeFilter:['style','class','hidden','disabled','aria-hidden']});
+  }
+
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(iniciar,3600)});
+  else setTimeout(iniciar,3600);
+})();
+</script>
+
+
+
+<!-- LLAVES EL VECI · AJUSTE 3 · BLOQUES DE PAGO APILADOS -->
+<style id="ev-ajuste3-pagos-apilados">
+/* Solo ordena Métodos de pago y Tarjetas de crédito, sin alterar el catálogo. */
+@media (min-width: 1000px){
+  #evProductosGrid > .producto.ev-bloque-pago-uniforme{
+    grid-column:1 / -1 !important;
+    width:100% !important;
+    max-width:1120px !important;
+    margin:0 auto !important;
+    box-sizing:border-box !important;
+  }
+  #evProductosGrid > .producto.ev-bloque-pago-uniforme + .producto.ev-bloque-pago-uniforme{
+    margin-top:0 !important;
+  }
+  /* Mantiene visibles las imágenes informativas de ambos bloques. */
+  #evProductosGrid > .producto.ev-bloque-pago-uniforme .imagen,
+  #evProductosGrid > .producto.ev-bloque-pago-uniforme .imagen img{
+    display:flex !important;
+  }
+}
+</style>
+<script id="ev-ajuste3-pagos-apilados-script">
+(function(){
+  'use strict';
+  function norm(v){
+    return (v||'').toString().normalize('NFD').replace(/[\u0300-\u036f]/g,'').toUpperCase().trim();
+  }
+  function clasificarPagos(){
+    document.querySelectorAll('.producto').forEach(function(card){
+      if(card.id==='carritoSeccion')return;
+      var titulo=norm(card.querySelector('h2') && card.querySelector('h2').textContent);
+      if(/METODOS? DE PAGO/.test(titulo)||/TARJETAS? DE CREDITO/.test(titulo)){
+        card.classList.add('ev-bloque-pago-uniforme');
+      }
+    });
+  }
+  function iniciar(){
+    clasificarPagos();
+    var timer;
+    new MutationObserver(function(){
+      clearTimeout(timer);
+      timer=setTimeout(clasificarPagos,100);
+    }).observe(document.body,{childList:true,subtree:true,characterData:true});
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(iniciar,3800)});
+  else setTimeout(iniciar,3800);
+})();
+</script>
+
+
+<!-- LLAVES EL VECI · AJUSTE 4 · INFORMACIÓN UNIFORME + COTIZACIÓN COMPACTA -->
+<style id="ev-ajuste4-final-uniforme">
+/* Solo afecta Métodos de pago, Tarjetas de crédito y Ubicación. */
+#evProductosGrid > .producto.ev-info-final-uniforme{
+  grid-column:1 / -1 !important;
+  width:100% !important;
+  max-width:1120px !important;
+  margin-left:auto !important;
+  margin-right:auto !important;
+  box-sizing:border-box !important;
+  min-height:0 !important;
+}
+#evProductosGrid > .producto.ev-info-final-uniforme .imagen{
+  width:100% !important;
+  height:auto !important;
+  min-height:0 !important;
+  max-height:none !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+  overflow:visible !important;
+  margin:8px auto 14px !important;
+}
+#evProductosGrid > .producto.ev-info-final-uniforme .imagen a{
+  width:100% !important;
+  height:auto !important;
+  display:flex !important;
+  align-items:center !important;
+  justify-content:center !important;
+}
+#evProductosGrid > .producto.ev-info-final-uniforme .imagen img{
+  width:auto !important;
+  max-width:100% !important;
+  height:auto !important;
+  max-height:270px !important;
+  object-fit:contain !important;
+  transform:none !important;
+  margin:0 auto !important;
+}
+/* Cotización: al quitar Descripción, las columnas restantes aprovechan mejor el espacio. */
+#resumenCotizacion .tabla-cotizacion,
+#pedido .tabla-cotizacion,
+.tabla-cotizacion{
+  width:100% !important;
+  table-layout:auto !important;
+}
+#resumenCotizacion .tabla-cotizacion th,
+#resumenCotizacion .tabla-cotizacion td,
+#pedido .tabla-cotizacion th,
+#pedido .tabla-cotizacion td,
+.tabla-cotizacion th,
+.tabla-cotizacion td{
+  overflow-wrap:anywhere !important;
+  word-break:normal !important;
+}
+@media(max-width:700px){
+  #evProductosGrid > .producto.ev-info-final-uniforme{
+    width:100% !important;
+    max-width:none !important;
+    margin-left:0 !important;
+    margin-right:0 !important;
+  }
+  #evProductosGrid > .producto.ev-info-final-uniforme .imagen img{
+    max-height:220px !important;
+  }
+  #resumenCotizacion .tabla-cotizacion,
+  #pedido .tabla-cotizacion,
+  .tabla-cotizacion{
+    font-size:.82rem !important;
+  }
+  #resumenCotizacion .tabla-cotizacion th,
+  #resumenCotizacion .tabla-cotizacion td,
+  #pedido .tabla-cotizacion th,
+  #pedido .tabla-cotizacion td,
+  .tabla-cotizacion th,
+  .tabla-cotizacion td{
+    padding:7px 5px !important;
+  }
+}
+</style>
+<script id="ev-ajuste4-final-uniforme-script">
+(function(){
+  'use strict';
+  function norm(v){
+    return (v||'').toString().normalize('NFD').replace(/[\u0300-\u036f]/g,'').toUpperCase().trim();
+  }
+
+  function uniformarInformacion(){
+    document.querySelectorAll('.producto').forEach(function(card){
+      if(card.id==='carritoSeccion')return;
+      var h=card.querySelector('h2');
+      var titulo=norm(h&&h.textContent);
+      if(/METODOS? DE PAGO/.test(titulo)||/TARJETAS? DE CREDITO/.test(titulo)||/NUESTRA UBICACION|UBICACION|DIRECCION/.test(titulo)){
+        card.classList.add('ev-info-final-uniforme');
+      }
+    });
+  }
+
+  function quitarDescripcionDeTabla(tabla){
+    if(!tabla || tabla.dataset.evSinDescripcion==='1')return;
+    var filas=Array.from(tabla.rows||[]);
+    if(!filas.length)return;
+    var indice=-1;
+    var cabeceras=Array.from(filas[0].cells||[]);
+    cabeceras.forEach(function(celda,i){
+      if(/DESCRIPCION|PRODUCTO/.test(norm(celda.textContent)) && !/CODIGO/.test(norm(celda.textContent))){
+        indice=i;
+      }
+    });
+    if(indice<0){
+      var header=tabla.querySelectorAll('thead th');
+      Array.from(header).forEach(function(celda,i){
+        if(/DESCRIPCION|PRODUCTO/.test(norm(celda.textContent)) && !/CODIGO/.test(norm(celda.textContent))){
+          indice=i;
+        }
+      });
+    }
+    if(indice<0)return;
+    filas.forEach(function(fila){
+      if(fila.cells && fila.cells[indice])fila.deleteCell(indice);
+    });
+    tabla.dataset.evSinDescripcion='1';
+  }
+
+  function compactarCotizacion(){
+    document.querySelectorAll('.tabla-cotizacion, #resumenCotizacion table, #pedido table').forEach(quitarDescripcionDeTabla);
+  }
+
+  function aplicar(){
+    uniformarInformacion();
+    compactarCotizacion();
+  }
+
+  function iniciar(){
+    aplicar();
+    var timer;
+    new MutationObserver(function(){
+      clearTimeout(timer);
+      timer=setTimeout(aplicar,100);
+    }).observe(document.body,{childList:true,subtree:true,characterData:true});
+  }
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',function(){setTimeout(iniciar,3900)});
+  else setTimeout(iniciar,3900);
+})();
+</script>
+
+
+<script id="ev-ajuste5-quitar-columna-repetida">
+(function(){
+  'use strict';
+  function limpiarTabla(tabla){
+    if(!tabla) return;
+    var encabezado = tabla.querySelector('thead tr:last-child') || tabla.rows[0];
+    if(!encabezado) return;
+    var titulos = Array.from(encabezado.cells || []).map(function(c){
+      return (c.textContent || '').trim().toUpperCase();
+    });
+    var esCotizacion = titulos.some(function(t){return t.indexOf('CÓDIGO')>=0 || t.indexOf('CODIGO')>=0;}) &&
+                       titulos.some(function(t){return t.indexOf('CANT')>=0;}) &&
+                       titulos.some(function(t){return t.indexOf('SUBTOTAL')>=0;});
+    if(!esCotizacion) return;
+
+    var cantidadColumnas = encabezado.cells.length;
+    var filas = tabla.tBodies && tabla.tBodies.length ? Array.from(tabla.tBodies).flatMap(function(tb){return Array.from(tb.rows);}) : Array.from(tabla.rows).slice(1);
+    filas.forEach(function(fila){
+      while(fila.cells && fila.cells.length > cantidadColumnas){
+        /* La segunda celda es la descripción repetida del código. */
+        fila.deleteCell(1);
+      }
+    });
+  }
+
+  function aplicar(){
+    document.querySelectorAll('.tabla-cotizacion, #resumenCotizacion table, #pedido table').forEach(limpiarTabla);
+  }
+
+  var timer;
+  function programar(){
+    clearTimeout(timer);
+    timer=setTimeout(aplicar,60);
+  }
+
+  if(document.readyState==='loading'){
+    document.addEventListener('DOMContentLoaded',function(){setTimeout(aplicar,4000);});
+  }else{
+    setTimeout(aplicar,4000);
+  }
+  new MutationObserver(programar).observe(document.documentElement,{childList:true,subtree:true});
+})();
+</script>
+
+<style id="ev-ajuste6-columnas-cotizacion">
+/* Solo distribución de las cuatro columnas finales de la cotización. */
+#resumenCotizacion .tabla-cotizacion,
+#pedido .tabla-cotizacion,
+.tabla-cotizacion{
+  width:100% !important;
+  table-layout:fixed !important;
+}
+#resumenCotizacion .tabla-cotizacion th:nth-child(1),
+#resumenCotizacion .tabla-cotizacion td:nth-child(1),
+#pedido .tabla-cotizacion th:nth-child(1),
+#pedido .tabla-cotizacion td:nth-child(1),
+.tabla-cotizacion th:nth-child(1),
+.tabla-cotizacion td:nth-child(1){width:52% !important;text-align:left !important;}
+#resumenCotizacion .tabla-cotizacion th:nth-child(2),
+#resumenCotizacion .tabla-cotizacion td:nth-child(2),
+#pedido .tabla-cotizacion th:nth-child(2),
+#pedido .tabla-cotizacion td:nth-child(2),
+.tabla-cotizacion th:nth-child(2),
+.tabla-cotizacion td:nth-child(2){width:12% !important;text-align:center !important;white-space:nowrap !important;}
+#resumenCotizacion .tabla-cotizacion th:nth-child(3),
+#resumenCotizacion .tabla-cotizacion td:nth-child(3),
+#pedido .tabla-cotizacion th:nth-child(3),
+#pedido .tabla-cotizacion td:nth-child(3),
+.tabla-cotizacion th:nth-child(3),
+.tabla-cotizacion td:nth-child(3){width:17% !important;text-align:right !important;white-space:nowrap !important;}
+#resumenCotizacion .tabla-cotizacion th:nth-child(4),
+#resumenCotizacion .tabla-cotizacion td:nth-child(4),
+#pedido .tabla-cotizacion th:nth-child(4),
+#pedido .tabla-cotizacion td:nth-child(4),
+.tabla-cotizacion th:nth-child(4),
+.tabla-cotizacion td:nth-child(4){width:19% !important;text-align:right !important;white-space:nowrap !important;}
+#resumenCotizacion .tabla-cotizacion th,
+#pedido .tabla-cotizacion th,
+.tabla-cotizacion th{
+  overflow-wrap:normal !important;
+  word-break:normal !important;
+}
+@media(max-width:700px){
+  #resumenCotizacion .tabla-cotizacion th:nth-child(1),
+  #resumenCotizacion .tabla-cotizacion td:nth-child(1),
+  #pedido .tabla-cotizacion th:nth-child(1),
+  #pedido .tabla-cotizacion td:nth-child(1),
+  .tabla-cotizacion th:nth-child(1),
+  .tabla-cotizacion td:nth-child(1){width:50% !important;}
+  #resumenCotizacion .tabla-cotizacion th:nth-child(2),
+  #resumenCotizacion .tabla-cotizacion td:nth-child(2),
+  #pedido .tabla-cotizacion th:nth-child(2),
+  #pedido .tabla-cotizacion td:nth-child(2),
+  .tabla-cotizacion th:nth-child(2),
+  .tabla-cotizacion td:nth-child(2){width:11% !important;}
+  #resumenCotizacion .tabla-cotizacion th:nth-child(3),
+  #resumenCotizacion .tabla-cotizacion td:nth-child(3),
+  #pedido .tabla-cotizacion th:nth-child(3),
+  #pedido .tabla-cotizacion td:nth-child(3),
+  .tabla-cotizacion th:nth-child(3),
+  .tabla-cotizacion td:nth-child(3){width:18% !important;}
+  #resumenCotizacion .tabla-cotizacion th:nth-child(4),
+  #resumenCotizacion .tabla-cotizacion td:nth-child(4),
+  #pedido .tabla-cotizacion th:nth-child(4),
+  #pedido .tabla-cotizacion td:nth-child(4),
+  .tabla-cotizacion th:nth-child(4),
+  .tabla-cotizacion td:nth-child(4){width:21% !important;}
+  #resumenCotizacion .tabla-cotizacion th,
+  #resumenCotizacion .tabla-cotizacion td,
+  #pedido .tabla-cotizacion th,
+  #pedido .tabla-cotizacion td,
+  .tabla-cotizacion th,
+  .tabla-cotizacion td{padding-left:4px !important;padding-right:4px !important;}
+}
+</style>
+
 </body></html>
