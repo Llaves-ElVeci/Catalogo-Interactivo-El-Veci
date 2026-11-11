@@ -21,7 +21,7 @@ const money = amount => '$' + amount.toFixed(2);
 const units = product => product.unit === 'libra' ? 'libras' : 'unidades';
 function hardwareTier(product) {
  var tier=product.wholesale;
- return tier?.minQty===3&&Number.isFinite(tier.unitPrice)&&tier.unitPrice>0&&tier.unitPrice<=product.price?tier:null;
+ return [3,4].includes(tier?.minQty)&&Number.isFinite(tier.unitPrice)&&tier.unitPrice>0&&tier.unitPrice<=product.price?tier:null;
 }
 function orderQuantity(code) {
  try{return carrito.reduce((sum,item)=>sum+(item.codigo===code?Number(item.cantidad)||0:0),0)}catch{return 0}
