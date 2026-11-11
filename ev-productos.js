@@ -229,7 +229,7 @@ function publicCard(p) {
  const hasPrice=Number.isFinite(p.price)&&p.price>0;
  sales.append(el('h3','Precio de venta'));
  sales.append(el('strong',hasPrice?money(p.price)+' por '+(p.unit==='libra'?'libra':'unidad'):'Consultar precio','evHardwarePrice'));
- if(tier)sales.append(el('p',money(tier.unitPrice)+' por unidad desde '+tier.minQty+' del mismo modelo y medida','evHardwareTier'));
+ if(tier)sales.append(el('p',money(tier.unitPrice)+' por unidad desde '+tier.minQty+(/^CERRADURA\b/i.test(p.title)?' del mismo modelo':' del mismo modelo y medida'),'evHardwareTier'));
  details.append(sales);
  sectionText(details,(p.description||'').replace(/^Categoría: [^\n]+\n/,'').replace(/\nPrecio especial para negocios desde[^\n]*$/,''));
  if(p.color)details.append(el('p','Acabado: '+p.color));
