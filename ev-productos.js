@@ -56,6 +56,123 @@ function installHardwarePrices() {
   return result;
  };
 }
+function quoteCounts(items) {
+ const references=new Set(),hardware=new Set();
+ let units=0,pounds=0,hardwareUnits=0,hardwarePounds=0;
+ for(const item of items){
+  const quantity=Number(item.cantidad)||0;
+  if(quantity<=0)continue;
+  const product=hardwareProducts.get(item.codigo);
+  references.add(item.codigo);
+  if(product)hardware.add(item.codigo);
+  if(product?.unit==='libra'){pounds+=quantity;hardwarePounds+=quantity;}
+  else{units+=quantity;if(product)hardwareUnits+=quantity;}
+ }
+ return {references:references.size,hardware:hardware.size,units,pounds,hardwareUnits,hardwarePounds};
+}
+function quantityText(units,pounds){
+ const parts=[];
+ if(units||!pounds)parts.push(units+(units===1?' unidad':' unidades'));
+ if(pounds)parts.push(pounds+(pounds===1?' libra':' libras'));
+ return parts.join(' y ');
+}
+function decorateHardwareQuote(items) {
+ const tbody=document.getElementById('detalleCotizacion');
+ if(!tbody)return;
+ const table=tbody.closest('table'),header=table?.tHead?.rows[0],counts=quoteCounts(items);
+ if(header){
+  if(header.cells.length===5&&/descrip/i.test(header.cells[1].textContent))header.deleteCell(1);
+  table.dataset.evSinDescripcion='1';
+  if(header.cells[0])header.cells[0].textContent='Producto';
+  for(const row of tbody.rows){
+   if(row.cells.length>header.cells.length&&row.cells.length===5)row.deleteCell(1);
+   const cell=row.cells[0],product=hardwareProducts.get(cell?.textContent.trim());
+   if(!product||row.cells.length!==4)continue;
+   const title=el('strong',product.title);
+   cell.replaceChildren(title);
+   const quantity=row.cells[1];
+   quantity.append(el('small',product.unit==='libra'?'lb':'ud.','evQuoteUnit'));
+  }
+ }
+ const total=document.getElementById('totalFinalCotizacion');
+ if(!total)return;
+ const moneyLine=total.parentElement,container=moneyLine.parentElement;
+ let stats=container.querySelector('.evQuoteCounts');
+ if(!stats){
+  stats=el('div',null,'evQuoteCounts');
+  container.insertBefore(stats,moneyLine);
+ }
+ stats.replaceChildren();
+ if(counts.references){
+  stats.append(el('p','Total de productos: '+counts.references+' · '+quantityText(counts.units,counts.pounds)));
+  if(counts.hardware)stats.append(el('p','Ferretería: '+counts.hardware+' '+(counts.hardware===1?'producto':'productos')+' · '+quantityText(counts.hardwareUnits,counts.hardwarePounds)));
+ }
+ const home=document.getElementById('totalLlavesHogar');
+ const hideHome=counts.hardware>0&&Number(home?.textContent||0)===0;
+ if(home)home.parentElement.classList.toggle('evQuoteHideHome',hideHome);
+ document.getElementById('precioAplicadoHogar')?.parentElement.classList.toggle('evQuoteHideHome',hideHome);
+ document.getElementById('evPedidoPromocion')?.classList.toggle('evQuoteHideHome',hideHome);
+}
+function hardwareQuoteMessage(message,items) {
+ const counts=quoteCounts(items);
+ if(!counts.hardware)return message;
+ const lines=message.split('\n');
+ let item=null;
+ for(let index=0;index<lines.length;index++){
+  const line=lines[index], match=line.match(/^(\d+\) )(.+)$/);
+  if(match){
+   item=hardwareProducts.get(match[2]);
+   if(item)lines[index]=match[1]+item.title;
+  }else if(item&&/^\s+Cantidad: \d+$/.test(line)){
+   const amount=Number(line.trim().split(' ').at(-1));
+   lines[index]='   Cantidad: '+(item.unit==='libra'?quantityText(0,amount):quantityText(amount,0));
+  }else if(item&&/^\s+Precio unitario:/.test(line)){
+   lines[index]=line.replace('Precio unitario:',item.unit==='libra'?'Precio por libra:':'Precio por unidad:');
+  }
+  if(/^🔢 Total de unidades:/.test(line)){
+   lines[index]='🔢 Total de productos: '+counts.references+' · '+quantityText(counts.units,counts.pounds)+
+    '\nFerretería: '+counts.hardware+' '+(counts.hardware===1?'producto':'productos')+' · '+quantityText(counts.hardwareUnits,counts.hardwarePounds);
+  }
+ }
+ return lines.join('\n');
+}
+function installHardwareQuote(){
+ const summarize=window.actualizarResumen;
+ if(typeof summarize==='function')window.actualizarResumen=function(){
+  const result=summarize.apply(this,arguments);
+  decorateHardwareQuote(carrito);
+  return result;
+ };
+ const send=window.enviarPedido;
+ if(typeof send==='function')window.enviarPedido=function(){
+  const items=carrito;
+  if(!items.some(item=>hardwareProducts.has(item.codigo)))return send.apply(this,arguments);
+  const open=window.open;
+  window.open=function(raw,target,features){
+   const url=new URL(raw,document.baseURI);
+   if(url.origin!=='https://wa.me'||url.pathname!=='/593983889592'||!url.searchParams.has('text')){
+    return open.apply(this,arguments);
+   }
+   url.searchParams.set('text',hardwareQuoteMessage(url.searchParams.get('text'),items));
+   const popup=open.call(this,url.href,target,features);
+   if(popup)return popup;
+   window.location.assign(url.href);
+   return window;
+  };
+  try{return send.apply(this,arguments)}finally{window.open=open}
+ };
+ if(typeof window.actualizarResumen==='function')window.actualizarResumen();
+}
+function positionHardwareCards(){
+ const kit=document.getElementById('cantidadKIT_GANZUAS_CERRADURA_AUTOMOTRIZ_CANDADO')?.closest('.producto');
+ const cards=Array.from(document.querySelectorAll('.evHardwareCard'));
+ if(kit&&!kit.closest('dialog'))kit.after(...cards);
+ else{
+  const payment=Array.from(document.querySelectorAll('.ev-info-pago,.ev-bloque-pago-uniforme')).find(card=>!card.closest('dialog'));
+  const boundary=payment||document.getElementById('carritoSeccion');
+  if(boundary&&!boundary.closest('dialog'))boundary.before(...cards);
+ }
+}
 function sectionText(target, raw) {
  const lines=String(raw||'').split(/\r?\n/).map(x=>x.trim()).filter(x=>x&&!/^VENTA POR LIBRAS$/i.test(x));
  if(!lines.length)return;
@@ -124,7 +241,7 @@ function publicCard(p) {
  if(canOrder){
   const order=el('div',null,'evHardwareOrder');
   const input=el('input');
-  input.type='number';input.min='1';input.step='1';input.value='1';input.id='cantidad-'+p.id;
+  input.type='number';input.min='1';input.step='1';input.placeholder='Ej: 10';input.id='cantidad-'+p.id;
   const label=el('label','Cantidad en '+units(p));label.htmlFor=input.id;
   const total=el('p',null,'evHardwareTotal');total.setAttribute('aria-live','polite');
   const update=()=>{
@@ -150,8 +267,11 @@ function deepLink(){var u=new URL(location.href),id=u.searchParams.get('ev'),req
 
 function hardwareSections(){document.getElementById('evHardwareSections')?.remove()}
 
-async function load(){try{var r=await fetch(FEED,{cache:'no-store',signal:AbortSignal.timeout(12000)});if(!r.ok)throw Error();var d=await r.json();d.products.forEach(publicCard);installHardwarePrices();loaded=true;refreshCards();hardwareSections();deepLink()}catch{loaded=true;deepLink()}}
+async function load(){try{var r=await fetch(FEED,{cache:'no-store',signal:AbortSignal.timeout(12000)});if(!r.ok)throw Error();var d=await r.json();d.products.forEach(publicCard);positionHardwareCards();installHardwarePrices();installHardwareQuote();loaded=true;refreshCards();hardwareSections();deepLink()}catch{loaded=true;deepLink()}}
 var css=el('style');css.textContent='.evHardwareSections{max-width:1100px;margin:20px auto;padding:20px;border-radius:18px;background:#eff4f8;color:#123655}.evHardwareSections>div{display:flex;flex-wrap:wrap;gap:8px}.evHardwareSections button{white-space:normal;min-height:44px;width:auto!important;margin:0!important}.evHardwareSections button[aria-pressed=true]{background:#123655;color:#fff}.evHardwareSections>div:last-child{margin-top:14px}.evHardwareSections>div:last-child button{background:#fff;color:#123655;border:1px solid #ccd8e3;text-align:left;padding:12px;flex:1 1 230px}'+'.evShowcase{max-width:1100px;margin:18px auto 24px;background:#0c3154;border-radius:24px;overflow:hidden;box-shadow:0 12px 30px #16314d25;color:white;text-align:left}.evShowcaseHeader{display:flex;justify-content:space-between;gap:10px;padding:16px 24px;font-weight:800}.evShowcaseHeader span{font-size:13px;color:#d2ddea;font-weight:400}.evShowcaseSlide{margin:0!important;width:100%;min-height:320px;padding:24px!important;border-radius:0!important;background:linear-gradient(125deg,#fff 0%,#eff4f8 62%,#e4edf6)!important;color:#123655!important;display:grid!important;grid-template-columns:1fr 1fr;align-items:center;gap:30px;text-align:left!important}.evShowcaseSlide>img,.evShowcaseSlide>video{width:100%;height:290px;object-fit:contain;border-radius:12px}.evShowcaseInfo h2{text-align:left!important;font-size:clamp(24px,3vw,40px)!important;line-height:1.12;margin:14px 0}.evShowcaseEyebrow{letter-spacing:.14em;font-size:12px;font-weight:800;color:#4a6277}.evShowcaseCta{display:inline-block!important;width:auto!important;color:#123655!important;background:#ffd441!important;padding:12px 22px;border-radius:24px;font-weight:800;margin-top:12px}.evShowcaseNav{padding:12px 20px}.evShowcaseNav>div:first-child{display:flex;gap:10px}.evShowcaseNav button{width:auto!important;min-height:42px;margin:0!important;background:#ffffff17;color:#fff;border:1px solid #ffffff40}.evShowcaseNav p{font-size:12px;color:#d0ddea;margin:8px 0 0}.evShowcaseDots{display:flex;justify-content:center;gap:4px;margin:4px}.evShowcaseDots button{border:0;font-size:12px}.evShowcaseDots button.active{color:#ffda35}.evProductDetail{padding:18px;max-width:760px;width:calc(100vw - 24px);max-height:94dvh;border:0;border-radius:18px;background:#eef3f8;color:#123655;box-sizing:border-box}.evProductDetail::backdrop{background:#0b2038ba}.evProductBack{position:sticky;top:0;background:#123655;color:white;z-index:10}.evProductDetail .producto{display:block!important;max-width:100%!important;margin:16px 0!important}.evProductDetail img,.evProductDetail video{max-width:100%;max-height:360px;object-fit:contain}.evPublicNotice{padding:15px;background:#fff5c9;color:#17324a}@media(max-width:600px){.evShowcaseSlide{grid-template-columns:1fr;gap:6px;padding:18px!important}.evShowcaseSlide>img,.evShowcaseSlide>video{height:210px}.evShowcaseHeader{padding:14px 18px}.evShowcaseHeader span{display:none}.evShowcaseInfo h2{font-size:24px!important;margin:8px 0}.evShowcaseInfo p{margin:6px 0}.evShowcaseCta{margin:8px 0}.evShowcase{border-radius:18px}}@media(prefers-reduced-motion:reduce){.evShowcase video{display:block}}';document.head.append(css);
 const hardwareStyle=el('style');hardwareStyle.textContent='.evHardwareCard{color:#1b2733!important;text-align:left!important;box-sizing:border-box}\n.evHardwareCard>.evHardwareTitle{margin:0!important;text-align:left!important;font-size:clamp(1.16rem,2vw,1.45rem)!important;line-height:1.23!important;color:#142838!important;overflow-wrap:anywhere}\n.evHardwareCard>.evHardwareGroup{margin:5px 0 14px!important;color:#526170!important;text-align:left!important;font-size:.86rem!important}\n.evHardwareCard>.evHardwareMedia{display:grid;gap:10px;width:100%;min-width:0;margin:0 0 15px;background:#f5f6f7;border-radius:12px;padding:0;box-sizing:border-box}\n.evHardwareMedia>a{display:block;width:100%;aspect-ratio:4/3;overflow:hidden;border-radius:12px;box-sizing:border-box}\n.evHardwareCard .evHardwareMedia img,.evHardwareCard .evHardwareMedia video{display:block!important;width:100%!important;height:100%!important;max-width:none!important;max-height:none!important;min-height:0!important;object-fit:contain!important;object-position:center!important;transform:none!important;margin:0!important;padding:0!important;position:static!important;border-radius:12px}\n.evHardwareCard .evHardwareMedia video{aspect-ratio:16/9}\n.evHardwareCard>.evHardwareDetails{display:grid!important;gap:13px;text-align:left!important;margin:0!important;padding:0!important}\n.evHardwareDetails h3{font-size:.88rem!important;text-align:left!important;font-weight:700;color:#243a4b;margin:0 0 5px!important}\n.evHardwareDetails p{font-size:.91rem!important;line-height:1.45;text-align:left!important;margin:0!important;color:#394b58}\n.evHardwareSale{padding:12px 14px;border:1px solid #e8d3d3;border-left:4px solid #a3262c;border-radius:10px;background:#fff9f9}\n.evHardwarePrice{display:block;color:#142838;font-size:1.17rem;line-height:1.25}\n.evHardwareDetails .evHardwareTier{margin-top:6px!important;color:#87202a;font-weight:700}\n.evHardwareDescription{display:grid;gap:4px}\n.evHardwareDescription h3:not(:first-child){margin-top:8px!important}\n.evHardwareDetails .evHardwareStatus{font-weight:700;color:#694509}\n.evHardwareDetails .evHardwareStatus[data-state=available]{color:#17633b}\n.evHardwareDetails .evHardwareStatus[data-state=unavailable]{color:#7b2b2b}\n.evHardwareOrder{display:grid;gap:7px}\n.evHardwareOrder label{font-weight:600}\n.evHardwareOrder input,.evHardwareOrder button{width:100%!important;box-sizing:border-box;margin:0!important}\n.evHardwareContact{display:block;color:#153d62!important;text-decoration:underline}\n#evCatalogWindow .evWinContent:has(>.evHardwareCard){display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;align-items:start;max-width:1200px}\n#evCatalogWindow .evWinContent>.evHardwareCard{width:100%!important;max-width:none!important;margin:0!important;padding:16px!important;box-sizing:border-box}\n#evPublicProduct .evHardwareCard{width:100%!important;box-sizing:border-box}\n#evPublicProduct:has(.evHardwareCard) .evProductBack{position:static}\n@media(max-width:950px){#evCatalogWindow .evWinContent:has(>.evHardwareCard){grid-template-columns:repeat(2,minmax(0,1fr))}}\n@media(max-width:580px){#evCatalogWindow .evWinContent:has(>.evHardwareCard){grid-template-columns:minmax(0,1fr);padding:12px 12px 110px}}\n';document.head.append(hardwareStyle);
+const quoteStyle=el('style');
+quoteStyle.textContent='.evHardwareCard .ev-precio-visible,.evQuoteHideHome{display:none!important}.evHardwareOrder input::placeholder{color:#7b8792;opacity:1}.evHardwareTotal:empty{display:none}.evQuoteUnit{display:block;white-space:normal;font-size:.72em;line-height:1.1}.evQuoteCounts{margin:.75em 0}.evQuoteCounts p{margin:.3em 0;font-weight:700}#detalleCotizacion td:first-child{overflow-wrap:anywhere;white-space:normal!important}';
+document.head.append(quoteStyle);
 function start(){init();load();var search=document.getElementById('buscador');if(search){var results=el('div',null,'evHardwareSearch');results.hidden=true;search.after(results);search.addEventListener('input',function(){var q=search.value.trim().toLocaleUpperCase();results.replaceChildren();var matches=q.length>=2?Array.from(document.querySelectorAll('[data-ev-public-id]')).filter(c=>(code(c)+' '+c.querySelector('h2')?.textContent).toLocaleUpperCase().includes(q)):[];results.hidden=!matches.length;if(matches.length){results.append(el('strong','Ferretería · '+matches.length+' coincidencia(s)'));matches.slice(0,12).forEach(function(c){var b=el('button',c.querySelector('h2')?.textContent);b.onclick=()=>open(c);results.append(b)})}})}[1800,6500].forEach(t=>setTimeout(function(){document.getElementById('evVideosPortada')?.remove();document.getElementById('evPreciosActuales')?.remove();refreshCards()},t));if(reduceMotion)manualPause=true}if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',start);else start();
 })();
