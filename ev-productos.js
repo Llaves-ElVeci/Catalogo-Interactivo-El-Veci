@@ -187,24 +187,7 @@ function sectionText(target, raw) {
  }
  target.append(group);
 }
-function currentInvoicePrices(product) {
- // Compatibility for previously published DIMPOFER prices while the administrator's price deployment is pending.
- // Leave new prices from the feed intact once they replace these exact old values.
- const oldPrices={
-  'DPF-010320':[1.10,1.15],
-  'DPF-AS-006000':[1.40,1.50],
-  'DPF-AS-006011':[1.40,1.50],
-  'DPF-AS-006012':[1.40,1.50],
- };
- const prices=Object.hasOwn(oldPrices,product.code)?oldPrices[product.code]:null;
- if(prices&&product.price===prices[0])return {...product,price:prices[1]};
- if(product.code==='DPF-010990'&&product.price===1&&product.wholesale?.minQty===3&&product.wholesale.unitPrice===0.85){
-  return {...product,wholesale:{...product.wholesale,minQty:4},description:(product.description||'').replace(/(\bdesde\s+)3(?=\s+(?:unidades|del|de\s+esta))/gi,(_match,prefix)=>prefix+'4')};
- }
- return product;
-}
 function publicCard(p) {
- p=currentInvoicePrices(p);
  if(!/^EVB1[A-F0-9]{16}$/.test(p.id)||!/^[A-Z0-9 ._/-]{1,100}$/.test(p.code))return;
  hardwareProducts.set(p.code,p);
  let c=Array.from(document.querySelectorAll('.producto')).find(node=>node.dataset.evPublicId===p.id||code(node)===p.code);
@@ -246,7 +229,7 @@ function publicCard(p) {
  const hasPrice=Number.isFinite(p.price)&&p.price>0;
  sales.append(el('h3','Precio de venta'));
  sales.append(el('strong',hasPrice?money(p.price)+' por '+(p.unit==='libra'?'libra':'unidad'):'Consultar precio','evHardwarePrice'));
- if(tier)sales.append(el('p',money(tier.unitPrice)+' por unidad desde '+tier.minQty+' del mismo modelo','evHardwareTier'));
+ if(tier)sales.append(el('p',money(tier.unitPrice)+' por unidad desde '+tier.minQty+' del mismo modelo y medida','evHardwareTier'));
  details.append(sales);
  sectionText(details,(p.description||'').replace(/^Categoría: [^\n]+\n/,'').replace(/\nPrecio especial para negocios desde[^\n]*$/,''));
  if(p.color)details.append(el('p','Acabado: '+p.color));
