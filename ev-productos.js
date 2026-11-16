@@ -9,11 +9,64 @@ function close(){if(active&&marker?.parentNode){marker.parentNode.insertBefore(a
 function open(c){if(!c)return;close();if(!dialog){dialog=el('dialog',null,'evProductDetail');dialog.id='evPublicProduct';dialog.setAttribute('aria-label','Ficha del producto');var back=el('button','← Volver al catálogo','evProductBack');back.onclick=close;slot=el('div');dialog.append(back,slot);dialog.addEventListener('cancel',function(e){e.preventDefault();close()});document.body.append(dialog)}marker=document.createComment('ficha original');c.parentNode.insertBefore(marker,c);active=c;slot.replaceChildren(c);c.style.display='block';dialog.showModal();dialog.scrollTop=0;document.body.style.overflow='hidden';}
 function videoSource(c){var v=c.querySelector('video');return v?.getAttribute('src')||v?.querySelector('source')?.getAttribute('src')||v?.getAttribute('data-src')||v?.querySelector('source')?.getAttribute('data-src')||Array.from(c.querySelectorAll('a[href]')).map(a=>a.getAttribute('href')).find(s=>/\.(mp4|webm)(?:$|\?)/i.test(s))||''}
 function productGroup(c){if(c.classList.contains('ev-cat-ferreteria')||c.dataset.categoria==='ev-cat-ferreteria')return 'ferreteria';var category=c.dataset.evCategoria||c.dataset.categoria||'';if(category==='linea-automotriz'||category==='controles'||category==='espadas'||c.classList.contains('linea-automotriz'))return 'automotriz';if(category==='linea-hogar'||c.classList.contains('linea-hogar'))return 'cerradura';return 'otros'}
-function visibleCards(){return Array.from(document.querySelectorAll('.producto')).filter(function(c){if(c.id==='carritoSeccion'||!c.querySelector('h2')||c.matches('.ev-oculto-catalogo,.ev-tag-prototype,.ev-tag-duplicate-hidden,.ev-info-pago,.ev-info-ubicacion')||c.dataset.evPublicState==='unavailable')return false;var override=typeof window.evStockOverride==='function'?window.evStockOverride(c):null;if(override===true)return false;if(override!==false&&c.matches('.ev-agotado,.ev-agotado-bloqueado,.ev-agotado-definitivo,.ev-sin-stock-final'))return false;return !!(c.dataset.evPublicId||c.querySelector('img[src]')||videoSource(c))})}
+const failedShowcasePhotos = new Set();
+function showcasePhoto(card) {
+ const photos = card.querySelectorAll('.imagen img, .imagenes img, img');
+ for (const photo of photos) {
+  const raw = (photo.getAttribute('data-src') || photo.getAttribute('src') || '').trim();
+  if (!raw || /(?:placeholder|sin[_ -]?imagen|no[_ -]?image|logo_el_veci|mascota_el_veci)/i.test(raw)) continue;
+  try {
+   const src = new URL(raw, document.baseURI).href;
+   if (!failedShowcasePhotos.has(src)) return src;
+  } catch {}
+ }
+ return '';
+}
+function visibleCards() {
+ return Array.from(document.querySelectorAll('.producto')).filter(function(c) {
+  if (c.id === 'carritoSeccion' || !c.querySelector('h2') || c.matches('.ev-oculto-catalogo,.ev-tag-prototype,.ev-tag-duplicate-hidden,.ev-info-pago,.ev-info-ubicacion') || c.dataset.evPublicState === 'unavailable') return false;
+  const override = typeof window.evStockOverride === 'function' ? window.evStockOverride(c) : null;
+  if (override === true) return false;
+  if (override !== false && c.matches('.ev-agotado,.ev-agotado-bloqueado,.ev-agotado-definitivo,.ev-sin-stock-final')) return false;
+  return Boolean(showcasePhoto(c));
+ });
+}
 function selectShowcase(all,bucket){var order=['ferreteria','automotriz','ferreteria','cerradura','ferreteria','automotriz'],groups=['ferreteria','automotriz','cerradura','otros'],pools={},used=new Set(),chosen=[];groups.forEach(g=>{var pool=all.filter(c=>productGroup(c)===g).sort((a,b)=>code(a).localeCompare(code(b)));var count=order.filter(x=>x===g).length||1,offset=pool.length?(bucket*count)%pool.length:0;pools[g]=pool.slice(offset).concat(pool.slice(0,offset))});function take(g){var c=pools[g].find(c=>!used.has(code(c)));if(c){used.add(code(c));chosen.push(c)}return !!c}order.forEach((g,i)=>{if(chosen.length>=6)return;if(!take(g)){var fallback=groups.slice(i%groups.length).concat(groups.slice(0,i%groups.length));fallback.some(take)}});return chosen.slice(0,6)}
 var selectionBucket=-1,showcaseStepAt=Date.now(),manualPause=false,pointerInside=false,focusInside=false,reduceMotion=matchMedia('(prefers-reduced-motion: reduce)').matches;
 function refreshCards(){var bucket=Math.floor(Date.now()/(6*60*60*1000));cards=selectShowcase(visibleCards(),bucket);selectionBucket=bucket;if(index>=cards.length)index=0;if(zone){zone.hidden=!cards.length;draw()}}
-function media(c){var src=videoSource(c),img=c.querySelector('.imagen img[src],.imagenes img[src],img[src]');if(src){var video=el('video');video.src=new URL(src,document.baseURI).href;video.muted=true;video.defaultMuted=true;video.setAttribute('muted','');video.playsInline=true;video.setAttribute('playsinline','');video.controls=true;video.loop=true;video.autoplay=!reduceMotion&&!manualPause;video.preload='metadata';video.setAttribute('aria-label','Video de '+(c.querySelector('h2')?.textContent||'producto'));if(img)video.poster=img.src;video.addEventListener('click',e=>e.stopPropagation());video.addEventListener('error',function(){var note=el('p','Este video no pudo cargarse. Abra la ficha para consultar el producto.','evCarouselMediaNotice');video.replaceWith(img?Object.assign(el('img'),{src:img.src,alt:img.alt||'Producto'}):note)});return video}if(img){var image=el('img');image.src=img.src;image.alt=c.querySelector('h2')?.textContent||'Producto';image.loading='eager';image.onclick=()=>open(c);return image}if(c.dataset.evPublicId){var brand=el('img');brand.src='imagenes/logo_el_veci.png';brand.alt='Llaves El Veci';brand.onclick=()=>open(c);return brand}return null}
+function media(card) {
+ const photo = showcasePhoto(card);
+ const image = el('img');
+ const title = card.querySelector('h2')?.textContent || 'Producto';
+ image.alt = title;
+ image.loading = 'eager';
+ image.onclick = () => open(card);
+ image.addEventListener('error', () => {
+  failedShowcasePhotos.add(photo);
+  if (slide.contains(image)) refreshCards();
+ });
+ image.src = photo;
+
+ const src = videoSource(card);
+ if (!src) return image;
+ const video = el('video');
+ video.src = new URL(src, document.baseURI).href;
+ video.poster = photo;
+ video.muted = true;
+ video.defaultMuted = true;
+ video.playsInline = true;
+ video.controls = true;
+ video.loop = true;
+ video.autoplay = !reduceMotion && !manualPause;
+ video.preload = 'metadata';
+ video.setAttribute('aria-label', 'Video de ' + title);
+ video.addEventListener('click', event => event.stopPropagation());
+ video.addEventListener('error', () => {
+  video.replaceWith(image);
+  if (failedShowcasePhotos.has(photo) && slide.contains(image)) refreshCards();
+ });
+ return video;
+}
 function draw(){if(!slide||!cards.length)return;slide.querySelectorAll('video').forEach(v=>{v.pause();v.removeAttribute('src');v.load()});var c=cards[index],m=media(c);slide.replaceChildren();if(m)slide.append(m);var group=productGroup(c),labels={ferreteria:'MI FERRETERÍA',automotriz:'LÍNEA AUTOMOTRIZ',cerradura:'LLAVES DE CERRADURA',otros:'LLAVES EL VECI'},info=el('div',null,'evShowcaseInfo'),category=el('span',labels[group],'evShowcaseEyebrow'),title=el('h2',c.querySelector('h2')?.textContent||code(c)),price=Number(c.dataset.precio),status=c.dataset.evPublicId&&price>0?money(price)+' por '+(hardwareProducts.get(code(c))?.unit==='libra'?'libra':'unidad'):c.dataset.evPublicState==='coming'?'Disponibilidad por confirmar':price>0?'Desde $'+price.toFixed(price*100%1?3:2):'Conozca el producto',cta=el('button','Ver producto →','evShowcaseCta');cta.type='button';cta.onclick=()=>open(c);info.append(category,title,el('p',status),cta);slide.append(info);slide.setAttribute('aria-label','Producto '+(index+1)+' de '+cards.length);caption.textContent=(index+1)+' de '+cards.length+' · Selección automática · cambia cada 6 horas';dots.replaceChildren();cards.forEach(function(c,i){var b=el('button','●');b.type='button';b.className=i===index?'active':'';b.setAttribute('aria-label','Mostrar '+c.querySelector('h2')?.textContent);b.setAttribute('aria-current',String(i===index));b.onclick=function(){index=i;draw()};dots.append(b)});showcaseStepAt=Date.now();if(m?.tagName==='VIDEO'&&m.autoplay){var promise=m.play();if(promise?.catch)promise.catch(()=>{m.controls=true})}}
 function init(){document.getElementById('evVideosPortada')?.remove();document.getElementById('evPreciosActuales')?.remove();document.getElementById('ev-videos-portada-script')?.remove();document.querySelectorAll('.ev-update-badge,.ev-actualizado,#evActualizado').forEach(n=>n.remove());if(zone)return;zone=el('section',null,'evShowcase');zone.id='evProductCarousel';zone.setAttribute('aria-label','Novedades del catálogo');var heading=el('div',null,'evShowcaseHeader');heading.append(el('div','Novedades para su negocio'),el('span','Una selección para usted'));slide=el('div',null,'evShowcaseSlide');slide.setAttribute('role','group');var nav=el('div',null,'evShowcaseNav'),prev=el('button','‹ Anterior'),next=el('button','Siguiente ›'),pause=el('button','Pausar'),tools=el('div');prev.type=next.type=pause.type='button';prev.onclick=function(){if(!cards.length)return;index=(index-1+cards.length)%cards.length;draw()};next.onclick=function(){if(!cards.length)return;index=(index+1)%cards.length;draw()};pause.onclick=function(){manualPause=!manualPause;pause.textContent=manualPause?'Reanudar':'Pausar';slide.querySelectorAll('video').forEach(v=>{if(manualPause)v.pause();else v.play()?.catch(()=>{})});showcaseStepAt=Date.now()};prev.setAttribute('aria-label','Producto anterior');next.setAttribute('aria-label','Producto siguiente');dots=el('div',null,'evShowcaseDots');tools.append(prev,pause,next);caption=el('p');caption.setAttribute('aria-live','off');nav.append(tools,dots,caption);zone.append(heading,slide,nav);var hero=document.querySelector('.hero'),logo=hero?.querySelector('.logo');if(logo)logo.after(zone);else (hero||document.body).prepend(zone);zone.addEventListener('pointerenter',e=>{if(e.pointerType!=='touch')pointerInside=true});zone.addEventListener('pointerleave',()=>pointerInside=false);zone.addEventListener('focusin',()=>focusInside=true);zone.addEventListener('focusout',e=>focusInside=zone.contains(e.relatedTarget));var startX;slide.addEventListener('touchstart',e=>{if(e.target.closest('video')){startX=null;return}startX=e.touches[0]?.clientX},{passive:true});slide.addEventListener('touchend',e=>{if(startX==null)return;var dx=(e.changedTouches[0]?.clientX||0)-startX;if(Math.abs(dx)>55&&cards.length){index=(index+(dx<0?1:-1)+cards.length)%cards.length;draw()}startX=null},{passive:true});refreshCards();timer=setInterval(function(){if(document.hidden||dialog?.open)return;var bucket=Math.floor(Date.now()/(6*60*60*1000));if(bucket!==selectionBucket){index=0;refreshCards();return}if(manualPause||pointerInside||focusInside||reduceMotion||!cards.length)return;var interval=slide.querySelector('video')?20000:8000;if(Date.now()-showcaseStepAt>=interval){index=(index+1)%cards.length;draw()}},1000);document.addEventListener('visibilitychange',function(){if(!document.hidden&&Math.floor(Date.now()/(6*60*60*1000))!==selectionBucket){index=0;refreshCards()}})}
 const hardwareProducts = new Map();
